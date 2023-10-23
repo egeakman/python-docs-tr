@@ -1,0 +1,1020 @@
+
+<!DOCTYPE html>
+
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta property="og:title" content="Python Modüllerini Yükleme (Eski sürüm)" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://docs.python.org/3/install/index.html" />
+<meta property="og:site_name" content="Python documentation" />
+<meta property="og:description" content="Yazar, Greg Ward,. Giriş: Python 2.0’da distutils API’ı ilk olarak standart kitaplığa eklendi. Bu, Linux dağıtım yöneticilerine Python projelerini Linux dağıtım paketlerine dönüştürmenin standart b..." />
+<meta property="og:image" content="https://docs.python.org/3/_static/og-image.png" />
+<meta property="og:image:alt" content="Python documentation" />
+<meta name="description" content="Yazar, Greg Ward,. Giriş: Python 2.0’da distutils API’ı ilk olarak standart kitaplığa eklendi. Bu, Linux dağıtım yöneticilerine Python projelerini Linux dağıtım paketlerine dönüştürmenin standart b..." />
+<meta property="og:image:width" content="200" />
+<meta property="og:image:height" content="200" />
+<meta name="theme-color" content="#3776ab" />
+
+    <title>Python Modüllerini Yükleme (Eski sürüm) &#8212; Python 3.11.5 belgelendirmesi</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?digest=b37c26da2f7529d09fe70b41c4b2133fe4931a90" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    
+    <script src="../_static/sidebar.js"></script>
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Python 3.11.5 belgelendirmesi içinde ara"
+          href="../_static/opensearch.xml"/>
+    <link rel="author" title="Bu belgeler hakkında" href="../about.html" />
+    <link rel="index" title="Dizin" href="../genindex.html" />
+    <link rel="search" title="Ara" href="../search.html" />
+    <link rel="copyright" title="Telif Hakkı" href="../copyright.html" />
+    <link rel="prev" title="9. API Reference" href="../distutils/apiref.html" />
+    <link rel="canonical" href="https://docs.python.org/3/install/index.html" />
+    
+      
+    
+
+    
+    <style>
+      @media only screen {
+        table.full-width-table {
+            width: 100%;
+        }
+      }
+    </style>
+<link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg" />
+            <script type="text/javascript" src="../_static/copybutton.js"></script>
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+
+  </head>
+<body>
+<div class="mobile-nav">
+    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
+    <nav class="nav-content" role="navigation">
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Logo"/>
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Hızlı Arama" aria-label="Hızlı Arama" type="search" name="q" />
+                <input type="submit" value="Git"/>
+            </form>
+        </span>
+    </nav>
+    <div class="menu-wrapper">
+        <nav class="menu" role="navigation" aria-label="main navigation">
+            <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
+  <div>
+    <h3><a href="../contents.html">İçindekiler</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Python Modüllerini Yükleme (Eski sürüm)</a><ul>
+<li><a class="reference internal" href="#introduction">Giriş</a><ul>
+<li><a class="reference internal" href="#distutils-based-source-distributions">Distutils tabanlı kaynak dağıtımları</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#standard-build-and-install">Standart Derleme ve Yükleme</a><ul>
+<li><a class="reference internal" href="#platform-variations">Platform varyasyonları</a></li>
+<li><a class="reference internal" href="#splitting-the-job-up">İşi bölmek</a></li>
+<li><a class="reference internal" href="#how-building-works">Building nasıl çalışır</a></li>
+<li><a class="reference internal" href="#how-installation-works">Kurulum nasıl çalışır</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#alternate-installation">Alternatif Kurulum</a><ul>
+<li><a class="reference internal" href="#alternate-installation-the-user-scheme">Alternatif kurulum: kullanıcı şeması</a></li>
+<li><a class="reference internal" href="#alternate-installation-the-home-scheme">Alternatif kurulum: ev şeması</a></li>
+<li><a class="reference internal" href="#alternate-installation-unix-the-prefix-scheme">Alternatif kurulum: Unix (ön ek (prefix) şeması)</a></li>
+<li><a class="reference internal" href="#alternate-installation-windows-the-prefix-scheme">Alternatif kurulum: Windows (ön ek şeması)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#custom-installation">Özel Kurulum</a><ul>
+<li><a class="reference internal" href="#modifying-python-s-search-path">Python’un Arama Yolunu Değiştirme</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#distutils-configuration-files">Distutils Yapılandırma Dosyaları</a><ul>
+<li><a class="reference internal" href="#location-and-names-of-config-files">Yapılandırma dosyalarının konumu ve adları</a></li>
+<li><a class="reference internal" href="#syntax-of-config-files">Yapılandırma dosyalarının Syntax’ı (sözdizimi)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#building-extensions-tips-and-tricks">Bina Uzantıları: İpuçları ve Püf Noktaları</a><ul>
+<li><a class="reference internal" href="#tweaking-compiler-linker-flags">Derleyici/bağlayıcı bayraklarında ince ayar yapma</a></li>
+<li><a class="reference internal" href="#using-non-microsoft-compilers-on-windows">Windows’ta Microsoft’a ait olmayan derleyicileri kullanma</a><ul>
+<li><a class="reference internal" href="#borland-codegear-c">Borland/CodeGear C++</a></li>
+<li><a class="reference internal" href="#gnu-c-cygwin-mingw">GNU C / Cygwin / MinGW</a><ul>
+<li><a class="reference internal" href="#older-versions-of-python-and-mingw">Python ve MinGW’nin Eski Sürümleri</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Önceki konu</h4>
+    <p class="topless"><a href="../distutils/apiref.html"
+                          title="önceki bölüm"><span class="section-number">9. </span>API Reference</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Bu Sayfa</h3>
+    <ul class="this-page-menu">
+      <li><a href="../bugs.html">Hata Bildir</a></li>
+      <li>
+        <a href="https://github.com/python/cpython/blob/3.11/Doc/install/index.rst"
+            rel="nofollow">Kaynağı Göster
+        </a>
+      </li>
+    </ul>
+  </div>
+        </nav>
+    </div>
+</div>
+
+  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Gezinti</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Genel Endeks"
+             accesskey="I">dizin</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Modül Dizini"
+             >modülleri</a> |</li>
+        <li class="right" >
+          <a href="../distutils/apiref.html" title="9. API Reference"
+             accesskey="P">önceki</a> |</li>
+
+          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+          </li>
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.11.5 Documentation</a> &#187;
+    </li>
+
+        <li class="nav-item nav-item-this"><a href="">Python Modüllerini Yükleme (Eski sürüm)</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Hızlı Arama" aria-label="Hızlı Arama" type="search" name="q" id="search-box" />
+          <input type="submit" value="Git" />
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="installing-python-modules-legacy-version">
+<span id="install-index"></span><h1>Python Modüllerini Yükleme (Eski sürüm)<a class="headerlink" href="#installing-python-modules-legacy-version" title="Permalink to this heading">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Yazar<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Greg Ward</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Not</p>
+<p>Tüm <code class="docutils literal notranslate"><span class="pre">distutils</span></code> paketi kullanımdan kaldırıldı ve Python 3.12’de kaldırılacak. Bu belgeler yalnızca referans olarak tutulur ve paketle birlikte kaldırılacaktır. Daha fazla bilgi için <a class="reference internal" href="../whatsnew/3.10.html#distutils-deprecated"><span class="std std-ref">What’s New</span></a> girişine bakın.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">Ayrıca bakınız</p>
+<dl class="simple">
+<dt><a class="reference internal" href="../installing/index.html#installing-index"><span class="std std-ref">Python Modüllerini Kurmak</span></a></dt><dd><p>Güncel modül kurulum belgeleri. Normal Python kullanımı için, neredeyse kesinlikle bu belgeden ziyade o belgeyi istersiniz.</p>
+</dd>
+</dl>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Not</p>
+<p>Bu belge yalnızca <a class="reference external" href="https://setuptools.readthedocs.io/en/latest/setuptools.html">https://setuptools.readthedocs.io/en/latest/setuptools.html</a> adresindeki <code class="docutils literal notranslate"><span class="pre">setuptools</span></code> belgeleri burada bulunan ilgili tüm bilgileri bağımsız olarak kapsayana kadar saklanacaktır.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Not</p>
+<p>Bu kılavuz yalnızca, Python’un bu sürümünün bir parçası olarak sağlanan uzantıları oluşturmaya ve dağıtmaya yönelik temel araçları kapsar. Üçüncü taraf araçlar, kullanımı daha kolay ve daha güvenli alternatifler sunar. Daha fazla bilgi için Python Paketleme Kullanıcı Kılavuzundaki <a class="reference external" href="https://packaging.python.org/guides/tool-recommendations/">hızlı öneriler bölümüne</a> bakın.</p>
+</div>
+<section id="introduction">
+<span id="inst-intro"></span><h2>Giriş<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>Python 2.0’da <code class="docutils literal notranslate"><span class="pre">distutils</span></code> API’ı ilk olarak standart kitaplığa eklendi. Bu, Linux dağıtım yöneticilerine Python projelerini Linux dağıtım paketlerine dönüştürmenin standart bir yolunu ve sistem yöneticilerine bunları doğrudan hedef sistemlere yüklemenin standart bir yolunu sağladı.</p>
+<p>Python 2.0’ın piyasaya sürülmesinden bu yana geçen uzun yıllardan bu yana, yapı sistemi ve paket yükleyiciyi dil çalışma zamanı sürüm döngüsüne sıkı bir şekilde bağlamak sorunlu hale geldi ve artık projelerin <code class="docutils literal notranslate"><span class="pre">pip</span></code> paket yükleyicisini ve doğrudan <code class="docutils literal notranslate"><span class="pre">distutils</span></code> kullanmak yerine <code class="docutils literal notranslate"><span class="pre">setuptools</span></code> yapı sistemi.</p>
+<p>Daha fazla ayrıntı için <a class="reference internal" href="../installing/index.html#installing-index"><span class="std std-ref">Python Modüllerini Kurmak</span></a> ve <a class="reference internal" href="../distributing/index.html#distributing-index"><span class="std std-ref">Python Modüllerini Dağıtma</span></a> ‘e bakın.</p>
+<p>Bu eski belgeler, yalnızca <code class="docutils literal notranslate"><span class="pre">setuptools</span></code> belgelerinin gereken her şeyi kapsadığından emin olana kadar tutulur.</p>
+<section id="distutils-based-source-distributions">
+<span id="inst-new-standard"></span><h3>Distutils tabanlı kaynak dağıtımları<a class="headerlink" href="#distutils-based-source-distributions" title="Permalink to this heading">¶</a></h3>
+<p>Bir modül kaynak dağıtımı indirirseniz, bunun standart bir şekilde, yani Distutils kullanılarak paketlenip dağıtılmadığını oldukça hızlı bir şekilde anlayabilirsiniz. İlk olarak, dağıtımın adı ve sürüm numarası, indirilen arşivin adında belirgin bir şekilde yer alacaktır, ör. <code class="file docutils literal notranslate"><span class="pre">foo-1.0.tar.gz</span></code> veya <code class="file docutils literal notranslate"><span class="pre">widget-0.9.7.zip</span></code>. Ardından, arşiv benzer adlı bir dizine açılır: <code class="file docutils literal notranslate"><span class="pre">foo-1.0</span></code> veya <code class="file docutils literal notranslate"><span class="pre">widget-0.9.7</span></code>. Ek olarak, dağıtım bir kurulum komut dosyası <code class="file docutils literal notranslate"><span class="pre">setup.py</span></code> ve <code class="file docutils literal notranslate"><span class="pre">README.txt</span></code> veya muhtemelen sadece <code class="file docutils literal notranslate"><span class="pre">README</span></code> adlı bir dosya içerecek ve modül dağıtımının oluşturulması ve kurulmasınının bir terminalden bir komut çalıştırmanın basit bir meselesi olduğunu açıklamalıdır:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python setup.py install
+</pre></div>
+</div>
+<p>Windows için bu komut bir komut istemi penceresinden çalıştırılmalıdır (<span class="menuselection">Start ‣ Accessories</span>):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>setup.py install
+</pre></div>
+</div>
+<p>Tüm bunlar doğruysa, yeni indirdiğiniz modülleri nasıl oluşturacağınızı ve kuracağınızı zaten biliyorsunuzdur: Yukarıdaki komutu çalıştırın. Standart olmayan bir şekilde bir şeyler kurmanız veya oluşturma sürecini özelleştirmeniz gerekmiyorsa, bu kılavuza gerçekten ihtiyacınız yoktur. Veya daha doğrusu, yukarıdaki komut, bu kılavuzdan çıkmanız için ihtiyacınız olan her şeydir.</p>
+</section>
+</section>
+<section id="standard-build-and-install">
+<span id="inst-standard-install"></span><h2>Standart Derleme ve Yükleme<a class="headerlink" href="#standard-build-and-install" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference internal" href="#inst-new-standard"><span class="std std-ref">Distutils tabanlı kaynak dağıtımları</span></a> bölümünde açıklandığı gibi, Distutils kullanarak bir modül dağıtımı oluşturmak ve kurmak genellikle bir terminalden çalıştırılacak basit bir komuttur:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python setup.py install
+</pre></div>
+</div>
+<section id="platform-variations">
+<span id="inst-platform-variations"></span><h3>Platform varyasyonları<a class="headerlink" href="#platform-variations" title="Permalink to this heading">¶</a></h3>
+<p>Kurulum komutunu her zaman dağıtım kök dizininden, yani modül kaynak dağıtımının paketini açtığı en üst düzey alt dizinden çalıştırmalısınız. Örneğin, bir Unix sistemine yeni bir kaynak dağıtımı <code class="file docutils literal notranslate"><span class="pre">foo-1.0.tar.gz</span></code> indirdiyseniz, yapmanız gereken normal şey:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>gunzip -c foo-1.0.tar.gz | tar xf -    # unpacks into directory foo-1.0
+cd foo-1.0
+python setup.py install
+</pre></div>
+</div>
+<p>Windows’ta muhtemelen <code class="file docutils literal notranslate"><span class="pre">foo-1.0.zip</span></code> dosyasını indirirsiniz. Arşiv dosyasını <code class="file docutils literal notranslate"><span class="pre">C:\Temp</span></code> konumuna indirdiyseniz, paketinden <code class="file docutils literal notranslate"><span class="pre">C:\Temp\foo-1.0</span></code>; arşivi açmak için grafiksel kullanıcı arabirimli bir arşiv manipülatörü (WinZip gibi) veya bir komut satırı aracı (örneğin <strong class="program">unzip</strong> veya <strong class="program">pkunzip</strong>) kullanabilirsiniz. Ardından, bir komut istemi penceresi açın ve şunu çalıştırın:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cd c:\Temp\foo-1.0
+python setup.py install
+</pre></div>
+</div>
+</section>
+<section id="splitting-the-job-up">
+<span id="inst-splitting-up"></span><h3>İşi bölmek<a class="headerlink" href="#splitting-the-job-up" title="Permalink to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">setup.py</span> <span class="pre">install</span></code> çalıştırıldığında, tüm modüller tek bir çalıştırmada oluşturulur ve kurulur. Kademeli olarak çalışmayı tercih ediyorsanız – özellikle oluşturma sürecini özelleştirmek istiyorsanız veya işler ters gidiyorsa kullanışlıdır – her seferinde bir şey yapmak için kurulum komut dosyasını kullanabilirsiniz. Bu, özellikle derleme ve yükleme farklı kullanıcılar tarafından yapılacaksa yararlıdır – örneğin, bir modül dağıtımı oluşturmak ve yükleme için bir sistem yöneticisine teslim etmek (veya süper kullanıcı ayrıcalıklarıyla kendiniz yapmak) isteyebilirsiniz. ).</p>
+<p>Örneğin, her şeyi bir adımda oluşturabilir ve ardından kurulum komut dosyasını iki kez çağırarak her şeyi ikinci bir adımda yükleyebilirsiniz:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python setup.py build
+python setup.py install
+</pre></div>
+</div>
+<p>Bunu yaparsanız, <strong class="command">install</strong> komutunu çalıştırmanın önce <strong class="command">build</strong> komutunu çalıştırdığını fark edeceksiniz, bu komut –bu durumda –hızlı bir şekilde ilgisi olmadığını fark edecek, çünkü her şey <code class="file docutils literal notranslate"><span class="pre">build</span></code> dizini günceldir.</p>
+<p>Tek yapmanız gereken ağdan indirilen modülleri kurmaksa, işleri parçalamak için bu yeteneğe ihtiyacınız olmayabilir, ancak daha gelişmiş görevler için çok kullanışlıdır. Kendi Python modüllerinizi ve uzantılarınızı dağıtmaya başlarsanız, birçok Distutils komutunu kendi başlarına çalıştıracaksınız.</p>
+</section>
+<section id="how-building-works">
+<span id="inst-how-build-works"></span><h3>Building nasıl çalışır<a class="headerlink" href="#how-building-works" title="Permalink to this heading">¶</a></h3>
+<p>Yukarıda belirtildiği gibi, <strong class="command">build</strong> komutu, kurulacak dosyaların bir <em>build directory</em> ye yerleştirilmesinden sorumludur. Varsayılan olarak, bu, dağıtım kökünün altındaki <code class="file docutils literal notranslate"><span class="pre">build</span></code> ‘dir; Hızla aşırı derecede ilgileniyorsanız veya kaynak ağacı bozulmamış tutmak istiyorsanız, derleme dizinini <code class="xref std std-option docutils literal notranslate"><span class="pre">--build-base</span></code> seçeneğiyle değiştirebilirsiniz. Örneğin:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python setup.py build --build-base=/path/to/pybuild/foo-1.0
+</pre></div>
+</div>
+<p>(Ya da bunu sisteminizdeki veya kişisel Distutils yapılandırma dosyanızdaki bir yönerge ile kalıcı olarak yapabilirsiniz; bkz. bölüm <a class="reference internal" href="#inst-config-files"><span class="std std-ref">Distutils Yapılandırma Dosyaları</span></a>.) Normalde, bu gerekli değildir.</p>
+<p>Derleme ağacının varsayılan düzeni aşağıdaki gibidir:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>--- build/ --- lib/
+or
+--- build/ --- lib.&lt;plat&gt;/
+               temp.&lt;plat&gt;/
+</pre></div>
+</div>
+<p>burada <code class="docutils literal notranslate"><span class="pre">&lt;plat&gt;</span></code> mevcut işletim sistemi/donanım platformunun ve Python sürümünün kısa bir açıklamasına genişler. Yalnızca bir <code class="file docutils literal notranslate"><span class="pre">lib</span></code> dizini içeren ilk biçim, “saf modül dağıtımları” için kullanılır—yani, yalnızca salt Python modüllerini içeren modül dağıtımları. Bir modül dağıtımı herhangi bir uzantı içeriyorsa (C/C++ ile yazılmış modüller), o zaman iki <code class="docutils literal notranslate"><span class="pre">&lt;plat&gt;</span></code> dizinli ikinci form kullanılır. Bu durumda, <code class="file docutils literal notranslate"><span class="pre">temp.</span><em><span class="pre">plat</span></em></code> dizini, derleme/bağlantı işlemi tarafından oluşturulan ve aslında yüklenmeyen geçici dosyaları tutar. Her iki durumda da, <code class="file docutils literal notranslate"><span class="pre">lib</span></code> (veya <code class="file docutils literal notranslate"><span class="pre">lib.</span><em><span class="pre">plat</span></em></code>) dizini, kurulacak tüm Python modüllerini (saf Python ve uzantıları) içerir.</p>
+<p>Gelecekte, Python komut dosyalarını, belgeleri, ikili yürütülebilir dosyaları ve Python modüllerini ve uygulamalarını yükleme işini yürütmek için gereken diğer her şeyi işlemek için daha fazla dizin eklenecektir.</p>
+</section>
+<section id="how-installation-works">
+<span id="inst-how-install-works"></span><h3>Kurulum nasıl çalışır<a class="headerlink" href="#how-installation-works" title="Permalink to this heading">¶</a></h3>
+<p><strong class="command">build</strong> komutu çalıştırıldıktan sonra (ister açık bir şekilde çalıştırın, ister <strong class="command">install</strong> komutu sizin için yapar), <strong class="command">install</strong> komutunun çalışması nispeten basittir: sahip olduğu tek şey yapılacak şey <code class="file docutils literal notranslate"><span class="pre">build/lib</span></code> (veya <code class="file docutils literal notranslate"><span class="pre">build/lib.</span><em><span class="pre">plat</span></em></code>) altındaki her şeyi seçtiğiniz kurulum dizinine kopyalamaktır.</p>
+<p>Bir kurulum dizini seçmezseniz – yani, sadece <code class="docutils literal notranslate"><span class="pre">setup.py</span> <span class="pre">install</span></code>komutunu çalıştırırsanız – o zaman <strong class="command">install</strong> komutu üçüncü taraf Python modülleri için standart konuma yüklenir . Bu konum, platforma ve Python’un kendisini nasıl oluşturduğunuza/kurduğunuza göre değişir. Unix’te (ve aynı zamanda Unix tabanlı olan macOS’ta), yüklenen modül dağıtımının saf Python olup olmadığına veya uzantılar (“non pürse”) içerip içermediğine de bağlıdır:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Platform</p></th>
+<th class="head"><p>Standart kurulum lokasyonu</p></th>
+<th class="head"><p>Varsayılan değer</p></th>
+<th class="head"><p>Notlar</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Unix (pure)</p></td>
+<td><p><code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em><span class="pre">/lib/python</span><em><span class="pre">X.Y</span></em><span class="pre">/site-packages</span></code></p></td>
+<td><p><code class="file docutils literal notranslate"><span class="pre">/usr/local/lib/python</span><em><span class="pre">X.Y</span></em><span class="pre">/site-packages</span></code></p></td>
+<td><p>(1)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Unix (non-pure)</p></td>
+<td><p><code class="file docutils literal notranslate"><em><span class="pre">exec-prefix</span></em><span class="pre">/lib/python</span><em><span class="pre">X.Y</span></em><span class="pre">/site-packages</span></code></p></td>
+<td><p><code class="file docutils literal notranslate"><span class="pre">/usr/local/lib/python</span><em><span class="pre">X.Y</span></em><span class="pre">/site-packages</span></code></p></td>
+<td><p>(1)</p></td>
+</tr>
+<tr class="row-even"><td><p>Windows</p></td>
+<td><p><code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em><span class="pre">\Lib\site-packages</span></code></p></td>
+<td><p><code class="file docutils literal notranslate"><span class="pre">C:\Python</span><em><span class="pre">XY</span></em><span class="pre">\Lib\site-packages</span></code></p></td>
+<td><p>(2)</p></td>
+</tr>
+</tbody>
+</table>
+<p>Notlar:</p>
+<ol class="arabic simple">
+<li><p>Çoğu Linux dağıtımı Python’u sistemin standart bir parçası olarak içerir, bu nedenle <code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em></code> ve <code class="file docutils literal notranslate"><em><span class="pre">exec-prefix</span></em></code> genellikle Linux’ta <code class="file docutils literal notranslate"><span class="pre">/usr</span></code> ‘dır. Python’u Linux’ta (veya herhangi bir Unix benzeri sistemde) kendiniz kurarsanız, varsayılan <code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em></code> ve <code class="file docutils literal notranslate"><em><span class="pre">exec-prefix</span></em></code> <code class="file docutils literal notranslate"><span class="pre">/usr/local</span></code> şeklindedir.</p></li>
+<li><p>Windows’ta varsayılan kurulum dizini Python 1.6a1, 1.5.2 ve önceki sürümlerde <code class="file docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\Python</span></code> idi.</p></li>
+</ol>
+<p><code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em></code> ve <code class="file docutils literal notranslate"><em><span class="pre">exec-prefix</span></em></code> Python’un kurulu olduğu dizinleri ve çalışma zamanında kütüphanelerini nerede bulduğunu gösterir. Windows altında her zaman aynıdırlar ve çoğu zaman Unix ve macOS altında aynıdırlar. Python kurulumunuzun <code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em></code> ve <code class="file docutils literal notranslate"><em><span class="pre">exec-prefix</span></em></code> için ne kullandığını Python’u etkileşimli modda çalıştırarak ve birkaç basit komut yazarak öğrenebilirsiniz. Unix altında, kabuk istemine <code class="docutils literal notranslate"><span class="pre">python</span></code> yazmanız yeterlidir. Windows altında, <span class="menuselection">Başlat ‣ Programlar ‣ Python X.Y ‣ Python (komut satırı)</span> öğesini seçin. Yorumlayıcı başlatıldığında, komut istemine Python kodunu yazarsınız. Örneğin, Linux sistemimde, <code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em></code> ve <code class="file docutils literal notranslate"><em><span class="pre">exec-prefix</span></em></code> i bulmak için aşağıda gösterilen üç Python ifadesini yazıyorum ve gösterildiği gibi çıktı alıyorum:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="go">Python 2.4 (#26, Aug  7 2004, 17:19:02)</span>
+<span class="go">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sys</span><span class="o">.</span><span class="n">prefix</span>
+<span class="go">&#39;/usr&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sys</span><span class="o">.</span><span class="n">exec_prefix</span>
+<span class="go">&#39;/usr&#39;</span>
+</pre></div>
+</div>
+<p>Bu belgede birkaç başka yer tutucu kullanılmıştır: <code class="file docutils literal notranslate"><em><span class="pre">X.Y</span></em></code> Python sürümünü temsil eder, örneğin <code class="docutils literal notranslate"><span class="pre">3.2</span></code>; <code class="file docutils literal notranslate"><em><span class="pre">abiflags</span></em></code>, <a class="reference internal" href="../library/sys.html#sys.abiflags" title="sys.abiflags"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.abiflags</span></code></a> değeri veya ABI bayrakları tanımlamayan platformlar için boş dize ile değiştirilecektir; <code class="file docutils literal notranslate"><em><span class="pre">distname</span></em></code>, kurulmakta olan modül dağıtımının adıyla değiştirilecektir. Yollarda noktalar ve büyük harf kullanımı önemlidir; örneğin, UNIX’te <code class="docutils literal notranslate"><span class="pre">python3.2</span></code> ‘yi kullanan bir değer, Windows’ta genellikle <code class="docutils literal notranslate"><span class="pre">Python32</span></code> ‘yi kullanır.</p>
+<p>Modülleri standart konuma kurmak istemiyorsanız veya oraya yazma izniniz yoksa, alternatif kurulumlar hakkında <a class="reference internal" href="#inst-alt-install"><span class="std std-ref">Alternatif Kurulum</span></a> bölümünde okumanız gerekir. Kurulum dizinlerinizi daha yoğun bir şekilde özelleştirmek istiyorsanız, özel kurulumlarla ilgili <a class="reference internal" href="#inst-custom-install"><span class="std std-ref">Özel Kurulum</span></a> bölümüne bakın.</p>
+</section>
+</section>
+<section id="alternate-installation">
+<span id="inst-alt-install"></span><h2>Alternatif Kurulum<a class="headerlink" href="#alternate-installation" title="Permalink to this heading">¶</a></h2>
+<p>Çoğu zaman, modüllerin üçüncü taraf Python modülleri için standart konumdan farklı bir konuma kurulması gerekli veya istenir. Örneğin, bir Unix sisteminde standart üçüncü taraf modül dizinine yazma izniniz olmayabilir. Veya bir modülü yerel Python kurulumunuzun standart bir parçası yapmadan önce denemek isteyebilirsiniz. Bu özellikle halihazırda mevcut olan bir dağıtımı yükseltirken geçerlidir: gerçekten yükseltmeden önce mevcut komut dosyası tabanınızın yeni sürümle hala çalıştığından emin olmak istersiniz.</p>
+<p>Distutils <strong class="command">install</strong> komutu, modül dağıtımlarını alternatif bir konuma yüklemeyi basit ve zahmetsiz hale getirmek için tasarlanmıştır. Temel fikir, kurulum için bir temel dizin sağlamanız ve <strong class="command">install</strong> komutunun, dosyaların kurulacağı bu temel dizin altında bir dizi dizini (<em>installation scheme</em> olarak adlandırılır) seçmesidir. Ayrıntılar platformlar arasında farklılık gösterir, bu nedenle aşağıdaki bölümlerden hangisi size uyuyorsa onu okuyun.</p>
+<p>Çeşitli alternatif kurulum şemalarının birbirini dışladığını unutmayın: <code class="docutils literal notranslate"><span class="pre">--user</span></code> veya <code class="docutils literal notranslate"><span class="pre">--home</span></code> veya <code class="docutils literal notranslate"><span class="pre">--prefix</span></code> ve <code class="docutils literal notranslate"><span class="pre">--exec-prefix</span></code> iletebilirsiniz, veya <code class="docutils literal notranslate"><span class="pre">--install-base</span></code> ve <code class="docutils literal notranslate"><span class="pre">--install-platbase</span></code>, ancak bu gruplardan karıştıramazsınız.</p>
+<section id="alternate-installation-the-user-scheme">
+<span id="inst-alt-install-user"></span><h3>Alternatif kurulum: kullanıcı şeması<a class="headerlink" href="#alternate-installation-the-user-scheme" title="Permalink to this heading">¶</a></h3>
+<p>Bu şema, global site paketleri dizinine yazma izni olmayan veya içine yüklemek istemeyen kullanıcılar için en uygun çözüm olacak şekilde tasarlanmıştır. Basit bir seçenekle etkinleştirilir:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python setup.py install --user
+</pre></div>
+</div>
+<p>Files will be installed into subdirectories of <a class="reference internal" href="../library/site.html#site.USER_BASE" title="site.USER_BASE"><code class="xref py py-const docutils literal notranslate"><span class="pre">site.USER_BASE</span></code></a> (written
+as <code class="file docutils literal notranslate"><em><span class="pre">userbase</span></em></code> hereafter).  This scheme installs pure Python modules and
+extension modules in the same location (also known as <a class="reference internal" href="../library/site.html#site.USER_SITE" title="site.USER_SITE"><code class="xref py py-const docutils literal notranslate"><span class="pre">site.USER_SITE</span></code></a>).
+Here are the values for UNIX, including macOS:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Dosya tipi</p></th>
+<th class="head"><p>Kurulum dizini</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>modüller</p></td>
+<td><p><code class="file docutils literal notranslate"><em><span class="pre">userbase</span></em><span class="pre">/lib/python</span><em><span class="pre">X.Y</span></em><span class="pre">/site-packages</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>scriptler</p></td>
+<td><p><code class="file docutils literal notranslate"><em><span class="pre">userbase</span></em><span class="pre">/bin</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>data</p></td>
+<td><p><code class="file docutils literal notranslate"><em><span class="pre">userbase</span></em></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>C başlıkları</p></td>
+<td><p><code class="file docutils literal notranslate"><em><span class="pre">userbase</span></em><span class="pre">/include/python</span><em><span class="pre">X.Y</span></em><em><span class="pre">abiflags</span></em><span class="pre">/</span><em><span class="pre">distname</span></em></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Windows’ta kullanılan değerler:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Dosya tipi</p></th>
+<th class="head"><p>Kurulum dizini</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>modüller</p></td>
+<td><p><code class="file docutils literal notranslate"><em><span class="pre">userbase</span></em><span class="pre">\Python</span><em><span class="pre">XY</span></em><span class="pre">\site-packages</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>scriptler</p></td>
+<td><p><code class="file docutils literal notranslate"><em><span class="pre">userbase</span></em><span class="pre">\Python</span><em><span class="pre">XY</span></em><span class="pre">\Scripts</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>data</p></td>
+<td><p><code class="file docutils literal notranslate"><em><span class="pre">userbase</span></em></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>C başlıkları</p></td>
+<td><p><code class="file docutils literal notranslate"><em><span class="pre">userbase</span></em><span class="pre">\Python</span><em><span class="pre">XY</span></em><span class="pre">\Include{distname}</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Aşağıda açıklanan diğerlerine kıyasla bu şemayı kullanmanın avantajı, normal koşullar altında kullanıcı site paketleri dizininin her zaman <a class="reference internal" href="../library/sys.html#sys.path" title="sys.path"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.path</span></code></a> (daha fazla bilgi için <a class="reference internal" href="../library/site.html#module-site" title="site: Module responsible for site-specific configuration."><code class="xref py py-mod docutils literal notranslate"><span class="pre">site</span></code></a> bölümüne bakın) içinde bulunmasıdır. bu, kurulumu tamamlamak için <code class="file docutils literal notranslate"><span class="pre">setup.py</span></code> betiğini çalıştırdıktan sonra gerçekleştirilecek ek bir adım olmadığı anlamına gelir.</p>
+<p><strong class="command">build_ext</strong> komutu ayrıca başlık dosyaları ve <code class="file docutils literal notranslate"><em><span class="pre">userbase</span></em><span class="pre">/lib</span></code> için derleyici arama yoluna <code class="file docutils literal notranslate"><em><span class="pre">userbase</span></em><span class="pre">/include</span></code> eklemek için bir <code class="docutils literal notranslate"><span class="pre">--user</span></code> seçeneğine sahiptir. kütüphaneler için derleyici arama yolunun yanı sıra paylaşılan C kütüphaneleri (rpath) için çalışma zamanı arama yoluna.</p>
+</section>
+<section id="alternate-installation-the-home-scheme">
+<span id="inst-alt-install-home"></span><h3>Alternatif kurulum: ev şeması<a class="headerlink" href="#alternate-installation-the-home-scheme" title="Permalink to this heading">¶</a></h3>
+<p>“Ev planı”nın arkasındaki fikir, Python modüllerinin kişisel bir zulasını oluşturmanız ve sürdürmenizdir. Bu şemanın adı, Unix’teki bir “ev” dizini fikrinden türetilmiştir, çünkü bir Unix kullanıcısının ev dizininin <code class="file docutils literal notranslate"><span class="pre">/usr/</span></code> veya <code class="file docutils literal notranslate"><span class="pre">/usr'ye</span> <span class="pre">benzer</span> <span class="pre">bir</span> <span class="pre">düzene</span> <span class="pre">sahip</span> <span class="pre">olması</span> <span class="pre">alışılmadık</span> <span class="pre">bir</span> <span class="pre">durum</span> <span class="pre">değildir.</span> <span class="pre">/yerel/</span></code>. Bu şema, yükledikleri işletim sistemi ne olursa olsun herkes tarafından kullanılabilir.</p>
+<p>Yeni bir modül dağıtımı kurmak şu kadar basittir</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python setup.py install --home=&lt;dir&gt;
+</pre></div>
+</div>
+<p>burada <code class="xref std std-option docutils literal notranslate"><span class="pre">--home</span></code> seçeneği için istediğiniz dizini sağlayabilirsiniz. Unix’te tembel daktilo yazarları yalnızca bir yaklaşık işareti (<code class="docutils literal notranslate"><span class="pre">~</span></code>) yazabilir; <strong class="command">install</strong> komutu bunu ana dizininize genişletecektir:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python setup.py install --home=~
+</pre></div>
+</div>
+<p>To make Python find the distributions installed with this scheme, you may have
+to <a class="reference internal" href="#inst-search-path"><span class="std std-ref">modify Python’s search path</span></a> or edit
+<code class="xref py py-mod docutils literal notranslate"><span class="pre">sitecustomize</span></code> (see <a class="reference internal" href="../library/site.html#module-site" title="site: Module responsible for site-specific configuration."><code class="xref py py-mod docutils literal notranslate"><span class="pre">site</span></code></a>) to call <a class="reference internal" href="../library/site.html#site.addsitedir" title="site.addsitedir"><code class="xref py py-func docutils literal notranslate"><span class="pre">site.addsitedir()</span></code></a> or edit
+<a class="reference internal" href="../library/sys.html#sys.path" title="sys.path"><code class="xref py py-data docutils literal notranslate"><span class="pre">sys.path</span></code></a>.</p>
+<p><code class="xref std std-option docutils literal notranslate"><span class="pre">--home</span></code> seçeneği, kurulum temel dizinini tanımlar. Dosyalar, kurulum tabanının altındaki aşağıdaki dizinlere aşağıdaki şekilde kurulur:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Dosya tipi</p></th>
+<th class="head"><p>Kurulum dizini</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>modüller</p></td>
+<td><p><code class="file docutils literal notranslate"><em><span class="pre">home</span></em><span class="pre">/lib/python</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>scriptler</p></td>
+<td><p><code class="file docutils literal notranslate"><em><span class="pre">home</span></em><span class="pre">/bin</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>data</p></td>
+<td><p><code class="file docutils literal notranslate"><em><span class="pre">home</span></em></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>C başlıkları</p></td>
+<td><p><code class="file docutils literal notranslate"><em><span class="pre">home</span></em><span class="pre">/include/python/</span><em><span class="pre">distname</span></em></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>(Windows kullanıyorsanız, eğik çizgileri zihinsel olarak ters eğik çizgiyle değiştirin.)</p>
+</section>
+<section id="alternate-installation-unix-the-prefix-scheme">
+<span id="inst-alt-install-prefix-unix"></span><h3>Alternatif kurulum: Unix (ön ek (prefix) şeması)<a class="headerlink" href="#alternate-installation-unix-the-prefix-scheme" title="Permalink to this heading">¶</a></h3>
+<p>“Prefix şeması”, oluşturma/kurulum işlemini gerçekleştirmek için (yani kurulum komut dosyasını çalıştırmak için) bir Python kurulumu kullanmak istediğinizde, ancak modülleri farklı bir Python kurulumunun (veya farklı bir Python kurulumuna benziyor). Bu kulağa biraz olağandışı geliyorsa, bu–kullanıcı ve ev şemalarının önce gelmesinin nedeni budur. Bununla birlikte, prefix şemasının yararlı olacağı bilinen en az iki durum vardır.</p>
+<p>İlk olarak, birçok Linux dağıtımının Python’u daha geleneksel <code class="file docutils literal notranslate"><span class="pre">/usr/local</span></code> yerine <code class="file docutils literal notranslate"><span class="pre">/usr</span></code> içine koyduğunu düşünün.  Bu tamamen uygundur, çünkü bu durumlarda Python yerel bir eklentiden ziyade “sistemin” bir parçasıdır. Ancak, Python modüllerini kaynaktan kuruyorsanız, muhtemelen bunların <code class="file docutils literal notranslate"><span class="pre">/usr/lib/python2</span> <span class="pre">yerine</span> <span class="pre">:file:</span></code>/usr/local/lib/python2.{X}` içine girmesini istersiniz.{X }`.  Şu şekilde yapılabilir</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>/usr/bin/python setup.py install --prefix=/usr/local
+</pre></div>
+</div>
+<p>Başka bir olasılık, uzak bir dizine yazmak için kullanılan adın onu okumak için kullanılan addan farklı olduğu bir ağ dosya sistemidir: örneğin, <code class="file docutils literal notranslate"><span class="pre">/usr/local/bin/python</span></code> olarak erişilen Python yorumlayıcısı için arama yapabilir. modüller <code class="file docutils literal notranslate"><span class="pre">/usr/local/lib/python2.</span><em><span class="pre">X</span></em></code> dizinindedir, ancak bu modüllerin örneğin <code class="file docutils literal notranslate"><span class="pre">/mnt/</span><em><span class="pre">&#64;server</span></em><span class="pre">/export/lib/python2</span> <span class="pre">konumuna</span> <span class="pre">yüklenmesi</span> <span class="pre">gerekir.</span> <em><span class="pre">X</span></em></code>. Şu şekilde yapılabilir</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>/usr/local/bin/python setup.py install --prefix=/mnt/@server/export
+</pre></div>
+</div>
+<p>Her iki durumda da, <code class="xref std std-option docutils literal notranslate"><span class="pre">--prefix</span></code> seçeneği kurulum tabanını tanımlar ve <code class="xref std std-option docutils literal notranslate"><span class="pre">--exec-prefix</span></code> seçeneği platforma özel dosyalar için kullanılan platforma özel kurulum tabanını tanımlar. . (Şu anda, bu yalnızca saf olmayan modül dağıtımları anlamına gelir, ancak C kütüphanelerine, ikili yürütülebilir dosyalara vb. genişletilebilir.) <code class="xref std std-option docutils literal notranslate"><span class="pre">--exec-prefix</span></code> sağlanmazsa, varsayılan olarak <code class="xref std std-option docutils literal notranslate"> <span class="pre">--prefix</span></code>. Dosyalar aşağıdaki gibi yüklenir:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Dosya tipi</p></th>
+<th class="head"><p>Kurulum dizini</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Python modülleri</p></td>
+<td><p><code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em><span class="pre">/lib/python</span><em><span class="pre">X.Y</span></em><span class="pre">/site-packages</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>extension (uzatma) modülleri</p></td>
+<td><p><code class="file docutils literal notranslate"><em><span class="pre">exec-prefix</span></em><span class="pre">/lib/python</span><em><span class="pre">X.Y</span></em><span class="pre">/site-packages</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>scriptler</p></td>
+<td><p><code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em><span class="pre">/bin</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>data</p></td>
+<td><p><code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em></code></p></td>
+</tr>
+<tr class="row-even"><td><p>C başlıkları</p></td>
+<td><p><code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em><span class="pre">/include/python</span><em><span class="pre">X.Y</span></em><em><span class="pre">abiflags</span></em><span class="pre">/</span><em><span class="pre">distname</span></em></code></p></td>
+</tr>
+</tbody>
+</table>
+<p><code class="xref std std-option docutils literal notranslate"><span class="pre">--prefix</span></code> veya <code class="xref std std-option docutils literal notranslate"><span class="pre">--exec-prefix</span></code> ‘in aslında alternatif bir Python kurulumuna işaret etmesi gerekliliği yoktur; yukarıda listelenen dizinler zaten mevcut değilse, kurulum sırasında oluşturulurlar.</p>
+<p>Bu arada, önek şemasının önemli olmasının gerçek nedeni, standart bir Unix kurulumunun örnek şemasını kullanmasıdır, ancak <code class="xref std std-option docutils literal notranslate"><span class="pre">--prefix</span></code> ve <code class="xref std std-option docutils literal notranslate"><span class="pre">--exec-prefix</span></code> Python’un kendisi tarafından sağlanır. <code class="docutils literal notranslate"><span class="pre">sys.prefix</span></code> ve <code class="docutils literal notranslate"><span class="pre">sys.exec_prefix</span></code>. Bu nedenle, önek şemasını asla kullanmayacağınızı düşünebilirsiniz, ancak <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></code> dosyasını başka bir seçenek olmadan her çalıştırdığınızda, onu kullanıyorsunuz.</p>
+<p>Alternatif bir Python kurulumuna uzantı yüklemenin, bu uzantıların nasıl oluşturulduğu üzerinde hiçbir etkisi olmadığını unutmayın: özellikle, kurulum komut dosyasını çalıştırmak için kullanılan Python yorumlayıcısı ile yüklenen Python başlık dosyaları (<code class="file docutils literal notranslate"><span class="pre">Python.h</span></code> ve arkadaşları) uzantıların derlenmesinde kullanılabilir. Bu şekilde yüklenen uzantıları çalıştırmak için kullanılan yorumlayıcının, bunları oluşturmak için kullanılan yorumlayıcıyla uyumlu olmasını sağlamak sizin sorumluluğunuzdadır. Bunu yapmanın en iyi yolu, iki yorumlayıcının aynı Python sürümü (muhtemelen farklı yapılar veya muhtemelen aynı yapının kopyaları) olduğundan emin olmaktır. (Elbette, <code class="xref std std-option docutils literal notranslate"><span class="pre">--prefix</span></code> ve <code class="xref std std-option docutils literal notranslate"><span class="pre">--exec-prefix</span></code> öğeleriniz alternatif bir Python kurulumuna işaret etmiyorsa, bu önemsizdir.)</p>
+</section>
+<section id="alternate-installation-windows-the-prefix-scheme">
+<span id="inst-alt-install-prefix-windows"></span><h3>Alternatif kurulum: Windows (ön ek şeması)<a class="headerlink" href="#alternate-installation-windows-the-prefix-scheme" title="Permalink to this heading">¶</a></h3>
+<p>Windows’ta bir kullanıcının ev dizini kavramı yoktur ve Windows altında standart Python kurulumu Unix’e göre daha basit olduğundan, <code class="xref std std-option docutils literal notranslate"><span class="pre">--prefix</span></code> seçeneği geleneksel olarak Windows’ta ayrı konumlara ek paketler kurmak için kullanılmıştır.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python setup.py install --prefix=&quot;\Temp\Python&quot;
+</pre></div>
+</div>
+<p>modülleri geçerli sürücüdeki <code class="file docutils literal notranslate"><span class="pre">\Temp\Python</span></code> dizinine kurmak için.</p>
+<p>Kurulum tabanı <code class="xref std std-option docutils literal notranslate"><span class="pre">--prefix</span></code> seçeneği ile tanımlanır; <code class="xref std std-option docutils literal notranslate"><span class="pre">--exec-prefix</span></code> seçeneği Windows’ta desteklenmez, bu da saf Python modüllerinin ve genişletme modüllerinin aynı konuma kurulu olduğu anlamına gelir. Dosyalar aşağıdaki gibi yüklenir:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Dosya tipi</p></th>
+<th class="head"><p>Kurulum dizini</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>modüller</p></td>
+<td><p><code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em><span class="pre">\Lib\site-packages</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>scriptler</p></td>
+<td><p><code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em><span class="pre">\Scripts</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>data</p></td>
+<td><p><code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>C başlıkları</p></td>
+<td><p><code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em><span class="pre">\Include{distname}</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="custom-installation">
+<span id="inst-custom-install"></span><h2>Özel Kurulum<a class="headerlink" href="#custom-installation" title="Permalink to this heading">¶</a></h2>
+<p>Bazen, <a class="reference internal" href="#inst-alt-install"><span class="std std-ref">Alternatif Kurulum</span></a> bölümünde açıklanan alternatif kurulum şemaları istediğinizi yapmaz. Her şeyi aynı temel dizin altında tutarken yalnızca bir veya iki dizinde ince ayar yapmak veya kurulum şemasını tamamen yeniden tanımlamak isteyebilirsiniz. Her iki durumda da <em>özel bir yükleme şeması</em> oluşturuyorsunuz.</p>
+<p>Özel bir kurulum şeması oluşturmak için, alternatif şemalardan biriyle başlarsınız ve aşağıdaki seçenekleri kullanarak çeşitli dosya türleri için kullanılan bazı kurulum dizinlerini geçersiz kılarsınız:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Dosya tipi</p></th>
+<th class="head"><p>Geçersiz kılma seçeneği</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Python modülleri</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">--install-purelib</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>extension (uzatma) modülleri</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">--install-platlib</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>tüm modüller</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">--install-lib</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>scriptler</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">--install-scripts</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>data</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">--install-data</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>C başlıkları</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">--install-headers</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Bu geçersiz kılma seçenekleri göreli, mutlak veya kurulum temel dizinlerinden biri açısından açıkça tanımlanmış olabilir. (İki kurulum temel dizini vardır ve bunlar normalde aynıdır – yalnızca Unix “ön ek şeması” kullandığınızda ve farklı <code class="docutils literal notranslate"><span class="pre">--prefix</span></code> ve <code class="docutils literal notranslate"><span class="pre">--exec-prefix</span></code> seçenekleri sağladığınızda farklılık gösterirler; <code class="docutils literal notranslate"><span class="pre">--install-lib</span></code> kullanmak, <code class="docutils literal notranslate"><span class="pre">--install-purelib</span></code> ve <code class="docutils literal notranslate"><span class="pre">--install-platlib</span></code> için hesaplanan veya verilen değerleri geçersiz kılar ve fark yaratmayan şemalar için Python ve uzatma modülleri arasında önerilir.)</p>
+<p>Örneğin, Unix altında ana dizininize bir modül dağıtımı kurduğunuzu, ancak komut dosyalarının <code class="file docutils literal notranslate"><span class="pre">~/bin</span></code> yerine <code class="file docutils literal notranslate"><span class="pre">~/scripts</span></code> içine girmesini istediğinizi varsayalım. Tahmin edebileceğiniz gibi, bu dizini <code class="xref std std-option docutils literal notranslate"><span class="pre">--install-scripts</span></code> seçeneği ile geçersiz kılabilirsiniz; bu durumda, kurulum temel dizinine (bu durumda ana dizininiz) göre yorumlanacak olan bir göreli yol sağlamak en mantıklısı olur:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python setup.py install --home=~ --install-scripts=scripts
+</pre></div>
+</div>
+<p>Başka bir Unix örneği: Python kurulumunuzun <code class="file docutils literal notranslate"><span class="pre">/usr/local/python</span></code> ön ekiyle oluşturulduğunu ve kurulduğunu varsayalım, bu nedenle standart bir kurulum komut dosyaları altında <code class="file docutils literal notranslate"><span class="pre">/usr/local/python/bin</span></code> olarak kurulacaktır. Bunların yerine <code class="file docutils literal notranslate"><span class="pre">/usr/local/bin</span></code> içinde olmasını istiyorsanız, <code class="xref std std-option docutils literal notranslate"><span class="pre">--install-scripts</span></code> seçeneği için bu mutlak dizini sağlarsınız:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python setup.py install --install-scripts=/usr/local/bin
+</pre></div>
+</div>
+<p>(Bu, “ön ek şemasını” kullanarak bir yükleme gerçekleştirir; burada önek, bu durumda Python yorumlayıcınız– <code class="file docutils literal notranslate"><span class="pre">/usr/local/python</span></code> ile birlikte yüklenir.)</p>
+<p>Python’u Windows’ta kullanıyorsanız, üçüncü taraf modüllerin doğrudan <code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em></code> içinde değil, <code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em></code> alt dizininde yaşamasını isteyebilirsiniz. Bu neredeyse komut dosyası yükleme dizinini özelleştirmek kadar kolaydır – endişelenmeniz gereken iki tür modül olduğunu hatırlamanız yeterlidir: Python ve genişletme modülleri, her ikisi de tek bir seçenekle kolayca kontrol edilebilir:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python setup.py install --install-lib=Site
+</pre></div>
+</div>
+<p>Belirtilen kurulum dizini <code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em></code> ile ilişkilidir. Elbette, örneğin bir site dizinine bir <code class="file docutils literal notranslate"><span class="pre">.pth</span></code> dosyası koyarak (bkz. <a class="reference internal" href="../library/site.html#module-site" title="site: Module responsible for site-specific configuration."><code class="xref py py-mod docutils literal notranslate"><span class="pre">site</span></code></a>) bu dizinin Python’un modül arama yolunda olduğundan emin olmalısınız. Python’un arama yolunu nasıl değiştireceğinizi öğrenmek için <a class="reference internal" href="#inst-search-path"><span class="std std-ref">Python’un Arama Yolunu Değiştirme</span></a> bölümüne bakın.</p>
+<p>Tüm bir kurulum şemasını tanımlamak istiyorsanız, tüm kurulum dizini seçeneklerini sağlamanız yeterlidir. Bunu yapmanın önerilen yolu, göreli yollar sağlamaktır; örneğin, Python modülü ile ilgili tüm dosyaları ana dizininizde <code class="file docutils literal notranslate"><span class="pre">python</span></code> altında tutmak istiyorsanız ve ana dizininizi kullandığınız her platform için ayrı bir dizin istiyorsanız, aşağıdaki kurulum şemasını tanımlayabilirsiniz.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python setup.py install --home=~ \
+                        --install-purelib=python/lib \
+                        --install-platlib=python/lib.$PLAT \
+                        --install-scripts=python/scripts
+                        --install-data=python/data
+</pre></div>
+</div>
+<p>veya eş değer olarak,</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python setup.py install --home=~/python \
+                        --install-purelib=lib \
+                        --install-platlib=&#39;lib.$PLAT&#39; \
+                        --install-scripts=scripts
+                        --install-data=data
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">$PLAT</span></code> (zorunlu olarak) bir ortam değişkeni değildir – yapılandırma dosya(lar)ınızı ayrıştırırken yaptığı gibi, komut satırı seçeneklerinizi ayrıştırırken Distutils tarafından genişletilecektir.</p>
+<p>Açıkçası, her yeni modül dağıtımı kurduğunuzda tüm kurulum şemasını belirtmek çok sıkıcı olacaktır. Böylece, bu seçenekleri Distutils yapılandırma dosyanıza koyabilirsiniz (bkz. <a class="reference internal" href="#inst-config-files"><span class="std std-ref">Distutils Yapılandırma Dosyaları</span></a> bölümü):</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[install]</span>
+<span class="na">install-base</span><span class="o">=</span><span class="s">$HOME</span>
+<span class="na">install-purelib</span><span class="o">=</span><span class="s">python/lib</span>
+<span class="na">install-platlib</span><span class="o">=</span><span class="s">python/lib.$PLAT</span>
+<span class="na">install-scripts</span><span class="o">=</span><span class="s">python/scripts</span>
+<span class="na">install-data</span><span class="o">=</span><span class="s">python/data</span>
+</pre></div>
+</div>
+<p>veya eş değer olarak,</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[install]</span>
+<span class="na">install-base</span><span class="o">=</span><span class="s">$HOME/python</span>
+<span class="na">install-purelib</span><span class="o">=</span><span class="s">lib</span>
+<span class="na">install-platlib</span><span class="o">=</span><span class="s">lib.$PLAT</span>
+<span class="na">install-scripts</span><span class="o">=</span><span class="s">scripts</span>
+<span class="na">install-data</span><span class="o">=</span><span class="s">data</span>
+</pre></div>
+</div>
+<p>Kurulum komut dosyasını çalıştırırken farklı bir kurulum temel dizini sağlarsanız, bu ikisinin eş değer <em>değil</em> olduğunu unutmayın. Örneğin,</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python setup.py install --install-base=/tmp
+</pre></div>
+</div>
+<p>saf modülleri ilk durumda <code class="file docutils literal notranslate"><span class="pre">/tmp/python/lib</span></code> dizinine ve ikinci durumda <code class="file docutils literal notranslate"><span class="pre">/tmp/lib</span></code> dizinine kurardı. (İkinci durum için, muhtemelen bir <code class="file docutils literal notranslate"><span class="pre">/tmp/python</span></code> kurulum tabanı sağlamak istersiniz.)</p>
+<p>Örnek yapılandırma dosyası girişinde <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> ve <code class="docutils literal notranslate"><span class="pre">$PLAT</span></code> kullanıldığını muhtemelen fark etmişsinizdir. Bunlar, ortam değişkenlerine güçlü bir benzerlik gösteren Distutils yapılandırma değişkenleridir. Aslında, ortam değişkenlerini böyle bir kavramı olan platformlarda yapılandırma dosyalarında kullanabilirsiniz, ancak Distutils ek olarak <code class="docutils literal notranslate"><span class="pre">$PLAT</span></code> gibi ortamınızda olmayabilecek birkaç ekstra değişken tanımlar. Ve elbette, Mac OS 9 gibi ortam değişkenlerine sahip olmayan sistemlerde, yalnızca Distutils tarafından sağlanan yapılandırma değişkenlerini kullanabilirsiniz. Bkz. <a class="reference internal" href="#inst-config-files"><span class="std std-ref">Distutils Yapılandırma Dosyaları</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Not</p>
+<p>Bir <a class="reference internal" href="../library/venv.html#venv-def"><span class="std std-ref">virtual environment</span></a> etkinleştirildiğinde, projelerin yanlışlıkla sanal ortamın dışına kurulmasını önlemek için kurulum yolunu değiştiren tüm seçenekler tüm distutils yapılandırma dosyalarından yok sayılır.</p>
+</div>
+<section id="modifying-python-s-search-path">
+<span id="inst-search-path"></span><h3>Python’un Arama Yolunu Değiştirme<a class="headerlink" href="#modifying-python-s-search-path" title="Permalink to this heading">¶</a></h3>
+<p>Python yorumlayıcısı bir <a class="reference internal" href="../reference/simple_stmts.html#import"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">import</span></code></a> ifadesini çalıştırdığında, bir arama yolu boyunca hem Python kodunu hem de uzantı modüllerini arar. Yorumlayıcı oluşturulduğunda, yol için varsayılan bir değer Python ikili dosyasında yapılandırılır. <a class="reference internal" href="../library/sys.html#module-sys" title="sys: Access system-specific parameters and functions."><code class="xref py py-mod docutils literal notranslate"><span class="pre">sys</span></code></a> modülünü içe aktararak ve <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> değerini yazdırarak yolu belirleyebilirsiniz.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ python
+Python 2.2 (#11, Oct  3 2002, 13:31:27)
+[GCC 2.96 20000731 (Red Hat Linux 7.3 2.96-112)] on linux2
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; import sys
+&gt;&gt;&gt; sys.path
+[&#39;&#39;, &#39;/usr/local/lib/python2.3&#39;, &#39;/usr/local/lib/python2.3/plat-linux2&#39;,
+ &#39;/usr/local/lib/python2.3/lib-tk&#39;, &#39;/usr/local/lib/python2.3/lib-dynload&#39;,
+ &#39;/usr/local/lib/python2.3/site-packages&#39;]
+&gt;&gt;&gt;
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">sys.path</span></code> içindeki boş dize, geçerli çalışma dizinini temsil eder.</p>
+<p>Yerel olarak kurulmuş paketler için beklenen kural, onları <code class="file docutils literal notranslate"><em><span class="pre">...</span></em><span class="pre">/site-packages/</span></code> dizinine koymaktır, ancak Python modüllerini rastgele bir dizine kurmak isteyebilirsiniz. Örneğin, sitenizin web sunucusuyla ilgili tüm yazılımları <code class="file docutils literal notranslate"><span class="pre">/www</span></code> altında tutma kuralı olabilir. Eklenti Python modülleri daha sonra <code class="file docutils literal notranslate"><span class="pre">/www/python</span></code> klasörüne ait olabilir ve bunları içe aktarmak için bu dizinin <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> klasörüne eklenmesi gerekir. Dizini eklemenin birkaç farklı yolu vardır.</p>
+<p>En uygun yol, zaten Python’un yolunda bulunan bir dizine, genellikle <code class="file docutils literal notranslate"><span class="pre">…/site-packages/</span></code> dizinine bir yol yapılandırma dosyası eklemektir. Yol yapılandırma dosyalarının uzantısı <code class="file docutils literal notranslate"><span class="pre">.pth</span></code> ‘dir ve her satırda <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> dosyasına eklenecek tek bir yol bulunmalıdır. (Yeni yollar <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> dizinine eklendiğinden, eklenen dizinlerdeki modüller standart modülleri geçersiz kılmaz. Bu, standart modüllerin sabit sürümlerini kurmak için bu mekanizmayı kullanamayacağınız anlamına gelir.)</p>
+<p>Yollar mutlak veya göreli olabilir, bu durumda <code class="file docutils literal notranslate"><span class="pre">.pth</span></code> dosyasını içeren dizine göredirler. Daha fazla bilgi için <a class="reference internal" href="../library/site.html#module-site" title="site: Module responsible for site-specific configuration."><code class="xref py py-mod docutils literal notranslate"><span class="pre">site</span></code></a> modülünün belgelerine bakın.</p>
+<p>Biraz daha az kullanışlı bir yol, Python’un standart kitaplığındaki <code class="file docutils literal notranslate"><span class="pre">site.py</span></code> dosyasını düzenlemek ve <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> değiştirmektir. Bu davranışı bastırmak için <a class="reference internal" href="../using/cmdline.html#cmdoption-S"><code class="xref std std-option docutils literal notranslate"><span class="pre">-S</span></code></a> anahtarı sağlanmadıkça, Python yorumlayıcısı çalıştırıldığında <code class="file docutils literal notranslate"><span class="pre">site.py</span></code> otomatik olarak içe aktarılır. Böylece <code class="file docutils literal notranslate"><span class="pre">site.py</span></code> dosyasını düzenleyebilir ve ona iki satır ekleyebilirsiniz:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;/www/python/&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>However, if you reinstall the same minor version of Python (perhaps when
+upgrading from 2.2 to 2.2.2, for example) <code class="file docutils literal notranslate"><span class="pre">site.py</span></code> will be overwritten by
+the stock version.  You’d have to remember that it was modified and save a copy
+before doing the installation.</p>
+<p><code class="docutils literal notranslate"><span class="pre">sys.path</span></code> değiştirebilen iki ortam değişkeni vardır. <span class="target" id="index-21"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHONHOME"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONHOME</span></code></a> Python kurulumunun öneki için alternatif bir değer ayarlar. Örneğin, <span class="target" id="index-22"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHONHOME"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONHOME</span></code></a>, <code class="docutils literal notranslate"><span class="pre">/www/python</span></code> olarak ayarlanırsa, arama yolu <code class="docutils literal notranslate"><span class="pre">['',</span> <span class="pre">'/www/python/lib/pythonX.Y/',</span> <span class="pre">'/www/python/lib/pythonX.Y/plat-linux2',</span> <span class="pre">...]</span></code> olarak ayarlanır.</p>
+<p><span class="target" id="index-23"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHONPATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONPATH</span></code></a> değişkeni, <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> başına eklenecek bir yol listesine ayarlanabilir. Örneğin, <span class="target" id="index-24"></span><a class="reference internal" href="../using/cmdline.html#envvar-PYTHONPATH"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONPATH</span></code></a>, <code class="docutils literal notranslate"><span class="pre">/www/python:/opt/py</span></code> olarak ayarlanırsa, arama yolu <code class="docutils literal notranslate"><span class="pre">['/www/python',</span> <span class="pre">'/opt/py']</span></code> ile başlar. (<code class="docutils literal notranslate"><span class="pre">sys.path</span></code> klasörüne eklenmek için dizinlerin var olması gerektiğini unutmayın; <a class="reference internal" href="../library/site.html#module-site" title="site: Module responsible for site-specific configuration."><code class="xref py py-mod docutils literal notranslate"><span class="pre">site</span></code></a> modülü var olmayan yolları kaldırır.)</p>
+<p>Son olarak, <code class="docutils literal notranslate"><span class="pre">sys.path</span></code> sadece normal bir Python listesidir, bu nedenle herhangi bir Python uygulaması, girdiler ekleyerek veya çıkararak onu değiştirebilir.</p>
+</section>
+</section>
+<section id="distutils-configuration-files">
+<span id="inst-config-files"></span><h2>Distutils Yapılandırma Dosyaları<a class="headerlink" href="#distutils-configuration-files" title="Permalink to this heading">¶</a></h2>
+<p>Yukarıda bahsedildiği gibi, herhangi bir Distutils seçeneği için kişisel veya site tercihlerini kaydetmek için Distutils konfigürasyon dosyalarını kullanabilirsiniz. Yani, herhangi bir komutun herhangi bir seçeneği, komut satırı ayrıştırılmadan önce danışılacak olan (platformunuza bağlı olarak) iki veya üç yapılandırma dosyasından birinde saklanabilir. Bu, yapılandırma dosyalarının varsayılan değerleri geçersiz kılacağı ve komut satırının da yapılandırma dosyalarını geçersiz kılacağı anlamına gelir. Ayrıca, birden fazla yapılandırma dosyası geçerliyse, “önceki” dosyalardan alınan değerler “sonraki” dosyalar tarafından geçersiz kılınır.</p>
+<section id="location-and-names-of-config-files">
+<span id="inst-config-filenames"></span><h3>Yapılandırma dosyalarının konumu ve adları<a class="headerlink" href="#location-and-names-of-config-files" title="Permalink to this heading">¶</a></h3>
+<p>Yapılandırma dosyalarının adları ve konumları platformlar arasında biraz farklılık gösterir. Unix ve macOS’ta üç yapılandırma dosyası (işlendikleri sırayla):</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Dosya tipi</p></th>
+<th class="head"><p>Konum ve dosya adı</p></th>
+<th class="head"><p>Notlar</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>system</p></td>
+<td><p><code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em><span class="pre">/lib/python</span><em><span class="pre">ver</span></em><span class="pre">/distutils/distutils.cfg</span></code></p></td>
+<td><p>(1)</p></td>
+</tr>
+<tr class="row-odd"><td><p>personal</p></td>
+<td><p><code class="file docutils literal notranslate"><span class="pre">$HOME/.pydistutils.cfg</span></code></p></td>
+<td><p>(2)</p></td>
+</tr>
+<tr class="row-even"><td><p>local</p></td>
+<td><p><code class="file docutils literal notranslate"><span class="pre">setup.cfg</span></code></p></td>
+<td><p>(3)</p></td>
+</tr>
+</tbody>
+</table>
+<p>Ve Windows’ta yapılandırma dosyaları şunlardır:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Dosya tipi</p></th>
+<th class="head"><p>Konum ve dosya adı</p></th>
+<th class="head"><p>Notlar</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>system</p></td>
+<td><p><code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em><span class="pre">\Lib\distutils\distutils.cfg</span></code></p></td>
+<td><p>(4)</p></td>
+</tr>
+<tr class="row-odd"><td><p>personal</p></td>
+<td><p><code class="file docutils literal notranslate"><span class="pre">%HOME%\pydistutils.cfg</span></code></p></td>
+<td><p>(5)</p></td>
+</tr>
+<tr class="row-even"><td><p>local</p></td>
+<td><p><code class="file docutils literal notranslate"><span class="pre">setup.cfg</span></code></p></td>
+<td><p>(3)</p></td>
+</tr>
+</tbody>
+</table>
+<p>Tüm platformlarda, <code class="docutils literal notranslate"><span class="pre">--no-user-cfg</span></code> seçeneği geçilerek “kişisel” dosya geçici olarak devre dışı bırakılabilir.</p>
+<p>Notlar:</p>
+<ol class="arabic simple">
+<li><p>Kesin olarak söylemek gerekirse, sistem genelindeki yapılandırma dosyası Distutils’in kurulu olduğu dizinde bulunur; Python 1.6 altında ve daha sonra Unix’te bu gösterildiği gibidir. Python 1.5.2 için, Distutils normalde <code class="file docutils literal notranslate"><em><span class="pre">prefix</span></em><span class="pre">/lib/python1.5/site-packages/distutils</span></code> konumuna yüklenecektir, bu nedenle sistem yapılandırma dosyası oraya Python 1.5.2 altına yerleştirilmelidir.</p></li>
+<li><p>On Unix, if the <span class="target" id="index-4"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">HOME</span></code> environment variable is not defined, the user’s
+home directory will be determined with the <a class="reference internal" href="../library/pwd.html#pwd.getpwuid" title="pwd.getpwuid"><code class="xref py py-func docutils literal notranslate"><span class="pre">getpwuid()</span></code></a> function from the
+standard <a class="reference internal" href="../library/pwd.html#module-pwd" title="pwd: The password database (getpwnam() and friends). (Unix)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pwd</span></code></a> module. This is done by the <a class="reference internal" href="../library/os.path.html#os.path.expanduser" title="os.path.expanduser"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.expanduser()</span></code></a>
+function used by Distutils.</p></li>
+<li><p>Yani, geçerli dizinde (genellikle kurulum komut dosyasının konumu).</p></li>
+<li><p>(Ayrıca not (1)’e bakın.) Python 1.6 ve sonraki sürümlerde, Python’un varsayılan “kurulum öneki” <code class="file docutils literal notranslate"><span class="pre">C:\Python</span></code> şeklindedir, bu nedenle sistem yapılandırma dosyası normalde <code class="file docutils literal notranslate"><span class="pre">C:\Pythonşeklindedir.</span> <span class="pre">Lib\distutils\distutils.cfg</span></code>. Python 1.5.2 altında, varsayılan önek <code class="file docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\Python</span></code> idi ve Distutils standart kitaplığın parçası değildi – bu nedenle sistem yapılandırma dosyası <code class="file docutils literal notranslate"><span class="pre">C</span> <span class="pre">olacaktır.</span> <span class="pre">:\Program</span> <span class="pre">Files\Python\distutils\distutils.cfg</span></code> Windows altında standart bir Python 1.5.2 kurulumunda.</p></li>
+<li><p>Windows’ta, <span class="target" id="index-25"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">HOME</span></code> ortam değişkeni tanımlı değilse, <span class="target" id="index-26"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">USERPROFILE</span></code> <span class="target" id="index-27"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">HOMEDRIVE</span></code> ve <span class="target" id="index-28"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">HOMEPATH</span></code> denenecektir. Bu, Distutils tarafından kullanılan <a class="reference internal" href="../library/os.path.html#os.path.expanduser" title="os.path.expanduser"><code class="xref py py-func docutils literal notranslate"><span class="pre">os.path.expanduser()</span></code></a> işlevi tarafından yapılır.</p></li>
+</ol>
+</section>
+<section id="syntax-of-config-files">
+<span id="inst-config-syntax"></span><h3>Yapılandırma dosyalarının Syntax’ı (sözdizimi)<a class="headerlink" href="#syntax-of-config-files" title="Permalink to this heading">¶</a></h3>
+<p>Distutils yapılandırma dosyalarının tümü aynı Syntax’a sahiptir. Yapılandırma dosyaları bölümlere ayrılmıştır. Her Distutils komutu için bir bölüm ve ayrıca her komutu etkileyen genel seçenekler için bir <code class="docutils literal notranslate"><span class="pre">global</span></code> bölüm vardır. Her bölüm, satır başına <code class="docutils literal notranslate"><span class="pre">seçenek=değer</span></code> olarak belirtilen bir seçenekten oluşur.</p>
+<p>Örneğin, aşağıdaki, tüm komutları varsayılan olarak sessizce çalışmaya zorlayan eksiksiz bir yapılandırma dosyasıdır:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[global]</span>
+<span class="na">verbose</span><span class="o">=</span><span class="s">0</span>
+</pre></div>
+</div>
+<p>Bu, sistem yapılandırma dosyası olarak kurulursa, mevcut sistemdeki herhangi bir kullanıcı tarafından herhangi bir Python modülü dağıtımının tüm işlemlerini etkileyecektir. Kişisel yapılandırma dosyanız olarak kurulursa (onları destekleyen sistemlerde), yalnızca sizin tarafınızdan işlenen modül dağıtımlarını etkiler. Ve belirli bir modül dağıtımı için <code class="file docutils literal notranslate"><span class="pre">setup.cfg</span></code> olarak kullanılırsa, yalnızca bu dağıtımı etkiler.</p>
+<p>Varsayılan “temel oluşturma” dizinini geçersiz kılabilir ve <strong class="command">build*</strong> komutlarını aşağıdakilerle tüm dosyaları her zaman zorla yeniden oluşturabilirsiniz:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[build]</span>
+<span class="na">build-base</span><span class="o">=</span><span class="s">blib</span>
+<span class="na">force</span><span class="o">=</span><span class="s">1</span>
+</pre></div>
+</div>
+<p>hangi komut satırı argümanlarına karşılık gelir</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python setup.py build --build-base=blib --force
+</pre></div>
+</div>
+<p><strong class="command">build</strong> komutunun komut satırına eklenmesi, komutun çalıştırılacağı anlamına gelir. Yapılandırma dosyalarına belirli bir komutu dahil etmenin böyle bir anlamı yoktur; bu yalnızca komut çalıştırılırsa yapılandırma dosyasındaki seçeneklerin uygulanacağı anlamına gelir. (Ya da ondan değer türeten başka komutlar çalıştırılırsa, yapılandırma dosyasındaki değerleri kullanırlar.)</p>
+<p><code class="xref std std-option docutils literal notranslate"><span class="pre">--help</span></code> seçeneğini kullanarak herhangi bir komut için seçeneklerin tam listesini bulabilirsiniz, ör.:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python setup.py build --help
+</pre></div>
+</div>
+<p>ve komut olmadan <code class="xref std std-option docutils literal notranslate"><span class="pre">--help</span></code> kullanarak global seçeneklerin tam listesini bulabilirsiniz:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python setup.py --help
+</pre></div>
+</div>
+<p>Ayrıca “Python Modüllerini Dağıtma” kılavuzunun “Referans” bölümüne bakın.</p>
+</section>
+</section>
+<section id="building-extensions-tips-and-tricks">
+<span id="inst-building-ext"></span><h2>Bina Uzantıları: İpuçları ve Püf Noktaları<a class="headerlink" href="#building-extensions-tips-and-tricks" title="Permalink to this heading">¶</a></h2>
+<p>Mümkün olduğunda, Distutils, <code class="file docutils literal notranslate"><span class="pre">setup.py</span></code> komut dosyasını çalıştırmak için kullanılan Python yorumlayıcısı tarafından sağlanan yapılandırma bilgilerini kullanmaya çalışır. Örneğin, Python’u derlemek için kullanılan aynı derleyici ve bağlayıcı bayrakları, uzantıları derlemek için de kullanılacaktır. Genellikle bu iyi çalışır, ancak karmaşık durumlarda bu uygun olmayabilir. Bu bölüm, olağan Distutils davranışının nasıl geçersiz kılınacağını tartışır.</p>
+<section id="tweaking-compiler-linker-flags">
+<span id="inst-tweak-flags"></span><h3>Derleyici/bağlayıcı bayraklarında ince ayar yapma<a class="headerlink" href="#tweaking-compiler-linker-flags" title="Permalink to this heading">¶</a></h3>
+<p>C veya C++ ile yazılmış bir Python uzantısını derlemek, bazen belirli bir kitaplığı kullanmak veya özel bir tür nesne kodu üretmek için derleyici ve bağlayıcı için özel bayraklar belirtmeyi gerektirir. Bu, özellikle uzantı platformunuzda test edilmemişse veya Python’u çapraz derlemeye çalışıyorsanız geçerlidir.</p>
+<p>En genel durumda, uzantı yazarı, uzantıları derlemenin karmaşık olacağını öngörmüş ve düzenlemeniz için bir <code class="file docutils literal notranslate"><span class="pre">Setup</span></code> dosyası sağlamış olabilir. Bu muhtemelen yalnızca modül dağıtımı birçok ayrı genişletme modülü içeriyorsa veya çalışmak için genellikle ayrıntılı derleyici bayrakları gerektiriyorsa yapılacaktır.</p>
+<p>Bir <code class="file docutils literal notranslate"><span class="pre">Setup</span></code> dosyası varsa, oluşturulacak uzantıların bir listesini almak için ayrıştırılır. <code class="file docutils literal notranslate"><span class="pre">Setup</span></code> içindeki her satır tek bir modülü tanımlar. Hatlar aşağıdaki yapıya sahiptir:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>module ... [sourcefile ...] [cpparg ...] [library ...]
+</pre></div>
+</div>
+<p>Alanların her birini sırayla inceleyelim.</p>
+<ul class="simple">
+<li><p><em>module</em>, oluşturulacak uzantı modülünün adıdır ve geçerli bir Python tanımlayıcısı olmalıdır. Bunu sadece bir modülü yeniden adlandırmak için değiştiremezsiniz (kaynak kodunda da düzenlemeler yapılması gerekir), bu yüzden bu yalnız bırakılmalıdır.</p></li>
+<li><p><em>sourcefile</em>, en azından dosya adına bakılırsa, kaynak kod dosyası olması muhtemel herhangi bir şeydir. <code class="file docutils literal notranslate"><span class="pre">.c</span></code> ile biten dosya adlarının C ile yazıldığı, <code class="file docutils literal notranslate"><span class="pre">.C</span></code>, <code class="file docutils literal notranslate"><span class="pre">.cc</span></code> ve <code class="file docutils literal notranslate"><span class="pre">.c++</span></code> ile biten dosya adlarının C++ olduğu varsayılır. ve <code class="file docutils literal notranslate"><span class="pre">.m</span></code> veya <code class="file docutils literal notranslate"><span class="pre">.mm</span></code> ile biten dosya adlarının Amaç C’de olduğu varsayılır.</p></li>
+<li><p><em>cpparg</em>, C önişlemcisi için bir argümandır ve <code class="xref std std-option docutils literal notranslate"><span class="pre">-I</span></code>, <code class="xref std std-option docutils literal notranslate"><span class="pre">-D</span></code>, <code class="xref std std-option docutils literal notranslate"><span class="pre">-U</span></code> veya <code class="xref std std-option docutils literal notranslate"><span class="pre">-C</span></code> ile başlayan herhangi bir şeydir.</p></li>
+<li><p><em>library</em> is anything ending in <code class="file docutils literal notranslate"><span class="pre">.a</span></code> or beginning with <code class="xref std std-option docutils literal notranslate"><span class="pre">-l</span></code> or
+<code class="xref std std-option docutils literal notranslate"><span class="pre">-L</span></code>.</p></li>
+</ul>
+<p>Belirli bir platform, platformunuzda özel bir kütüphane gerektiriyorsa, bunu <code class="file docutils literal notranslate"><span class="pre">Setup</span></code> dosyasını düzenleyerek ve <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">build</span></code> çalıştırarak ekleyebilirsiniz. Örneğin, modül satır ile tamamlanırsa</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>foo foomodule.c
+</pre></div>
+</div>
+<p>platformunuzdaki matematik kitaplığı <code class="file docutils literal notranslate"><span class="pre">libm.a</span></code> ile bağlantılı olmalıdır, sadece <code class="xref std std-option docutils literal notranslate"><span class="pre">-lm</span></code> satırına ekleyin:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>foo foomodule.c -lm
+</pre></div>
+</div>
+<p>Derleyici veya bağlayıcıya yönelik keyfi anahtarlar <code class="xref std std-option docutils literal notranslate"><span class="pre">-Xcompiler</span></code> <em>arg</em> ve <code class="xref std std-option docutils literal notranslate"><span class="pre">-Xlinker</span></code> <em>arg</em> seçenekleriyle sağlanabilir:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>foo foomodule.c -Xcompiler -o32 -Xlinker -shared -lm
+</pre></div>
+</div>
+<p><code class="xref std std-option docutils literal notranslate"><span class="pre">-Xcompiler</span></code> ve <code class="xref std std-option docutils literal notranslate"><span class="pre">-Xlinker</span></code> ‘dan sonraki sonraki seçenek uygun komut satırına eklenecektir, bu nedenle yukarıdaki örnekte derleyiciye <code class="xref std std-option docutils literal notranslate"><span class="pre">-o32</span></code> seçeneği geçilecektir. , ve bağlayıcı geçirilir <code class="xref std std-option docutils literal notranslate"><span class="pre">-shared</span></code>. Derleyici seçeneği bir argüman gerektiriyorsa, birden çok <code class="xref std std-option docutils literal notranslate"><span class="pre">-Xcompiler</span></code> seçeneği sağlamanız gerekir; örneğin, <code class="docutils literal notranslate"><span class="pre">-x</span> <span class="pre">c++</span></code> geçmek için <code class="file docutils literal notranslate"><span class="pre">Setup</span></code> dosyasının <code class="docutils literal notranslate"><span class="pre">-Xcompiler</span> <span class="pre">-x</span> <span class="pre">-Xcompiler</span> <span class="pre">c++</span></code> içermesi gerekir.</p>
+<p>Derleyici bayrakları, <span class="target" id="index-29"></span><a class="reference internal" href="../using/configure.html#envvar-CFLAGS"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">CFLAGS</span></code></a> ortam değişkeni ayarlanarak da sağlanabilir. Ayarlanırsa, <span class="target" id="index-30"></span><a class="reference internal" href="../using/configure.html#envvar-CFLAGS"><code class="xref std std-envvar docutils literal notranslate"><span class="pre">CFLAGS</span></code></a> içeriği <code class="file docutils literal notranslate"><span class="pre">Setup</span></code> dosyasında belirtilen derleyici bayraklarına eklenecektir.</p>
+</section>
+<section id="using-non-microsoft-compilers-on-windows">
+<span id="inst-non-ms-compilers"></span><h3>Windows’ta Microsoft’a ait olmayan derleyicileri kullanma<a class="headerlink" href="#using-non-microsoft-compilers-on-windows" title="Permalink to this heading">¶</a></h3>
+<section id="borland-codegear-c">
+<h4>Borland/CodeGear C++<a class="headerlink" href="#borland-codegear-c" title="Permalink to this heading">¶</a></h4>
+<p>Bu alt bölüm, Distutils’i Borland C++ derleyici sürüm 5.5 ile kullanmak için gerekli adımları açıklar. Öncelikle Borland’ın nesne dosya formatının (OMF), Python veya ActiveState web sitesinden indirebileceğiniz Python sürümünün kullandığı formattan farklı olduğunu bilmelisiniz. (Python, nesne dosya formatı olarak COFF kullanan Microsoft Visual C++ ile oluşturulmuştur.) Bu nedenle Python’un <code class="file docutils literal notranslate"><span class="pre">python25.lib</span></code> kütüphanesini Borland formatına dönüştürmeniz gerekmektedir. Bunu aşağıdaki gibi yapabilirsiniz:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>coff2omf python25.lib python25_bcpp.lib
+</pre></div>
+</div>
+<p><code class="file docutils literal notranslate"><span class="pre">coff2omf</span></code> programı Borland derleyicisiyle birlikte gelir. <code class="file docutils literal notranslate"><span class="pre">python25.lib</span></code> dosyası, Python kurulumunuzun <code class="file docutils literal notranslate"><span class="pre">Libs</span></code> dizinindedir. Uzantınız başka kütüphaneler (zlib, …) kullanıyorsa, onları da dönüştürmeniz gerekir.</p>
+<p>Dönüştürülen dosyalar, normal kütüphanelerle aynı dizinlerde bulunmalıdır.</p>
+<p>Distutils, bu kütüphaneleri değişen adlarıyla kullanmayı nasıl başarıyor? Uzantının bir kitaplığa ihtiyacı varsa (örn. <code class="file docutils literal notranslate"><span class="pre">foo</span></code>) Distutils önce <code class="file docutils literal notranslate"><span class="pre">_bcpp</span></code> (örn. <code class="file docutils literal notranslate"><span class="pre">foo_bcpp.lib</span></code>) sonekine sahip bir kütüphane bulup bulmadığını kontrol eder ve ardından bu kitaplığı kullanır. Böyle özel bir kütüphane bulamazsa, varsayılan adı kullanır (<code class="file docutils literal notranslate"><span class="pre">foo.lib</span></code>.) <a class="footnote-reference brackets" href="#id4" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p>
+<p>Distutils’in uzantınızı Borland C++ ile derlemesine izin vermek için şimdi şunu yazmanız gerekir:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python setup.py build --compiler=bcpp
+</pre></div>
+</div>
+<p>Borland C++ derleyicisini varsayılan olarak kullanmak istiyorsanız, bunu Distutils için kişisel veya sistem genelindeki yapılandırma dosyanızda belirtebilirsiniz (bkz. <a class="reference internal" href="#inst-config-files"><span class="std std-ref">Distutils Yapılandırma Dosyaları</span></a>.)</p>
+<div class="admonition seealso">
+<p class="admonition-title">Ayrıca bakınız</p>
+<dl class="simple">
+<dt><a class="reference external" href="https://www.embarcadero.com/products">C++Builder Compiler</a></dt><dd><p>İndirme sayfalarına bağlantılar da dahil olmak üzere Borland’ın ücretsiz C++ derleyicisi hakkında bilgiler.</p>
+</dd>
+<dt><a class="reference external" href="http://www.cyberus.ca/~g_will/pyExtenDL.shtml">Borland’ın Ücretsiz Derleyicisini Kullanarak Python Uzantıları Oluşturma</a></dt><dd><p>Python’u oluşturmak için Borland’ın ücretsiz komut satırı C++ derleyicisinin nasıl kullanılacağını açıklayan belge.</p>
+</dd>
+</dl>
+</div>
+</section>
+<section id="gnu-c-cygwin-mingw">
+<h4>GNU C / Cygwin / MinGW<a class="headerlink" href="#gnu-c-cygwin-mingw" title="Permalink to this heading">¶</a></h4>
+<p>Bu bölüm, Distutils’i GNU C/C++ derleyicileriyle Cygwin ve MinGW dağıtımlarında kullanmak için gerekli adımları açıklar. <a class="footnote-reference brackets" href="#id5" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> Cygwin ile oluşturulmuş bir Python yorumlayıcısı için, aşağıdaki adımlardan herhangi biri olmadan her şey çalışmalıdır.</p>
+<p>Tüm uzantılar MinGW veya Cygwin ile oluşturulamaz, ancak çoğu yapılabilir. Çalışmama olasılığı en yüksek olan uzantılar, C++ kullanan veya Microsoft Visual C uzantılarına bağlı olanlardır.</p>
+<p>Distutils’in uzantınızı Cygwin ile derlemesine izin vermek için şunu yazmanız gerekir:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python setup.py build --compiler=cygwin
+</pre></div>
+</div>
+<p>ve Cygwin olmayan modda <a class="footnote-reference brackets" href="#id6" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a> Cygwin için veya MinGW tipi için:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python setup.py build --compiler=mingw32
+</pre></div>
+</div>
+<p>Bu seçeneklerden/derleyicilerden herhangi birini varsayılan olarak kullanmak istiyorsanız, bunu Distutils için kişisel veya sistem genelindeki yapılandırma dosyanıza yazmayı düşünmelisiniz (bkz. <a class="reference internal" href="#inst-config-files"><span class="std std-ref">Distutils Yapılandırma Dosyaları</span></a>.)</p>
+<section id="older-versions-of-python-and-mingw">
+<h5>Python ve MinGW’nin Eski Sürümleri<a class="headerlink" href="#older-versions-of-python-and-mingw" title="Permalink to this heading">¶</a></h5>
+<p>Aşağıdaki talimatlar yalnızca, MinGW’si 3.0.0’dan düşük (binutils-2.13.90-20030111-1 ile) 2.4.1’den düşük bir Python sürümü kullanıyorsanız geçerlidir.</p>
+<p>Bu derleyiciler bazı özel kütüphaneler gerektirir. Bu görev, Borland’ın C++’ından daha karmaşıktır çünkü kitaplığı dönüştürecek bir program yoktur. Öncelikle Python DLL’nin dışa aktardığı bir sembol listesi oluşturmalısınız. (Bu görev için iyi bir program <a class="reference external" href="https://sourceforge.net/projects/mingw/files/MinGW/Extension/pexports/">https://sourceforge.net/projects/mingw/files/MinGW/Extension/pexports/</a> adresinde bulabilirsiniz).</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>pexports python25.dll &gt;python25.def
+</pre></div>
+</div>
+<p>Yüklü bir <code class="file docutils literal notranslate"><span class="pre">python25.dll</span></code> dosyasının konumu, yükleme seçeneklerine ve Windows sürümüne ve diline bağlı olacaktır. “Sadece benim için” kurulumda, kurulum dizininin kökünde görünecektir. Paylaşılan bir kurulumda, sistem dizininde bulunur.</p>
+<p>Ardından bu bilgilerden gcc için bir içe aktarma kitaplığı oluşturabilirsiniz.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>/cygwin/bin/dlltool --dllname python25.dll --def python25.def --output-lib libpython25.a
+</pre></div>
+</div>
+<p>Ortaya çıkan kütüphane, <code class="file docutils literal notranslate"><span class="pre">python25.lib</span></code> ile aynı dizine yerleştirilmelidir. (Python kurulum dizininizin altındaki <code class="file docutils literal notranslate"><span class="pre">libs</span></code> dizini olmalıdır.)</p>
+<p>Uzantınız başka kütüphaneler (zlib,…) kullanıyorsa, onları da dönüştürmeniz gerekebilir. Dönüştürülen dosyalar, normal kütüphanelerde olduğu gibi aynı dizinlerde bulunmalıdır.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Ayrıca bakınız</p>
+<dl class="simple">
+<dt><a class="reference external" href="https://old.zope.org/Members/als/tips/win32_mingw_modules">MinGW ile MS Windows platformunda Python modülleri oluşturma</a></dt><dd><p>MinGW ortamı için gerekli kütüphaneleri oluşturmaya ilişkin bilgiler.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Dipnotlar</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id4" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Bu aynı zamanda mevcut tüm COFF-kütüphanelerini aynı adı taşıyan OMF-kütüphaneleriyle değiştirebileceğiniz anlamına gelir.</p>
+</aside>
+<aside class="footnote brackets" id="id5" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>Daha fazla bilgi için <a class="reference external" href="https://www.sourceware.org/cygwin/">https://www.sourceware.org/cygwin/</a> adresini kontrol edin</p>
+</aside>
+<aside class="footnote brackets" id="id6" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">3</a><span class="fn-bracket">]</span></span>
+<p>O zaman kullanılabilir POSIX öykünmesine sahip değilsiniz, ancak <code class="file docutils literal notranslate"><span class="pre">cygwin1.dll</span></code> ‘e de ihtiyacınız yok.</p>
+</aside>
+</aside>
+</section>
+</section>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../contents.html">İçindekiler</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Python Modüllerini Yükleme (Eski sürüm)</a><ul>
+<li><a class="reference internal" href="#introduction">Giriş</a><ul>
+<li><a class="reference internal" href="#distutils-based-source-distributions">Distutils tabanlı kaynak dağıtımları</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#standard-build-and-install">Standart Derleme ve Yükleme</a><ul>
+<li><a class="reference internal" href="#platform-variations">Platform varyasyonları</a></li>
+<li><a class="reference internal" href="#splitting-the-job-up">İşi bölmek</a></li>
+<li><a class="reference internal" href="#how-building-works">Building nasıl çalışır</a></li>
+<li><a class="reference internal" href="#how-installation-works">Kurulum nasıl çalışır</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#alternate-installation">Alternatif Kurulum</a><ul>
+<li><a class="reference internal" href="#alternate-installation-the-user-scheme">Alternatif kurulum: kullanıcı şeması</a></li>
+<li><a class="reference internal" href="#alternate-installation-the-home-scheme">Alternatif kurulum: ev şeması</a></li>
+<li><a class="reference internal" href="#alternate-installation-unix-the-prefix-scheme">Alternatif kurulum: Unix (ön ek (prefix) şeması)</a></li>
+<li><a class="reference internal" href="#alternate-installation-windows-the-prefix-scheme">Alternatif kurulum: Windows (ön ek şeması)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#custom-installation">Özel Kurulum</a><ul>
+<li><a class="reference internal" href="#modifying-python-s-search-path">Python’un Arama Yolunu Değiştirme</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#distutils-configuration-files">Distutils Yapılandırma Dosyaları</a><ul>
+<li><a class="reference internal" href="#location-and-names-of-config-files">Yapılandırma dosyalarının konumu ve adları</a></li>
+<li><a class="reference internal" href="#syntax-of-config-files">Yapılandırma dosyalarının Syntax’ı (sözdizimi)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#building-extensions-tips-and-tricks">Bina Uzantıları: İpuçları ve Püf Noktaları</a><ul>
+<li><a class="reference internal" href="#tweaking-compiler-linker-flags">Derleyici/bağlayıcı bayraklarında ince ayar yapma</a></li>
+<li><a class="reference internal" href="#using-non-microsoft-compilers-on-windows">Windows’ta Microsoft’a ait olmayan derleyicileri kullanma</a><ul>
+<li><a class="reference internal" href="#borland-codegear-c">Borland/CodeGear C++</a></li>
+<li><a class="reference internal" href="#gnu-c-cygwin-mingw">GNU C / Cygwin / MinGW</a><ul>
+<li><a class="reference internal" href="#older-versions-of-python-and-mingw">Python ve MinGW’nin Eski Sürümleri</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Önceki konu</h4>
+    <p class="topless"><a href="../distutils/apiref.html"
+                          title="önceki bölüm"><span class="section-number">9. </span>API Reference</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Bu Sayfa</h3>
+    <ul class="this-page-menu">
+      <li><a href="../bugs.html">Hata Bildir</a></li>
+      <li>
+        <a href="https://github.com/python/cpython/blob/3.11/Doc/install/index.rst"
+            rel="nofollow">Kaynağı Göster
+        </a>
+      </li>
+    </ul>
+  </div>
+        </div>
+<div id="sidebarbutton" title="Yan çubuğu daralt">
+<span>«</span>
+</div>
+
+      </div>
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Gezinti</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Genel Endeks"
+             >dizin</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Modül Dizini"
+             >modülleri</a> |</li>
+        <li class="right" >
+          <a href="../distutils/apiref.html" title="9. API Reference"
+             >önceki</a> |</li>
+
+          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+          </li>
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.11.5 Documentation</a> &#187;
+    </li>
+
+        <li class="nav-item nav-item-this"><a href="">Python Modüllerini Yükleme (Eski sürüm)</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Hızlı Arama" aria-label="Hızlı Arama" type="search" name="q" id="search-box" />
+          <input type="submit" value="Git" />
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; <a href="../copyright.html">Telif Hakkı</a> 2001-2023, Python Software Foundation.
+    <br />
+    This page is licensed under the Python Software Foundation License Version 2.
+    <br />
+    Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
+    <br />
+    See <a href="/license.html">History and License</a> for more information.<br />
+    <br />
+
+    The Python Software Foundation is a non-profit corporation.
+<a href="https://www.python.org/psf/donations/">Please donate.</a>
+<br />
+    <br />
+
+    Son güncelleme: Eki 23, 2023.
+    <a href="/bugs.html">Found a bug</a>?
+    <br />
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+    </div>
+
+  </body>
+</html>

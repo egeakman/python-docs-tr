@@ -1,0 +1,502 @@
+
+<!DOCTYPE html>
+
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta property="og:title" content="15. Kayan Nokta Aritmetiği: Sorunlar ve Sınırlamalar" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://docs.python.org/3/tutorial/floatingpoint.html" />
+<meta property="og:site_name" content="Python documentation" />
+<meta property="og:description" content="Kayan noktalı sayılar, bilgisayar donanımında 2 tabanlı (ikili) kesirler olarak temsil edilir. Örneğin, ondalık kesir 0,125, 1/10 + 2/100 + 5/1000 değerine sahiptir ve aynı şekilde ikili kesir 0,00..." />
+<meta property="og:image" content="https://docs.python.org/3/_static/og-image.png" />
+<meta property="og:image:alt" content="Python documentation" />
+<meta name="description" content="Kayan noktalı sayılar, bilgisayar donanımında 2 tabanlı (ikili) kesirler olarak temsil edilir. Örneğin, ondalık kesir 0,125, 1/10 + 2/100 + 5/1000 değerine sahiptir ve aynı şekilde ikili kesir 0,00..." />
+<meta property="og:image:width" content="200" />
+<meta property="og:image:height" content="200" />
+<meta name="theme-color" content="#3776ab" />
+
+    <title>15. Kayan Nokta Aritmetiği: Sorunlar ve Sınırlamalar &#8212; Python 3.11.5 belgelendirmesi</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?digest=b37c26da2f7529d09fe70b41c4b2133fe4931a90" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    
+    <script src="../_static/sidebar.js"></script>
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Python 3.11.5 belgelendirmesi içinde ara"
+          href="../_static/opensearch.xml"/>
+    <link rel="author" title="Bu belgeler hakkında" href="../about.html" />
+    <link rel="index" title="Dizin" href="../genindex.html" />
+    <link rel="search" title="Ara" href="../search.html" />
+    <link rel="copyright" title="Telif Hakkı" href="../copyright.html" />
+    <link rel="next" title="16. Ek Bölüm" href="appendix.html" />
+    <link rel="prev" title="14. Etkileşimli Girdi Düzenleme ve Geçmiş İkame" href="interactive.html" />
+    <link rel="canonical" href="https://docs.python.org/3/tutorial/floatingpoint.html" />
+    
+      
+    
+
+    
+    <style>
+      @media only screen {
+        table.full-width-table {
+            width: 100%;
+        }
+      }
+    </style>
+<link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg" />
+            <script type="text/javascript" src="../_static/copybutton.js"></script>
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+
+  </head>
+<body>
+<div class="mobile-nav">
+    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
+    <nav class="nav-content" role="navigation">
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Logo"/>
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Hızlı Arama" aria-label="Hızlı Arama" type="search" name="q" />
+                <input type="submit" value="Git"/>
+            </form>
+        </span>
+    </nav>
+    <div class="menu-wrapper">
+        <nav class="menu" role="navigation" aria-label="main navigation">
+            <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
+  <div>
+    <h3><a href="../contents.html">İçindekiler</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">15. Kayan Nokta Aritmetiği: Sorunlar ve Sınırlamalar</a><ul>
+<li><a class="reference internal" href="#representation-error">15.1. Temsil Hatası</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Önceki konu</h4>
+    <p class="topless"><a href="interactive.html"
+                          title="önceki bölüm"><span class="section-number">14. </span>Etkileşimli Girdi Düzenleme ve Geçmiş İkame</a></p>
+  </div>
+  <div>
+    <h4>Sonraki konu</h4>
+    <p class="topless"><a href="appendix.html"
+                          title="sonraki bölüm"><span class="section-number">16. </span>Ek Bölüm</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Bu Sayfa</h3>
+    <ul class="this-page-menu">
+      <li><a href="../bugs.html">Hata Bildir</a></li>
+      <li>
+        <a href="https://github.com/python/cpython/blob/3.11/Doc/tutorial/floatingpoint.rst"
+            rel="nofollow">Kaynağı Göster
+        </a>
+      </li>
+    </ul>
+  </div>
+        </nav>
+    </div>
+</div>
+
+  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Gezinti</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Genel Endeks"
+             accesskey="I">dizin</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Modül Dizini"
+             >modülleri</a> |</li>
+        <li class="right" >
+          <a href="appendix.html" title="16. Ek Bölüm"
+             accesskey="N">sonraki</a> |</li>
+        <li class="right" >
+          <a href="interactive.html" title="14. Etkileşimli Girdi Düzenleme ve Geçmiş İkame"
+             accesskey="P">önceki</a> |</li>
+
+          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+          </li>
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.11.5 Documentation</a> &#187;
+    </li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python Öğreticisi</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">15. </span>Kayan Nokta Aritmetiği: Sorunlar ve Sınırlamalar</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Hızlı Arama" aria-label="Hızlı Arama" type="search" name="q" id="search-box" />
+          <input type="submit" value="Git" />
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="floating-point-arithmetic-issues-and-limitations">
+<span id="tut-fp-issues"></span><h1><span class="section-number">15. </span>Kayan Nokta Aritmetiği: Sorunlar ve Sınırlamalar<a class="headerlink" href="#floating-point-arithmetic-issues-and-limitations" title="Permalink to this heading">¶</a></h1>
+<p>Kayan noktalı sayılar, bilgisayar donanımında 2 tabanlı (ikili) kesirler olarak temsil edilir.  Örneğin, <strong>ondalık</strong> kesir <code class="docutils literal notranslate"><span class="pre">0,125</span></code>, <code class="docutils literal notranslate"><span class="pre">1/10</span> <span class="pre">+</span> <span class="pre">2/100</span> <span class="pre">+</span> <span class="pre">5/1000</span></code> değerine sahiptir ve aynı şekilde <strong>ikili</strong> kesir <code class="docutils literal notranslate"><span class="pre">0,001</span></code> aynı şekilde <code class="docutils literal notranslate"><span class="pre">0/2</span> <span class="pre">+</span> <span class="pre">0/4</span> <span class="pre">+</span> <span class="pre">1/8</span></code> değerine sahiptir. Bu iki kesir aynı değerlere sahiptir, tek gerçek fark, birincisinin 10 tabanlı kesirli gösterimde ve ikincisinin 2 tabanlı olarak yazılmasıdır.</p>
+<p>Ne yazık ki, ondalık kesirlerin çoğu tam olarak ikili kesir olarak gösterilemez.  Bunun bir sonucu olarak, genel olarak, girdiğiniz ondalık kayan noktalı sayılar, makinede gerçekte depolanan ikili kayan noktalı sayılar tarafından yalnızca yaklaşık olarak gösterilir.</p>
+<p>Problem ilk başta 10 tabanında daha kolay anlaşılabilir.  1/3 kesrini düşünün.  Bunu 10 tabanında bir kesir olarak yaklaşık olarak hesaplayabilirsiniz:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="mf">0.3</span>
+</pre></div>
+</div>
+<p>ya da daha iyisi</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="mf">0.33</span>
+</pre></div>
+</div>
+<p>ya da daha iyisi</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="mf">0.333</span>
+</pre></div>
+</div>
+<p>ve bunun gibi.  Kaç basamak yazmak isterseniz isteyin, sonuç hiçbir zaman tam olarak 1/3 olmayacak, ancak 1/3’ün giderek daha iyi bir yaklaşımı olacaktır.</p>
+<p>Aynı şekilde, kaç tane 2 tabanı basamağı kullanmak isterseniz isteyin, 0.1 ondalık değeri tam olarak 2 tabanı kesri olarak gösterilemez.  Taban 2’de 1/10 sonsuza kadar tekrar eden bir kesirdir</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="mf">0.0001100110011001100110011001100110011001100110011</span><span class="o">...</span>
+</pre></div>
+</div>
+<p>Herhangi bir sonlu bit sayısında durduğunuzda bir yaklaşık değer elde edersiniz.  Bugün çoğu makinede, kayan sayılar, pay en anlamlı bitten başlayarak ilk 53 bit kullanılarak ve payda ikinin kuvveti olarak ikili bir kesir kullanılarak yaklaştırılır.  1/10 durumunda ikili kesir, 1/10’un gerçek değerine yakın ancak tam olarak eşit olmayan <code class="docutils literal notranslate"><span class="pre">3602879701896397</span> <span class="pre">/</span> <span class="pre">2</span> <span class="pre">**</span> <span class="pre">55</span></code> şeklindedir.</p>
+<p>Birçok kullanıcı, değerlerin görüntülenme şekli nedeniyle bu yaklaşımın farkında değildir.  Python, makine tarafından depolanan ikili yaklaşımın gerçek ondalık değerine yalnızca ondalık bir yaklaşım yazdırır.  Çoğu makinede, Python 0.1 için saklanan ikili yaklaşımın gerçek ondalık değerini yazdıracak olsaydı,</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mf">0.1</span>
+<span class="go">0.1000000000000000055511151231257827021181583404541015625</span>
+</pre></div>
+</div>
+<p>Bu çoğu insanın kullanışlı bulacağı seviyeden çok daha fazla basamak olurdu. Dolayısıyla, Python sayıları yuvarlayarak basamak sayısını kontrol edilebilir seviyede tutar</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">1</span> <span class="o">/</span> <span class="mi">10</span>
+<span class="go">0.1</span>
+</pre></div>
+</div>
+<p>Unutmayın, yazdırılan sonuç 1/10’un tam değeri gibi görünse de, saklanan gerçek değer temsil edilebilir olan en yakın ikili kesirdir.</p>
+<p>İlginç bir şekilde, aynı en yakın yaklaşık ikili kesri paylaşan birçok farklı ondalık sayı vardır.  Örneğin, <code class="docutils literal notranslate"><span class="pre">0.1</span></code> ve <code class="docutils literal notranslate"><span class="pre">0.10000000000000001</span></code> ve <code class="docutils literal notranslate"><span class="pre">0.1000000000000000055511151231257827021181583404541015625</span></code> sayılarının tümü <code class="docutils literal notranslate"><span class="pre">3602879701896397</span> <span class="pre">/</span> <span class="pre">2</span> <span class="pre">**</span> <span class="pre">55</span></code> ile yaklaştırılır.  Bu ondalık değerlerin tümü aynı yaklaşımı paylaştığından, <code class="docutils literal notranslate"><span class="pre">eval(repr(x))</span> <span class="pre">==</span> <span class="pre">x</span></code> değişmezi korunarak bunlardan herhangi biri görüntülenebilir.</p>
+<p>Geçmişte, Python komut istemi ve yerleşik <a class="reference internal" href="../library/functions.html#repr" title="repr"><code class="xref py py-func docutils literal notranslate"><span class="pre">repr()</span></code></a> işlevi 17 anlamlı basamağa sahip olanı, <code class="docutils literal notranslate"><span class="pre">0.10000000000000001</span></code> ‘i seçerdi.   Python 3.1’den itibaren, Python (çoğu sistemde) artık bunlardan en kısa olanı seçebilmekte ve basitçe <code class="docutils literal notranslate"><span class="pre">0.1</span></code> ‘i görüntüleyebilmektedir.</p>
+<p>Bunun ikili kayan noktanın doğasında olduğunu unutmayın: bu Python’daki bir hata değildir ve kodunuzda daki bir hata da değildir.  Donanımınızın kayan noktalı aritmetiğini destekleyen tüm dillerde aynı şeyi göreceksiniz (bazı diller varsayılan olarak veya tüm çıktı modlarında farkı <em>göstermeyebilir</em>).</p>
+<p>Daha hoş bir çıktı için, sınırlı sayıda anlamlı hane üretmek üzere dize biçimlendirmesini kullanmak isteyebilirsiniz:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">format</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="s1">&#39;.12g&#39;</span><span class="p">)</span>  <span class="c1"># give 12 significant digits</span>
+<span class="go">&#39;3.14159265359&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">format</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="s1">&#39;.2f&#39;</span><span class="p">)</span>   <span class="c1"># give 2 digits after the point</span>
+<span class="go">&#39;3.14&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">repr</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+<span class="go">&#39;3.141592653589793&#39;</span>
+</pre></div>
+</div>
+<p>Bunun gerçek anlamda bir yanılsama olduğunun farkına varmak önemlidir: gerçek makine değerinin <em>görüntüsünü</em> yuvarlıyorsunuz.</p>
+<p>Bir yanılsama diğerini doğurabilir.  Örneğin, 0,1 tam olarak 1/10 olmadığından, 0,1’in üç değerini toplamak da tam olarak 0,3 vermeyebilir:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mf">.1</span> <span class="o">+</span> <span class="mf">.1</span> <span class="o">+</span> <span class="mf">.1</span> <span class="o">==</span> <span class="mf">.3</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>Ayrıca, 0,1 tam 1/10 değerine ve 0,3 tam 3/10 değerine daha fazla yaklaşamayacağından, <a class="reference internal" href="../library/functions.html#round" title="round"><code class="xref py py-func docutils literal notranslate"><span class="pre">round()</span></code></a> fonksiyonu ile ön yuvarlama yapmak yardımcı olamaz:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="mf">.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">round</span><span class="p">(</span><span class="mf">.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nb">round</span><span class="p">(</span><span class="mf">.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="nb">round</span><span class="p">(</span><span class="mf">.3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>Sayılar amaçlanan tam değerlere yaklaştırılamasa da, <a class="reference internal" href="../library/functions.html#round" title="round"><code class="xref py py-func docutils literal notranslate"><span class="pre">round()</span></code></a> işlevi, kesin olmayan değerlere sahip sonuçların birbiriyle karşılaştırılabilir hale gelmesi için sonradan yuvarlama yapmaya yarayabilir:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="mf">.1</span> <span class="o">+</span> <span class="mf">.1</span> <span class="o">+</span> <span class="mf">.1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="o">==</span> <span class="nb">round</span><span class="p">(</span><span class="mf">.3</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>Binary floating-point arithmetic holds many surprises like this.  The problem
+with “0.1” is explained in precise detail below, in the “Representation Error”
+section.  See <a class="reference external" href="https://jvns.ca/blog/2023/01/13/examples-of-floating-point-problems/">Examples of Floating Point Problems</a> for
+a pleasant summary of how binary floating-point works and the kinds of
+problems commonly encountered in practice.  Also see
+<a class="reference external" href="https://www.lahey.com/float.htm">The Perils of Floating Point</a>
+for a more complete account of other common surprises.</p>
+<p>Söylendiği üzere, “kolay cevaplar yoktur.”  Yine de, kayan nokta konusunda gereksiz yere temkinli olmayın!  Python kayan nokta işlemlerindeki hatalar kayan nokta donanımından miras alınır ve çoğu makinede işlem başına 2**53’te 1 parçadan fazla değildir.  Bu, çoğu görev için fazlasıyla yeterlidir, ancak bunun ondalık aritmetik olmadığını ve her kayan nokta işleminin yeni bir yuvarlama hatasına maruz kalabileceğini aklınızda bulundurmanız gerekir.</p>
+<p>Patolojik durumlar mevcut olsa da, kayan noktalı aritmetiğin sıradan kullanımı için, nihai sonuçlarınızın görüntüsünü beklediğiniz ondalık basamak sayısına yuvarlarsanız, sonunda beklediğiniz sonucu görürsünüz. <a class="reference internal" href="../library/stdtypes.html#str" title="str"><code class="xref py py-func docutils literal notranslate"><span class="pre">str()</span></code></a> genellikle yeterlidir ve daha ince kontrol için <a class="reference internal" href="../library/string.html#formatstrings"><span class="std std-ref">Format String Syntax</span></a> içindeki <a class="reference internal" href="../library/stdtypes.html#str.format" title="str.format"><code class="xref py py-meth docutils literal notranslate"><span class="pre">str.format()</span></code></a> yönteminin biçim belirleyicilerine bakın.</p>
+<p>Tam ondalık gösterim gerektiren durumlar için, muhasebe uygulamaları ve yüksek hassasiyetli uygulamalar için uygun ondalık aritmetiği uygulayan <a class="reference internal" href="../library/decimal.html#module-decimal" title="decimal: Implementation of the General Decimal Arithmetic  Specification."><code class="xref py py-mod docutils literal notranslate"><span class="pre">decimal</span></code></a> modülünü kullanmayı deneyin.</p>
+<p>Kesin aritmetiğin bir başka biçimi, rasyonel sayılara dayalı aritmetik uygulayan <a class="reference internal" href="../library/fractions.html#module-fractions" title="fractions: Rational numbers."><code class="xref py py-mod docutils literal notranslate"><span class="pre">fractions</span></code></a> modülü tarafından desteklenir (böylece 1/3 gibi sayılar tam olarak temsil edilebilir).</p>
+<p>If you are a heavy user of floating-point operations you should take a look
+at the NumPy package and many other packages for mathematical and
+statistical operations supplied by the SciPy project. See &lt;<a class="reference external" href="https://scipy.org">https://scipy.org</a>&gt;.</p>
+<p>Python, bir kayan noktanın tam değerini <em>gerçekten</em> bilmek istediğiniz nadir durumlarda yardımcı olabilecek araçlar sağlar.  <a class="reference internal" href="../library/stdtypes.html#float.as_integer_ratio" title="float.as_integer_ratio"><code class="xref py py-meth docutils literal notranslate"><span class="pre">float.as_integer_ratio()</span></code></a> metodu bir kayan noktanın değerini kesir olarak ifade eder:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="mf">3.14159</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">as_integer_ratio</span><span class="p">()</span>
+<span class="go">(3537115888337719, 1125899906842624)</span>
+</pre></div>
+</div>
+<p>Oran tam olduğundan, orijinal değeri kayıpsız olarak yeniden oluşturmak için kullanılabilir:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">==</span> <span class="mi">3537115888337719</span> <span class="o">/</span> <span class="mi">1125899906842624</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="../library/stdtypes.html#float.hex" title="float.hex"><code class="xref py py-meth docutils literal notranslate"><span class="pre">float.hex()</span></code></a> yöntemi bir kayan nokta değerini onaltılık (16 tabanı) olarak ifade eder ve yine bilgisayarınız tarafından depolanan tam değeri verir:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">hex</span><span class="p">()</span>
+<span class="go">&#39;0x1.921f9f01b866ep+1&#39;</span>
+</pre></div>
+</div>
+<p>Bu hassas onaltılık gösterim, float değerini tam olarak yeniden oluşturmak için kullanılabilir:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">==</span> <span class="nb">float</span><span class="o">.</span><span class="n">fromhex</span><span class="p">(</span><span class="s1">&#39;0x1.921f9f01b866ep+1&#39;</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>Temsil tam olduğundan, değerleri Python’un farklı sürümleri arasında güvenilir bir şekilde taşımak (platform bağımsızlığı) ve aynı biçimi destekleyen diğer dillerle (Java ve C99 gibi) veri alışverişi yapmak için kullanışlıdır.</p>
+<p>Bir başka yararlı araç da toplama sırasında hassasiyet kaybını azaltmaya yardımcı olan <a class="reference internal" href="../library/math.html#math.fsum" title="math.fsum"><code class="xref py py-func docutils literal notranslate"><span class="pre">math.fsum()</span></code></a> işlevidir.  Değerler çalışan bir toplam üzerine eklendikçe “kayıp rakamları” izler.  Bu, genel doğrulukta bir fark yaratabilir, böylece hatalar nihai toplamı etkileyecek noktaya kadar birikmez:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">sum</span><span class="p">([</span><span class="mf">0.1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span> <span class="o">==</span> <span class="mf">1.0</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">math</span><span class="o">.</span><span class="n">fsum</span><span class="p">([</span><span class="mf">0.1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span> <span class="o">==</span> <span class="mf">1.0</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<section id="representation-error">
+<span id="tut-fp-error"></span><h2><span class="section-number">15.1. </span>Temsil Hatası<a class="headerlink" href="#representation-error" title="Permalink to this heading">¶</a></h2>
+<p>Bu bölüm “0.1” örneğini ayrıntılı olarak açıklamakta ve bu gibi durumların tam analizini kendiniz nasıl yapabileceğinizi göstermektedir.  İkili kayan nokta gösterimine temel düzeyde aşina olunduğu varsayılmaktadır.</p>
+<p><em class="dfn">Temsil hatası</em>, bazı (aslında çoğu) ondalık kesirlerin tam olarak ikili (taban 2) kesirler olarak temsil edilemeyeceği gerçeğini ifade eder. Bu, Python’un (veya Perl, C, C++, Java, Fortran ve diğerlerinin) genellikle beklediğiniz tam ondalık sayıyı göstermemesinin başlıca nedenidir.</p>
+<p>Why is that?  1/10 is not exactly representable as a binary fraction.  Since at
+least 2000, almost all machines use IEEE 754 binary floating-point arithmetic,
+and almost all platforms map Python floats to IEEE 754 binary64 “double
+precision” values.  IEEE 754 binary64 values contain 53 bits of precision, so
+on input the computer strives to convert 0.1 to the closest fraction it can of
+the form <em>J</em>/2**<em>N</em> where <em>J</em> is an integer containing exactly 53 bits.
+Rewriting</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="o">/</span> <span class="mi">10</span> <span class="o">~=</span> <span class="n">J</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>şu şekilde</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">J</span> <span class="o">~=</span> <span class="mi">2</span><span class="o">**</span><span class="n">N</span> <span class="o">/</span> <span class="mi">10</span>
+</pre></div>
+</div>
+<p>ve <em>J</em>’nin tam olarak 53 bit olduğunu hatırlarsak (<code class="docutils literal notranslate"><span class="pre">&gt;=</span> <span class="pre">2**52</span></code> ama <code class="docutils literal notranslate"><span class="pre">&lt;</span> <span class="pre">2**53</span></code>), <em>N</em> için en iyi değer 56:’dır:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">2</span><span class="o">**</span><span class="mi">52</span> <span class="o">&lt;=</span>  <span class="mi">2</span><span class="o">**</span><span class="mi">56</span> <span class="o">//</span> <span class="mi">10</span>  <span class="o">&lt;</span> <span class="mi">2</span><span class="o">**</span><span class="mi">53</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>Yani, <em>N</em> için <em>J</em>’ye tam olarak 53 bit bırakan tek değer 56’dır.  O halde <em>J</em> için mümkün olan en iyi değer, bu bölümün yuvarlanmış halidir:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">q</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="nb">divmod</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">56</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span>
+<span class="go">6</span>
+</pre></div>
+</div>
+<p>Kalanın değeri 10’un yarısından fazla olduğu için, en iyi yaklaşım yukarı yuvarlama ile elde edilir:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">q</span><span class="o">+</span><span class="mi">1</span>
+<span class="go">7205759403792794</span>
+</pre></div>
+</div>
+<p>Therefore the best possible approximation to 1/10 in IEEE 754 double precision
+is:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="mi">7205759403792794</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">56</span>
+</pre></div>
+</div>
+<p>Hem pay hem de paydayı ikiye böldüğünüzde kesir şuna indirgenir:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="mi">3602879701896397</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">55</span>
+</pre></div>
+</div>
+<p>Aslında bölümü yukarı yuvarladığımız için değerin 1/10’dan biraz daha büyük olduğuna dikkat edin; yukarı yuvarlamamış olsaydık, bölüm 1/10’dan biraz daha küçük olurdu.  Ancak hiçbir durumda <em>tam olarak</em> 1/10 olamaz!</p>
+<p>So the computer never “sees” 1/10:  what it sees is the exact fraction given
+above, the best IEEE 754 double approximation it can get:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mf">0.1</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">55</span>
+<span class="go">3602879701896397.0</span>
+</pre></div>
+</div>
+<p>Bu kesri 10**55 ile çarparsak, değeri 55 ondalık basamağa kadar görebiliriz:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">3602879701896397</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">**</span> <span class="mi">55</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">55</span>
+<span class="go">1000000000000000055511151231257827021181583404541015625</span>
+</pre></div>
+</div>
+<p>bu da bilgisayarda depolanan gerçek değerin 0.1000000000000000055511151231257827021181583404541015625 kesrine eşit olduğu anlamına gelir. Python’un eski sürümleri dahil olmak üzere çoğu dil, tam kesri göstermek yerine sonucu 17 anlamlı basamağa yuvarlar:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">format</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="s1">&#39;.17f&#39;</span><span class="p">)</span>
+<span class="go">&#39;0.10000000000000001&#39;</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="../library/fractions.html#module-fractions" title="fractions: Rational numbers."><code class="xref py py-mod docutils literal notranslate"><span class="pre">fractions</span></code></a> ve <a class="reference internal" href="../library/decimal.html#module-decimal" title="decimal: Implementation of the General Decimal Arithmetic  Specification."><code class="xref py py-mod docutils literal notranslate"><span class="pre">decimal</span></code></a> modülleri bu hesaplamaları kolaylaştırır:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">decimal</span> <span class="kn">import</span> <span class="n">Decimal</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">fractions</span> <span class="kn">import</span> <span class="n">Fraction</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Fraction</span><span class="o">.</span><span class="n">from_float</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="go">Fraction(3602879701896397, 36028797018963968)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span><span class="o">.</span><span class="n">as_integer_ratio</span><span class="p">()</span>
+<span class="go">(3602879701896397, 36028797018963968)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Decimal</span><span class="o">.</span><span class="n">from_float</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="go">Decimal(&#39;0.1000000000000000055511151231257827021181583404541015625&#39;)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">format</span><span class="p">(</span><span class="n">Decimal</span><span class="o">.</span><span class="n">from_float</span><span class="p">(</span><span class="mf">0.1</span><span class="p">),</span> <span class="s1">&#39;.17&#39;</span><span class="p">)</span>
+<span class="go">&#39;0.10000000000000001&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../contents.html">İçindekiler</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">15. Kayan Nokta Aritmetiği: Sorunlar ve Sınırlamalar</a><ul>
+<li><a class="reference internal" href="#representation-error">15.1. Temsil Hatası</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Önceki konu</h4>
+    <p class="topless"><a href="interactive.html"
+                          title="önceki bölüm"><span class="section-number">14. </span>Etkileşimli Girdi Düzenleme ve Geçmiş İkame</a></p>
+  </div>
+  <div>
+    <h4>Sonraki konu</h4>
+    <p class="topless"><a href="appendix.html"
+                          title="sonraki bölüm"><span class="section-number">16. </span>Ek Bölüm</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Bu Sayfa</h3>
+    <ul class="this-page-menu">
+      <li><a href="../bugs.html">Hata Bildir</a></li>
+      <li>
+        <a href="https://github.com/python/cpython/blob/3.11/Doc/tutorial/floatingpoint.rst"
+            rel="nofollow">Kaynağı Göster
+        </a>
+      </li>
+    </ul>
+  </div>
+        </div>
+<div id="sidebarbutton" title="Yan çubuğu daralt">
+<span>«</span>
+</div>
+
+      </div>
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Gezinti</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Genel Endeks"
+             >dizin</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Modül Dizini"
+             >modülleri</a> |</li>
+        <li class="right" >
+          <a href="appendix.html" title="16. Ek Bölüm"
+             >sonraki</a> |</li>
+        <li class="right" >
+          <a href="interactive.html" title="14. Etkileşimli Girdi Düzenleme ve Geçmiş İkame"
+             >önceki</a> |</li>
+
+          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+          </li>
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.11.5 Documentation</a> &#187;
+    </li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Python Öğreticisi</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">15. </span>Kayan Nokta Aritmetiği: Sorunlar ve Sınırlamalar</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Hızlı Arama" aria-label="Hızlı Arama" type="search" name="q" id="search-box" />
+          <input type="submit" value="Git" />
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; <a href="../copyright.html">Telif Hakkı</a> 2001-2023, Python Software Foundation.
+    <br />
+    This page is licensed under the Python Software Foundation License Version 2.
+    <br />
+    Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
+    <br />
+    See <a href="/license.html">History and License</a> for more information.<br />
+    <br />
+
+    The Python Software Foundation is a non-profit corporation.
+<a href="https://www.python.org/psf/donations/">Please donate.</a>
+<br />
+    <br />
+
+    Son güncelleme: Eki 23, 2023.
+    <a href="/bugs.html">Found a bug</a>?
+    <br />
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+    </div>
+
+  </body>
+</html>

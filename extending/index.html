@@ -1,0 +1,405 @@
+
+<!DOCTYPE html>
+
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta property="og:title" content="Python Yorumlayıcısını Genişletme ve Gömme" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://docs.python.org/3/extending/index.html" />
+<meta property="og:site_name" content="Python documentation" />
+<meta property="og:description" content="Bu belge, Python yorumlayıcısını yeni modüllerle genişletmek için C veya C++’da modüllerin nasıl yazılacağını açıklar. Bu modüller sadece yeni fonksiyonları değil, aynı zamanda yeni nesne tiplerini..." />
+<meta property="og:image" content="https://docs.python.org/3/_static/og-image.png" />
+<meta property="og:image:alt" content="Python documentation" />
+<meta name="description" content="Bu belge, Python yorumlayıcısını yeni modüllerle genişletmek için C veya C++’da modüllerin nasıl yazılacağını açıklar. Bu modüller sadece yeni fonksiyonları değil, aynı zamanda yeni nesne tiplerini..." />
+<meta property="og:image:width" content="200" />
+<meta property="og:image:height" content="200" />
+<meta name="theme-color" content="#3776ab" />
+
+    <title>Python Yorumlayıcısını Genişletme ve Gömme &#8212; Python 3.11.5 belgelendirmesi</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?digest=b37c26da2f7529d09fe70b41c4b2133fe4931a90" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    
+    <script src="../_static/sidebar.js"></script>
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Python 3.11.5 belgelendirmesi içinde ara"
+          href="../_static/opensearch.xml"/>
+    <link rel="author" title="Bu belgeler hakkında" href="../about.html" />
+    <link rel="index" title="Dizin" href="../genindex.html" />
+    <link rel="search" title="Ara" href="../search.html" />
+    <link rel="copyright" title="Telif Hakkı" href="../copyright.html" />
+    <link rel="next" title="1. Extending Python with C or C++" href="extending.html" />
+    <link rel="prev" title="Security Considerations" href="../library/security_warnings.html" />
+    <link rel="canonical" href="https://docs.python.org/3/extending/index.html" />
+    
+      
+    
+
+    
+    <style>
+      @media only screen {
+        table.full-width-table {
+            width: 100%;
+        }
+      }
+    </style>
+<link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg" />
+            <script type="text/javascript" src="../_static/copybutton.js"></script>
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+
+  </head>
+<body>
+<div class="mobile-nav">
+    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
+    <nav class="nav-content" role="navigation">
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Logo"/>
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Hızlı Arama" aria-label="Hızlı Arama" type="search" name="q" />
+                <input type="submit" value="Git"/>
+            </form>
+        </span>
+    </nav>
+    <div class="menu-wrapper">
+        <nav class="menu" role="navigation" aria-label="main navigation">
+            <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
+  <div>
+    <h3><a href="../contents.html">İçindekiler</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Python Yorumlayıcısını Genişletme ve Gömme</a><ul>
+<li><a class="reference internal" href="#recommended-third-party-tools">Önerilen üçüncü taraf araçları</a></li>
+<li><a class="reference internal" href="#creating-extensions-without-third-party-tools">Üçüncü taraf araçları olmadan uzantılar oluşturma</a></li>
+<li><a class="reference internal" href="#embedding-the-cpython-runtime-in-a-larger-application">CPython çalışma zamanını daha büyük bir uygulamaya gömme</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Önceki konu</h4>
+    <p class="topless"><a href="../library/security_warnings.html"
+                          title="önceki bölüm">Security Considerations</a></p>
+  </div>
+  <div>
+    <h4>Sonraki konu</h4>
+    <p class="topless"><a href="extending.html"
+                          title="sonraki bölüm"><span class="section-number">1. </span>Extending Python with C or C++</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Bu Sayfa</h3>
+    <ul class="this-page-menu">
+      <li><a href="../bugs.html">Hata Bildir</a></li>
+      <li>
+        <a href="https://github.com/python/cpython/blob/3.11/Doc/extending/index.rst"
+            rel="nofollow">Kaynağı Göster
+        </a>
+      </li>
+    </ul>
+  </div>
+        </nav>
+    </div>
+</div>
+
+  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Gezinti</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Genel Endeks"
+             accesskey="I">dizin</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Modül Dizini"
+             >modülleri</a> |</li>
+        <li class="right" >
+          <a href="extending.html" title="1. Extending Python with C or C++"
+             accesskey="N">sonraki</a> |</li>
+        <li class="right" >
+          <a href="../library/security_warnings.html" title="Security Considerations"
+             accesskey="P">önceki</a> |</li>
+
+          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+          </li>
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.11.5 Documentation</a> &#187;
+    </li>
+
+        <li class="nav-item nav-item-this"><a href="">Python Yorumlayıcısını Genişletme ve Gömme</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Hızlı Arama" aria-label="Hızlı Arama" type="search" name="q" id="search-box" />
+          <input type="submit" value="Git" />
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="extending-and-embedding-the-python-interpreter">
+<span id="extending-index"></span><h1>Python Yorumlayıcısını Genişletme ve Gömme<a class="headerlink" href="#extending-and-embedding-the-python-interpreter" title="Permalink to this heading">¶</a></h1>
+<p>Bu belge, Python yorumlayıcısını yeni modüllerle genişletmek için C veya C++’da modüllerin nasıl yazılacağını açıklar. Bu modüller sadece yeni fonksiyonları değil, aynı zamanda yeni nesne tiplerini ve metotlarını da tanımlayabilir. Belge ayrıca Python yorumlayıcısının bir uzantı dili olarak kullanılmak üzere başka bir uygulamaya nasıl yerleştirileceğini de açıklar. Son olarak, temeldeki işletim sistemi bu özelliği destekliyorsa, uzantı modüllerinin yorumlayıcıya dinamik olarak (çalışma zamanında) yüklenebilmesi için nasıl derleneceğini ve bağlanacağını gösterir.</p>
+<p>Bu belge, Python hakkında temel bilgiye sahip olduğunuzu varsayar. Dile gayri resmi bir giriş için bkz. <a class="reference internal" href="../library/index.html#library-index"><span class="std std-ref">The Python Standard Library</span></a>. <a class="reference internal" href="../library/index.html#library-index"><span class="std std-ref">The Python Standard Library</span></a>, dilin daha resmi bir tanımını verir. <a class="reference internal" href="../library/index.html#library-index"><span class="std std-ref">The Python Standard Library</span></a>, dile geniş uygulama yelpazesi sağlayan mevcut nesne türlerini, işlevleri ve modülleri (hem yerleşik hem de Python’da yazılmış) belgeler.</p>
+<p>Tüm Python/C API’sinin ayrıntılı açıklaması için ayrı <a class="reference internal" href="../c-api/index.html#c-api-index"><span class="std std-ref">Python/C API Referans Kılavuzu</span></a>’a bakın.</p>
+<section id="recommended-third-party-tools">
+<h2>Önerilen üçüncü taraf araçları<a class="headerlink" href="#recommended-third-party-tools" title="Permalink to this heading">¶</a></h2>
+<p>Bu kılavuz, yalnızca CPython’un bu sürümünün bir parçası olarak sağlanan uzantıları oluşturmak için temel araçları kapsar. <a class="reference external" href="https://cython.org/">Cython</a>, <a class="reference external" href="https://cffi.readthedocs.io">cffi</a>, <a class="reference external" href="https://www.swig.org">SWIG</a> ve <a class="reference external" href="https://numba.pydata.org/">Numba</a> gibi üçüncü taraf araçlar, Python için C ve C++ uzantıları oluşturmaya yönelik hem daha basit hem de daha karmaşık yaklaşımlar sunar.</p>
+<div class="admonition seealso">
+<p class="admonition-title">Ayrıca bakınız</p>
+<dl class="simple">
+<dt><a class="reference external" href="https://packaging.python.org/guides/packaging-binary-extensions/">Python Paketleme Kullanıcı Kılavuzu: İkili Uzantılar</a></dt><dd><p>Python Paketleme Kullanıcı Kılavuzu, yalnızca ikili uzantıların oluşturulmasını basitleştiren çeşitli mevcut araçları kapsamakla kalmaz, aynı zamanda bir uzantı modülü oluşturmanın en başta neden istenebileceğinin çeşitli nedenlerini de tartışır.</p>
+</dd>
+</dl>
+</div>
+</section>
+<section id="creating-extensions-without-third-party-tools">
+<h2>Üçüncü taraf araçları olmadan uzantılar oluşturma<a class="headerlink" href="#creating-extensions-without-third-party-tools" title="Permalink to this heading">¶</a></h2>
+<p>Kılavuzun bu bölümü, üçüncü taraf araçlardan yardım almadan C ve C++ uzantıları oluşturmayı kapsar. Kendi C uzantılarınızı oluşturmanız için önerilen bir yol olmaktan ziyade, öncelikle bu araçların yaratıcılarına yöneliktir.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="extending.html">1. Extending Python with C or C++</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="extending.html#a-simple-example">1.1. A Simple Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extending.html#intermezzo-errors-and-exceptions">1.2. Intermezzo: Errors and Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extending.html#back-to-the-example">1.3. Back to the Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extending.html#the-module-s-method-table-and-initialization-function">1.4. The Module’s Method Table and Initialization Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extending.html#compilation-and-linkage">1.5. Compilation and Linkage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extending.html#calling-python-functions-from-c">1.6. Calling Python Functions from C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extending.html#extracting-parameters-in-extension-functions">1.7. Extracting Parameters in Extension Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extending.html#keyword-parameters-for-extension-functions">1.8. Keyword Parameters for Extension Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extending.html#building-arbitrary-values">1.9. Building Arbitrary Values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extending.html#reference-counts">1.10. Reference Counts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extending.html#writing-extensions-in-c">1.11. Writing Extensions in C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extending.html#providing-a-c-api-for-an-extension-module">1.12. Providing a C API for an Extension Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="newtypes_tutorial.html">2. Defining Extension Types: Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="newtypes_tutorial.html#the-basics">2.1. The Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="newtypes_tutorial.html#adding-data-and-methods-to-the-basic-example">2.2. Adding data and methods to the Basic example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="newtypes_tutorial.html#providing-finer-control-over-data-attributes">2.3. Providing finer control over data attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="newtypes_tutorial.html#supporting-cyclic-garbage-collection">2.4. Supporting cyclic garbage collection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="newtypes_tutorial.html#subclassing-other-types">2.5. Subclassing other types</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="newtypes.html">3. Defining Extension Types: Assorted Topics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="newtypes.html#finalization-and-de-allocation">3.1. Finalization and De-allocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="newtypes.html#object-presentation">3.2. Object Presentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="newtypes.html#attribute-management">3.3. Attribute Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="newtypes.html#object-comparison">3.4. Object Comparison</a></li>
+<li class="toctree-l2"><a class="reference internal" href="newtypes.html#abstract-protocol-support">3.5. Abstract Protocol Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="newtypes.html#weak-reference-support">3.6. Weak Reference Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="newtypes.html#more-suggestions">3.7. More Suggestions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="building.html">4. Building C and C++ Extensions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="building.html#building-c-and-c-extensions-with-distutils">4.1. Building C and C++ Extensions with distutils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="building.html#distributing-your-extension-modules">4.2. Distributing your extension modules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="windows.html">5. Building C and C++ Extensions on Windows</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#a-cookbook-approach">5.1. A Cookbook Approach</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#differences-between-unix-and-windows">5.2. Differences Between Unix and Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#using-dlls-in-practice">5.3. Using DLLs in Practice</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="embedding-the-cpython-runtime-in-a-larger-application">
+<h2>CPython çalışma zamanını daha büyük bir uygulamaya gömme<a class="headerlink" href="#embedding-the-cpython-runtime-in-a-larger-application" title="Permalink to this heading">¶</a></h2>
+<p>Bazen, ana uygulama olarak Python yorumlayıcısının içinde çalışan bir uzantı oluşturmak yerine, bunun yerine CPython çalışma zamanını daha büyük bir uygulamanın içine gömmek tercih edilir. Bu bölüm, bunu başarılı bir şekilde yapmakla ilgili bazı ayrıntıları içerir.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="embedding.html">1. Python’ı Başka Bir Uygulamaya Gömme</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="embedding.html#very-high-level-embedding">1.1. Çok Üst Düzey Gömme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedding.html#beyond-very-high-level-embedding-an-overview">1.2. Çok Yüksek Düzeyde Gömmenin Ötesinde: Genel Bir Bakış</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedding.html#pure-embedding">1.3. Saf Gömme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedding.html#extending-embedded-python">1.4. Gömülü Python’u Genişletme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedding.html#embedding-python-in-c">1.5. Python’u C++’a Gömmek</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedding.html#compiling-and-linking-under-unix-like-systems">1.6. Unix benzeri sistemler altında Derleme ve Bağlama</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../contents.html">İçindekiler</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Python Yorumlayıcısını Genişletme ve Gömme</a><ul>
+<li><a class="reference internal" href="#recommended-third-party-tools">Önerilen üçüncü taraf araçları</a></li>
+<li><a class="reference internal" href="#creating-extensions-without-third-party-tools">Üçüncü taraf araçları olmadan uzantılar oluşturma</a></li>
+<li><a class="reference internal" href="#embedding-the-cpython-runtime-in-a-larger-application">CPython çalışma zamanını daha büyük bir uygulamaya gömme</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Önceki konu</h4>
+    <p class="topless"><a href="../library/security_warnings.html"
+                          title="önceki bölüm">Security Considerations</a></p>
+  </div>
+  <div>
+    <h4>Sonraki konu</h4>
+    <p class="topless"><a href="extending.html"
+                          title="sonraki bölüm"><span class="section-number">1. </span>Extending Python with C or C++</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Bu Sayfa</h3>
+    <ul class="this-page-menu">
+      <li><a href="../bugs.html">Hata Bildir</a></li>
+      <li>
+        <a href="https://github.com/python/cpython/blob/3.11/Doc/extending/index.rst"
+            rel="nofollow">Kaynağı Göster
+        </a>
+      </li>
+    </ul>
+  </div>
+        </div>
+<div id="sidebarbutton" title="Yan çubuğu daralt">
+<span>«</span>
+</div>
+
+      </div>
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Gezinti</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Genel Endeks"
+             >dizin</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Modül Dizini"
+             >modülleri</a> |</li>
+        <li class="right" >
+          <a href="extending.html" title="1. Extending Python with C or C++"
+             >sonraki</a> |</li>
+        <li class="right" >
+          <a href="../library/security_warnings.html" title="Security Considerations"
+             >önceki</a> |</li>
+
+          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+          </li>
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.11.5 Documentation</a> &#187;
+    </li>
+
+        <li class="nav-item nav-item-this"><a href="">Python Yorumlayıcısını Genişletme ve Gömme</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Hızlı Arama" aria-label="Hızlı Arama" type="search" name="q" id="search-box" />
+          <input type="submit" value="Git" />
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; <a href="../copyright.html">Telif Hakkı</a> 2001-2023, Python Software Foundation.
+    <br />
+    This page is licensed under the Python Software Foundation License Version 2.
+    <br />
+    Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
+    <br />
+    See <a href="/license.html">History and License</a> for more information.<br />
+    <br />
+
+    The Python Software Foundation is a non-profit corporation.
+<a href="https://www.python.org/psf/donations/">Please donate.</a>
+<br />
+    <br />
+
+    Son güncelleme: Eki 23, 2023.
+    <a href="/bugs.html">Found a bug</a>?
+    <br />
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+    </div>
+
+  </body>
+</html>

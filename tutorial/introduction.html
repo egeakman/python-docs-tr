@@ -1,0 +1,754 @@
+
+<!DOCTYPE html>
+
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta property="og:title" content="3. Python’a Resmi Olmayan Bir Giriş" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://docs.python.org/3/tutorial/introduction.html" />
+<meta property="og:site_name" content="Python documentation" />
+<meta property="og:description" content="İlerleyen örneklerde; giriş ve çıkış, bilgi istemlerinin olup olmamasına göre ayırt edilir (>>> ve …): örneği tekrarlamak için bilgi isteminden sonra her şeyi yazmalısınız, istem göründüğünde bir b..." />
+<meta property="og:image" content="https://docs.python.org/3/_static/og-image.png" />
+<meta property="og:image:alt" content="Python documentation" />
+<meta name="description" content="İlerleyen örneklerde; giriş ve çıkış, bilgi istemlerinin olup olmamasına göre ayırt edilir (>>> ve …): örneği tekrarlamak için bilgi isteminden sonra her şeyi yazmalısınız, istem göründüğünde bir b..." />
+<meta property="og:image:width" content="200" />
+<meta property="og:image:height" content="200" />
+<meta name="theme-color" content="#3776ab" />
+
+    <title>3. Python’a Resmi Olmayan Bir Giriş &#8212; Python 3.11.5 belgelendirmesi</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?digest=b37c26da2f7529d09fe70b41c4b2133fe4931a90" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    
+    <script src="../_static/sidebar.js"></script>
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Python 3.11.5 belgelendirmesi içinde ara"
+          href="../_static/opensearch.xml"/>
+    <link rel="author" title="Bu belgeler hakkında" href="../about.html" />
+    <link rel="index" title="Dizin" href="../genindex.html" />
+    <link rel="search" title="Ara" href="../search.html" />
+    <link rel="copyright" title="Telif Hakkı" href="../copyright.html" />
+    <link rel="next" title="4. Daha Fazla Kontrol Akışı Aracı" href="controlflow.html" />
+    <link rel="prev" title="2. Python Yorumlayıcısını Kullanma" href="interpreter.html" />
+    <link rel="canonical" href="https://docs.python.org/3/tutorial/introduction.html" />
+    
+      
+    
+
+    
+    <style>
+      @media only screen {
+        table.full-width-table {
+            width: 100%;
+        }
+      }
+    </style>
+<link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg" />
+            <script type="text/javascript" src="../_static/copybutton.js"></script>
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+
+  </head>
+<body>
+<div class="mobile-nav">
+    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
+    <nav class="nav-content" role="navigation">
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Logo"/>
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Hızlı Arama" aria-label="Hızlı Arama" type="search" name="q" />
+                <input type="submit" value="Git"/>
+            </form>
+        </span>
+    </nav>
+    <div class="menu-wrapper">
+        <nav class="menu" role="navigation" aria-label="main navigation">
+            <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
+  <div>
+    <h3><a href="../contents.html">İçindekiler</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">3. Python’a Resmi Olmayan Bir Giriş</a><ul>
+<li><a class="reference internal" href="#using-python-as-a-calculator">3.1. Python’ı Hesap Makinesi Olarak Kullanmak</a><ul>
+<li><a class="reference internal" href="#numbers">3.1.1. Sayılar</a></li>
+<li><a class="reference internal" href="#text">3.1.2. Text</a></li>
+<li><a class="reference internal" href="#lists">3.1.3. Listeler</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#first-steps-towards-programming">3.2. Programlamaya Doğru İlk Adımlar</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Önceki konu</h4>
+    <p class="topless"><a href="interpreter.html"
+                          title="önceki bölüm"><span class="section-number">2. </span>Python Yorumlayıcısını Kullanma</a></p>
+  </div>
+  <div>
+    <h4>Sonraki konu</h4>
+    <p class="topless"><a href="controlflow.html"
+                          title="sonraki bölüm"><span class="section-number">4. </span>Daha Fazla Kontrol Akışı Aracı</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Bu Sayfa</h3>
+    <ul class="this-page-menu">
+      <li><a href="../bugs.html">Hata Bildir</a></li>
+      <li>
+        <a href="https://github.com/python/cpython/blob/3.11/Doc/tutorial/introduction.rst"
+            rel="nofollow">Kaynağı Göster
+        </a>
+      </li>
+    </ul>
+  </div>
+        </nav>
+    </div>
+</div>
+
+  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Gezinti</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Genel Endeks"
+             accesskey="I">dizin</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Modül Dizini"
+             >modülleri</a> |</li>
+        <li class="right" >
+          <a href="controlflow.html" title="4. Daha Fazla Kontrol Akışı Aracı"
+             accesskey="N">sonraki</a> |</li>
+        <li class="right" >
+          <a href="interpreter.html" title="2. Python Yorumlayıcısını Kullanma"
+             accesskey="P">önceki</a> |</li>
+
+          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+          </li>
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.11.5 Documentation</a> &#187;
+    </li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python Öğreticisi</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Python’a Resmi Olmayan Bir Giriş</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Hızlı Arama" aria-label="Hızlı Arama" type="search" name="q" id="search-box" />
+          <input type="submit" value="Git" />
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="an-informal-introduction-to-python">
+<span id="tut-informal"></span><h1><span class="section-number">3. </span>Python’a Resmi Olmayan Bir Giriş<a class="headerlink" href="#an-informal-introduction-to-python" title="Permalink to this heading">¶</a></h1>
+<p>İlerleyen örneklerde; giriş ve çıkış, bilgi istemlerinin olup olmamasına göre ayırt edilir (<a class="reference internal" href="../glossary.html#term-0"><span class="xref std std-term">&gt;&gt;&gt;</span></a> ve <a class="reference internal" href="../glossary.html#term-..."><span class="xref std std-term">…</span></a>): örneği tekrarlamak için bilgi isteminden sonra her şeyi yazmalısınız, istem göründüğünde bir bilgi istemi ile başlamayan satırlar yorumlayıcıdan çıkar. Bir örnekte tek başına bir satırdaki ikincil istemin boş bir satır yazmanız gerektiği anlamına geldiğini unutmayın; bu, çok satırlı bir komutu sonlandırmak için kullanılır.</p>
+<p>Bir örnek kutusunun sağ üst köşesindeki <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code> üzerine tıklayarak istemlerin ve çıktıların görüntülenmesini değiştirebilirsiniz. Bir örnek için istemleri ve çıktıyı gizlerseniz, giriş satırlarını kolayca kopyalayıp yorumlayıcınıza yapıştırabilirsiniz.</p>
+<p id="index-0">Bu kılavuzdaki örneklerin çoğu, etkileşimli komut isteminde girilenler dahil, yorumlar içerir. Python’da yorumlar, <code class="docutils literal notranslate"><span class="pre">#</span></code> hash karakteriyle başlar ve fiziksel satırın sonuna kadar uzanır. Bir satırın başında veya boşluk veya kodun ardından bir yorum görünebilir, ancak bir dize sabiti içinde değil. Bir dize sabiti içindeki bir hash karakteri, yalnızca bir hash karakterdir. Yorumlar kodu netleştirmek için olduğundan ve Python tarafından yorumlanmadığından örnekler yazarken atlanabilirler.</p>
+<p>Bazı örnekler:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># this is the first comment</span>
+<span class="n">spam</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># and this is the second comment</span>
+          <span class="c1"># ... and now a third!</span>
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;# This is not a comment because it&#39;s inside quotes.&quot;</span>
+</pre></div>
+</div>
+<section id="using-python-as-a-calculator">
+<span id="tut-calculator"></span><h2><span class="section-number">3.1. </span>Python’ı Hesap Makinesi Olarak Kullanmak<a class="headerlink" href="#using-python-as-a-calculator" title="Permalink to this heading">¶</a></h2>
+<p>Bazı basit Python komutlarını deneyelim. Yorumlayıcıyı başlatın ve <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code> birincil istemini bekleyin. (Uzun sürmemelidir.)</p>
+<section id="numbers">
+<span id="tut-numbers"></span><h3><span class="section-number">3.1.1. </span>Sayılar<a class="headerlink" href="#numbers" title="Permalink to this heading">¶</a></h3>
+<p>The interpreter acts as a simple calculator: you can type an expression at it
+and it will write the value.  Expression syntax is straightforward: the
+operators <code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code>, <code class="docutils literal notranslate"><span class="pre">*</span></code> and <code class="docutils literal notranslate"><span class="pre">/</span></code> can be used to perform
+arithmetic; parentheses (<code class="docutils literal notranslate"><span class="pre">()</span></code>) can be used for grouping.
+For example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="go">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">50</span> <span class="o">-</span> <span class="mi">5</span><span class="o">*</span><span class="mi">6</span>
+<span class="go">20</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="mi">50</span> <span class="o">-</span> <span class="mi">5</span><span class="o">*</span><span class="mi">6</span><span class="p">)</span> <span class="o">/</span> <span class="mi">4</span>
+<span class="go">5.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">8</span> <span class="o">/</span> <span class="mi">5</span>  <span class="c1"># division always returns a floating point number</span>
+<span class="go">1.6</span>
+</pre></div>
+</div>
+<p>Tam sayıların (örneğin <code class="docutils literal notranslate"><span class="pre">2</span></code>, <code class="docutils literal notranslate"><span class="pre">4</span></code>, <code class="docutils literal notranslate"><span class="pre">20</span></code>) türü <a class="reference internal" href="../library/functions.html#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> olup, kesirli kısmı olanlar (örneğin <code class="docutils literal notranslate"><span class="pre">5.0</span></code>, <code class="docutils literal notranslate"><span class="pre">1.6</span></code>) <a class="reference internal" href="../library/functions.html#float" title="float"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> türüne sahiptir.  Sayısal türler hakkında sonrasında daha fazlasını göreceğiz.</p>
+<p>Bölme (<code class="docutils literal notranslate"><span class="pre">/</span></code>) her zaman bir ondalıklı sayı döndürür. <a class="reference internal" href="../glossary.html#term-floor-division"><span class="xref std std-term">floor division</span></a> yapmak ve bir tam sayı sonucu almak için <code class="docutils literal notranslate"><span class="pre">//</span></code> operatörünü kullanabilirsiniz; kalanı hesaplamak içinse <code class="docutils literal notranslate"><span class="pre">%</span></code> operatörünü kullanabilirsiniz:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">17</span> <span class="o">/</span> <span class="mi">3</span>  <span class="c1"># classic division returns a float</span>
+<span class="go">5.666666666666667</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">17</span> <span class="o">//</span> <span class="mi">3</span>  <span class="c1"># floor division discards the fractional part</span>
+<span class="go">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">17</span> <span class="o">%</span> <span class="mi">3</span>  <span class="c1"># the % operator returns the remainder of the division</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">5</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span>  <span class="c1"># floored quotient * divisor + remainder</span>
+<span class="go">17</span>
+</pre></div>
+</div>
+<p>Python ile üslü sayıları hesaplamak için <code class="docutils literal notranslate"><span class="pre">**</span></code> operatörünü kullanmak mümkündür <a class="footnote-reference brackets" href="#id3" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">5</span> <span class="o">**</span> <span class="mi">2</span>  <span class="c1"># 5 squared</span>
+<span class="go">25</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">2</span> <span class="o">**</span> <span class="mi">7</span>  <span class="c1"># 2 to the power of 7</span>
+<span class="go">128</span>
+</pre></div>
+</div>
+<p>Bir değişkene değer atamak için eşittir işareti (<code class="docutils literal notranslate"><span class="pre">=</span></code>) kullanılır. Daha sonra, bir sonraki etkileşimli komut isteminden önce hiçbir sonuç görüntülenmez:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">width</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">height</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="mi">9</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">width</span> <span class="o">*</span> <span class="n">height</span>
+<span class="go">900</span>
+</pre></div>
+</div>
+<p>Bir değişken “tanımlı” değilse (bir değer atanmamışsa), onu kullanmaya çalışmak size bir hata verecektir:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">n</span>  <span class="c1"># try to access an undefined variable</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;n&#39; is not defined</span>
+</pre></div>
+</div>
+<p>Ondalıklı sayı için tam destek var; karışık türde işlenenlere sahip operatörler, tam sayı işlenenini ondalıklı sayıya dönüştürür:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">4</span> <span class="o">*</span> <span class="mf">3.75</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="go">14.0</span>
+</pre></div>
+</div>
+<p>Etkileşimli modda, son yazdırılan ifade <code class="docutils literal notranslate"><span class="pre">_</span></code> değişkenine atanır. Bu, Python’ı bir masa hesap makinesi olarak kullandığınızda, hesaplamalara devam etmenin biraz daha kolay olduğu anlamına gelir, örneğin:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tax</span> <span class="o">=</span> <span class="mf">12.5</span> <span class="o">/</span> <span class="mi">100</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">price</span> <span class="o">=</span> <span class="mf">100.50</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">price</span> <span class="o">*</span> <span class="n">tax</span>
+<span class="go">12.5625</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">price</span> <span class="o">+</span> <span class="n">_</span>
+<span class="go">113.0625</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">113.06</span>
+</pre></div>
+</div>
+<p>Bu değişken, kullanıcı tarafından salt okunur olarak ele alınmalıdır. Açıkça ona bir değer atamayın — sihirli davranışları olan bu gömülü değişkeni maskeleyen aynı ada sahip bağımsız bir yerel değişken yaratırsınız.</p>
+<p><a class="reference internal" href="../library/functions.html#int" title="int"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> ve <a class="reference internal" href="../library/functions.html#float" title="float"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> ‘a ek olarak Python, <a class="reference internal" href="../library/decimal.html#decimal.Decimal" title="decimal.Decimal"><code class="xref py py-class docutils literal notranslate"><span class="pre">Decimal</span></code></a> ve <a class="reference internal" href="../library/fractions.html#fractions.Fraction" title="fractions.Fraction"><code class="xref py py-class docutils literal notranslate"><span class="pre">Fraction</span></code></a> gibi diğer sayı türlerini de destekler. Python ayrıca <a class="reference internal" href="../library/stdtypes.html#typesnumeric"><span class="std std-ref">karmaşık sayılar</span></a> için gömülü desteğe sahiptir ve hayali kısmı belirtmek için <code class="docutils literal notranslate"><span class="pre">j</span></code> veya <code class="docutils literal notranslate"><span class="pre">J</span></code> son ekini kullanır (ör. <code class="docutils literal notranslate"><span class="pre">3+5j</span></code>).</p>
+</section>
+<section id="text">
+<span id="tut-strings"></span><h3><span class="section-number">3.1.2. </span>Text<a class="headerlink" href="#text" title="Permalink to this heading">¶</a></h3>
+<p>Python can manipulate text (represented by type <a class="reference internal" href="../library/stdtypes.html#str" title="str"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, so-called
+“strings”) as well as numbers.  This includes characters “<code class="docutils literal notranslate"><span class="pre">!</span></code>”, words
+“<code class="docutils literal notranslate"><span class="pre">rabbit</span></code>”, names “<code class="docutils literal notranslate"><span class="pre">Paris</span></code>”, sentences “<code class="docutils literal notranslate"><span class="pre">Got</span> <span class="pre">your</span> <span class="pre">back.</span></code>”, etc.
+“<code class="docutils literal notranslate"><span class="pre">Yay!</span> <span class="pre">:)</span></code>”. They can be enclosed in single quotes (<code class="docutils literal notranslate"><span class="pre">'...'</span></code>) or double
+quotes (<code class="docutils literal notranslate"><span class="pre">&quot;...&quot;</span></code>) with the same result <a class="footnote-reference brackets" href="#id4" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;spam eggs&#39;</span>  <span class="c1"># single quotes</span>
+<span class="go">&#39;spam eggs&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;Paris rabbit got your back :)! Yay!&quot;</span>  <span class="c1"># double quotes</span>
+<span class="go">&#39;Paris rabbit got your back :)! Yay!&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;1975&#39;</span>  <span class="c1"># digits and numerals enclosed in quotes are also strings</span>
+<span class="go">&#39;1975&#39;</span>
+</pre></div>
+</div>
+<p>To quote a quote, we need to “escape” it, by preceding it with <code class="docutils literal notranslate"><span class="pre">\</span></code>.
+Alternatively, we can use the other type of quotation marks:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;doesn</span><span class="se">\&#39;</span><span class="s1">t&#39;</span>  <span class="c1"># use \&#39; to escape the single quote...</span>
+<span class="go">&quot;doesn&#39;t&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;doesn&#39;t&quot;</span>  <span class="c1"># ...or use double quotes instead</span>
+<span class="go">&quot;doesn&#39;t&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;&quot;Yes,&quot; they said.&#39;</span>
+<span class="go">&#39;&quot;Yes,&quot; they said.&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">Yes,</span><span class="se">\&quot;</span><span class="s2"> they said.&quot;</span>
+<span class="go">&#39;&quot;Yes,&quot; they said.&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;&quot;Isn</span><span class="se">\&#39;</span><span class="s1">t,&quot; they said.&#39;</span>
+<span class="go">&#39;&quot;Isn\&#39;t,&quot; they said.&#39;</span>
+</pre></div>
+</div>
+<p>In the Python shell, the string definition and output string can look
+different.  The <a class="reference internal" href="../library/functions.html#print" title="print"><code class="xref py py-func docutils literal notranslate"><span class="pre">print()</span></code></a> function produces a more readable output, by
+omitting the enclosing quotes and by printing escaped and special characters:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;First line.</span><span class="se">\n</span><span class="s1">Second line.&#39;</span>  <span class="c1"># \n means newline</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span>  <span class="c1"># without print(), special characters are included in the string</span>
+<span class="go">&#39;First line.\nSecond line.&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>  <span class="c1"># with print(), special characters are interpreted, so \n produces new line</span>
+<span class="go">First line.</span>
+<span class="go">Second line.</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">\</span></code> ile başlayan karakterlerin özel karakterler olarak yorumlanmasını istemiyorsanız, ilk alıntıdan önce bir <code class="docutils literal notranslate"><span class="pre">r</span></code> ekleyerek <em>ham dizeleri (raw strings)</em> kullanabilirsiniz:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;C:\some</span><span class="se">\n</span><span class="s1">ame&#39;</span><span class="p">)</span>  <span class="c1"># here \n means newline!</span>
+<span class="go">C:\some</span>
+<span class="go">ame</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;C:\some\name&#39;</span><span class="p">)</span>  <span class="c1"># note the r before the quote</span>
+<span class="go">C:\some\name</span>
+</pre></div>
+</div>
+<p>Ham dizelerin ince bir yönü vardır: ham bir dize tek sayıda <code class="docutils literal notranslate"><span class="pre">\</span></code> karakterle bitmeyebilir; daha fazla bilgi ve geçici çözümler için <a class="reference internal" href="../faq/programming.html#faq-programming-raw-string-backslash"><span class="std std-ref">SSS</span></a> ‘e bakın.</p>
+<p>Dize sabitleri birden çok satıra yayılabilir. Bunun bir yolu üçlü tırnak kullanmaktır: <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;...&quot;&quot;&quot;</span></code> veya <code class="docutils literal notranslate"><span class="pre">'''...'''</span></code>. Satır sonu otomatik olarak dizeye dahil edilir, ancak satırın sonuna <code class="docutils literal notranslate"><span class="pre">\</span></code> ekleyerek bunu önlemek mümkündür. Aşağıdaki örnek:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">Usage: thingy [OPTIONS]</span>
+<span class="s2">     -h                        Display this usage message</span>
+<span class="s2">     -H hostname               Hostname to connect to</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>aşağıdaki çıktıyı üretir (ilk yeni satırın dahil olmadığını unutmayın):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Usage: thingy [OPTIONS]
+     -h                        Display this usage message
+     -H hostname               Hostname to connect to
+</pre></div>
+</div>
+<p>Dizeler <code class="docutils literal notranslate"><span class="pre">+</span></code> operatörüyle birleştirilebilir (birbirine yapıştırılabilir) ve <code class="docutils literal notranslate"><span class="pre">*</span></code> ile tekrarlanabilir:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># 3 times &#39;un&#39;, followed by &#39;ium&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">3</span> <span class="o">*</span> <span class="s1">&#39;un&#39;</span> <span class="o">+</span> <span class="s1">&#39;ium&#39;</span>
+<span class="go">&#39;unununium&#39;</span>
+</pre></div>
+</div>
+<p>Yan yana iki veya daha fazla <em>dize sabiti</em> (yani, tırnak işaretleri arasına alınanlar) otomatik olarak birleştirilir.</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;Py&#39;</span> <span class="s1">&#39;thon&#39;</span>
+<span class="go">&#39;Python&#39;</span>
+</pre></div>
+</div>
+<p>Bu özellik, özellikle uzun dizeleri kırmak istediğinizde kullanışlıdır:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">text</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Put several strings within parentheses &#39;</span>
+<span class="gp">... </span>        <span class="s1">&#39;to have them joined together.&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">text</span>
+<span class="go">&#39;Put several strings within parentheses to have them joined together.&#39;</span>
+</pre></div>
+</div>
+<p>Bu, değişkenler veya ifadelerle değil, yalnızca iki sabit değerle çalışır:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;Py&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">prefix</span> <span class="s1">&#39;thon&#39;</span>  <span class="c1"># can&#39;t concatenate a variable and a string literal</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>
+<span class="w">    </span><span class="n">prefix</span> <span class="s1">&#39;thon&#39;</span>
+<span class="w">           </span><span class="pm">^^^^^^</span>
+<span class="gr">SyntaxError</span>: <span class="n">invalid syntax</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="s1">&#39;un&#39;</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span> <span class="s1">&#39;ium&#39;</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>
+<span class="w">    </span><span class="p">(</span><span class="s1">&#39;un&#39;</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span> <span class="s1">&#39;ium&#39;</span>
+<span class="w">               </span><span class="pm">^^^^^</span>
+<span class="gr">SyntaxError</span>: <span class="n">invalid syntax</span>
+</pre></div>
+</div>
+<p>Değişkenleri veya bir değişkeni ve bir sabiti birleştirmek istiyorsanız, <code class="docutils literal notranslate"><span class="pre">+</span></code> kullanın:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">prefix</span> <span class="o">+</span> <span class="s1">&#39;thon&#39;</span>
+<span class="go">&#39;Python&#39;</span>
+</pre></div>
+</div>
+<p>Dizeler, ilk karakterin indeksi 0 olacak şekilde <em>dizine eklenebilir</em> (abone olabilir). Karakterler için ayrı bir tür yoktur; karakterler yalnızca <em>bir</em> uzunluğunda dizelerdir:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">word</span> <span class="o">=</span> <span class="s1">&#39;Python&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># character in position 0</span>
+<span class="go">&#39;P&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>  <span class="c1"># character in position 5</span>
+<span class="go">&#39;n&#39;</span>
+</pre></div>
+</div>
+<p>Sağdan saymaya başlamak için indeksler negatif sayılar da olabilir:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># last character</span>
+<span class="go">&#39;n&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># second-last character</span>
+<span class="go">&#39;o&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[</span><span class="o">-</span><span class="mi">6</span><span class="p">]</span>
+<span class="go">&#39;P&#39;</span>
+</pre></div>
+</div>
+<p>-0 ile 0 aynı olduğundan, negatif endekslerin -1’den başladığını unutmayın.</p>
+<p>İndekslemeye ek olarak <em>dilimleme</em> de desteklenir. Tek tek karakterleri elde etmek için indeksleme kullanılırken, <em>dilimleme</em> alt dizeyi elde etmenizi sağlar:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># characters from position 0 (included) to 2 (excluded)</span>
+<span class="go">&#39;Py&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>  <span class="c1"># characters from position 2 (included) to 5 (excluded)</span>
+<span class="go">&#39;tho&#39;</span>
+</pre></div>
+</div>
+<p>Dilim indekslerinin kullanışlı varsayılanları vardır; atlanmış bir ilk dizin varsayılanı sıfırdır, atlanmış bir ikinci dizin varsayılanı dilimlenmekte olan dizenin boyutudur.</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>   <span class="c1"># character from the beginning to position 2 (excluded)</span>
+<span class="go">&#39;Py&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span>   <span class="c1"># characters from position 4 (included) to the end</span>
+<span class="go">&#39;on&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span>  <span class="c1"># characters from the second-last (included) to the end</span>
+<span class="go">&#39;on&#39;</span>
+</pre></div>
+</div>
+<p>Başlangıcın her zaman dahil edildiğine ve sonun her zaman hariç tutulduğuna dikkat edin. Bu, <code class="docutils literal notranslate"><span class="pre">s[:i]</span> <span class="pre">+</span> <span class="pre">s[i:]</span></code> değerinin her zaman <code class="docutils literal notranslate"><span class="pre">s</span></code> değerine eşit olmasını sağlar:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">word</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+<span class="go">&#39;Python&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="n">word</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span>
+<span class="go">&#39;Python&#39;</span>
+</pre></div>
+</div>
+<p>Dilimlerin nasıl çalıştığını hatırlamanın bir yolu, dizinleri ilk karakterin sol kenarı 0 ile <em>arasındaki</em> karakterleri işaret ediyor olarak düşünmektir. Ardından, <em>n</em> karakterli bir dizenin son karakterinin sağ kenarında <em>n</em> dizini vardır, örneğin:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span> <span class="o">+---+---+---+---+---+---+</span>
+ <span class="o">|</span> <span class="n">P</span> <span class="o">|</span> <span class="n">y</span> <span class="o">|</span> <span class="n">t</span> <span class="o">|</span> <span class="n">h</span> <span class="o">|</span> <span class="n">o</span> <span class="o">|</span> <span class="n">n</span> <span class="o">|</span>
+ <span class="o">+---+---+---+---+---+---+</span>
+ <span class="mi">0</span>   <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">3</span>   <span class="mi">4</span>   <span class="mi">5</span>   <span class="mi">6</span>
+<span class="o">-</span><span class="mi">6</span>  <span class="o">-</span><span class="mi">5</span>  <span class="o">-</span><span class="mi">4</span>  <span class="o">-</span><span class="mi">3</span>  <span class="o">-</span><span class="mi">2</span>  <span class="o">-</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>İlk sayı satırı, dizideki 0…6 endekslerinin konumunu verir; ikinci satır, karşılık gelen negatif endeksleri verir. <em>i</em> ile <em>j</em> arasındaki dilim, sırasıyla <em>i</em> ve <em>j</em> etiketli kenarlar arasındaki tüm karakterlerden oluşur.</p>
+<p>Negatif olmayan indeksler için, her ikisi de sınırlar içindeyse, bir dilimin uzunluğu indekslerin farkıdır. Örneğin, <code class="docutils literal notranslate"><span class="pre">kelime[1:3]</span></code> ‘ün uzunluğu 2’dir.</p>
+<p>Çok büyük bir dizin kullanmaya çalışmak bir hataya neden olur:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[</span><span class="mi">42</span><span class="p">]</span>  <span class="c1"># the word only has 6 characters</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">IndexError</span>: <span class="n">string index out of range</span>
+</pre></div>
+</div>
+<p>Ancak, aralık dışı dilim endeksleri, dilimleme için kullanıldığında zarif bir şekilde işlenir:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">42</span><span class="p">]</span>
+<span class="go">&#39;on&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[</span><span class="mi">42</span><span class="p">:]</span>
+<span class="go">&#39;&#39;</span>
+</pre></div>
+</div>
+<p>Python dizeleri değiştirilemez — bunlar <a class="reference internal" href="../glossary.html#term-immutable"><span class="xref std std-term">immutable</span></a> ‘dır. Bu nedenle, dizide dizine alınmış bir konuma atamak bir hatayla sonuçlanır:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;J&#39;</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">TypeError</span>: <span class="n">&#39;str&#39; object does not support item assignment</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span> <span class="o">=</span> <span class="s1">&#39;py&#39;</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">TypeError</span>: <span class="n">&#39;str&#39; object does not support item assignment</span>
+</pre></div>
+</div>
+<p>Farklı bir dizeye ihtiyacınız varsa, yeni bir tane oluşturmalısınız:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;J&#39;</span> <span class="o">+</span> <span class="n">word</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="go">&#39;Jython&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">word</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;py&#39;</span>
+<span class="go">&#39;Pypy&#39;</span>
+</pre></div>
+</div>
+<p>Yerleşik işlev <a class="reference internal" href="../library/functions.html#len" title="len"><code class="xref py py-func docutils literal notranslate"><span class="pre">len()</span></code></a>, bir dizenin uzunluğunu döndürür:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;supercalifragilisticexpialidocious&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="go">34</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">Ayrıca bakınız</p>
+<dl class="simple">
+<dt><a class="reference internal" href="../library/stdtypes.html#textseq"><span class="std std-ref">Metin Sırası Türü — str</span></a></dt><dd><p>Dizeler, <em>sıra türlerinin</em> örnekleridir ve bu türler tarafından desteklenen genel işlemleri destekler.</p>
+</dd>
+<dt><a class="reference internal" href="../library/stdtypes.html#string-methods"><span class="std std-ref">dize-yöntemleri</span></a></dt><dd><p>Dizeler, temel dönüşümler ve arama için çok sayıda yöntemi destekler.</p>
+</dd>
+<dt><a class="reference internal" href="../reference/lexical_analysis.html#f-strings"><span class="std std-ref">Formatted string literals</span></a></dt><dd><p>Gömülü ifadelere sahip dize sabitleri.</p>
+</dd>
+<dt><a class="reference internal" href="../library/string.html#formatstrings"><span class="std std-ref">Format String Syntax</span></a></dt><dd><p><a class="reference internal" href="../library/stdtypes.html#str.format" title="str.format"><code class="xref py py-meth docutils literal notranslate"><span class="pre">str.format()</span></code></a> ile dize biçimlendirme hakkında bilgi.</p>
+</dd>
+<dt><a class="reference internal" href="../library/stdtypes.html#old-string-formatting"><span class="std std-ref">printf-style String Formatting</span></a></dt><dd><p>Dizeler <code class="docutils literal notranslate"><span class="pre">%</span></code> operatörünün sol işleneni olduğunda çağrılan eski biçimlendirme işlemleri burada daha ayrıntılı olarak açıklanmaktadır.</p>
+</dd>
+</dl>
+</div>
+</section>
+<section id="lists">
+<span id="tut-lists"></span><h3><span class="section-number">3.1.3. </span>Listeler<a class="headerlink" href="#lists" title="Permalink to this heading">¶</a></h3>
+<p>Python, diğer değerleri gruplamak için kullanılan bir dizi <em>bileşik</em> veri türünü bilir. En çok yönlü olanı, köşeli parantezler arasında virgülle ayrılmış değerlerin (ögelerin) bir listesi olarak yazılabilen <em>liste</em>’dir. Listeler farklı türde ögeler içerebilir, ancak genellikle ögelerin tümü aynı türdedir.</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">squares</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">25</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">squares</span>
+<span class="go">[1, 4, 9, 16, 25]</span>
+</pre></div>
+</div>
+<p>Dizeler gibi (ve diğer tüm yerleşik <a class="reference internal" href="../glossary.html#term-sequence"><span class="xref std std-term">sequence</span></a> türleri), listeler dizine alınabilir ve dilimlenebilir:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">squares</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># indexing returns the item</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">squares</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">25</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">squares</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]</span>  <span class="c1"># slicing returns a new list</span>
+<span class="go">[9, 16, 25]</span>
+</pre></div>
+</div>
+<p>Tüm dilim işlemleri, istenen ögeleri içeren yeni bir liste döndürür. Bu, aşağıdaki dilimin listenin bir <a class="reference internal" href="../library/copy.html#shallow-vs-deep-copy"><span class="std std-ref">shallow copy</span></a> döndürdüğü anlamına gelir:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">squares</span><span class="p">[:]</span>
+<span class="go">[1, 4, 9, 16, 25]</span>
+</pre></div>
+</div>
+<p>Ayrıca listeler birleştirme gibi işlemleri de destekler:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">squares</span> <span class="o">+</span> <span class="p">[</span><span class="mi">36</span><span class="p">,</span> <span class="mi">49</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
+<span class="go">[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="../glossary.html#term-immutable"><span class="xref std std-term">immutable</span></a> olan dizelerin aksine, listeler <a class="reference internal" href="../glossary.html#term-mutable"><span class="xref std std-term">mutable</span></a> türündedir, yani içeriklerini değiştirmek mümkündür:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cubes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">125</span><span class="p">]</span>  <span class="c1"># something&#39;s wrong here</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">4</span> <span class="o">**</span> <span class="mi">3</span>  <span class="c1"># the cube of 4 is 64, not 65!</span>
+<span class="go">64</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cubes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">64</span>  <span class="c1"># replace the wrong value</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cubes</span>
+<span class="go">[1, 8, 27, 64, 125]</span>
+</pre></div>
+</div>
+<p>Ayrıca, <code class="xref py py-meth docutils literal notranslate"><span class="pre">append()</span></code> <em>method</em>’u kullanarak listenin sonuna yeni öğeler ekleyebilirsiniz (yöntemler hakkında daha fazla bilgiyi daha sonra göreceğiz):</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cubes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">216</span><span class="p">)</span>  <span class="c1"># add the cube of 6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cubes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">7</span> <span class="o">**</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># and the cube of 7</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cubes</span>
+<span class="go">[1, 8, 27, 64, 125, 216, 343]</span>
+</pre></div>
+</div>
+<p>Dilimlere atama da mümkündür ve bu, listenin boyutunu bile değiştirebilir veya tamamen temizleyebilir:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">letters</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">letters</span>
+<span class="go">[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;, &#39;g&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># replace some values</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">letters</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">letters</span>
+<span class="go">[&#39;a&#39;, &#39;b&#39;, &#39;C&#39;, &#39;D&#39;, &#39;E&#39;, &#39;f&#39;, &#39;g&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># now remove them</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">letters</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">letters</span>
+<span class="go">[&#39;a&#39;, &#39;b&#39;, &#39;f&#39;, &#39;g&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># clear the list by replacing all the elements with an empty list</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">letters</span><span class="p">[:]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">letters</span>
+<span class="go">[]</span>
+</pre></div>
+</div>
+<p>Yerleşik işlev <a class="reference internal" href="../library/functions.html#len" title="len"><code class="xref py py-func docutils literal notranslate"><span class="pre">len()</span></code></a> ayrıca listeler için de geçerlidir:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">letters</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">letters</span><span class="p">)</span>
+<span class="go">4</span>
+</pre></div>
+</div>
+<p>Listeleri iç içe yerleştirmek (diğer listeleri içeren listeler oluşturmak) mümkündür, örneğin:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span>
+<span class="go">[[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;], [1, 2, 3]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">&#39;b&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="first-steps-towards-programming">
+<span id="tut-firststeps"></span><h2><span class="section-number">3.2. </span>Programlamaya Doğru İlk Adımlar<a class="headerlink" href="#first-steps-towards-programming" title="Permalink to this heading">¶</a></h2>
+<p>Elbette Python’ı iki ile ikiyi toplamaktan daha komplike görevler için kullanabiliriz. Örneğin, <a class="reference external" href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci serisinin</a> ilk alt dizisini aşağıdaki gibi yazabiliriz:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Fibonacci series:</span>
+<span class="gp">... </span><span class="c1"># the sum of two elements defines the next</span>
+<span class="gp">... </span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span>
+<span class="gp">...</span>
+<span class="go">0</span>
+<span class="go">1</span>
+<span class="go">1</span>
+<span class="go">2</span>
+<span class="go">3</span>
+<span class="go">5</span>
+<span class="go">8</span>
+</pre></div>
+</div>
+<p>Bu örnek, birkaç yeni özellik sunar.</p>
+<ul>
+<li><p>İlk satır bir <em>çoklu atama</em>: <code class="docutils literal notranslate"><span class="pre">a</span></code> ve <code class="docutils literal notranslate"><span class="pre">b</span></code> değişkenleri aynı anda yeni 0 ve 1 değerlerini alır. Tarafların tümü, herhangi bir görev yapılmadan önce değerlendirilir. Sağ taraftaki ifadeler soldan sağa doğru değerlendirilir.</p></li>
+<li><p><a class="reference internal" href="../reference/compound_stmts.html#while"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">while</span></code></a> döngüsü, koşul (burada: <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&lt;</span> <span class="pre">10</span></code>) doğru kaldığı sürece yürütülür. Python’da, C’de olduğu gibi, sıfır olmayan herhangi bir tam sayı değeri doğrudur; sıfır yanlıştır. Koşul ayrıca bir dizi veya liste değeri, aslında herhangi bir dizi olabilir; uzunluğu sıfır olmayan her şey doğrudur, boş diziler yanlıştır. Örnekte kullanılan test basit bir karşılaştırmadır. Standart karşılaştırma işleçleri C’dekiyle aynı şekilde yazılır: <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> (küçüktür), <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> (büyüktür), <code class="docutils literal notranslate"><span class="pre">==</span></code> (eşittir), <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code> ( küçük veya eşit), <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code> (büyük veya eşit) ve <code class="docutils literal notranslate"><span class="pre">!=</span></code> (eşit değil).</p></li>
+<li><p>Döngünün <em>gövdesi girintilidir</em>: girinti, Python’un ifadeleri gruplama şeklidir. Etkileşimli komut isteminde, girintili her satır için bir sekme veya boşluk(lar) yazmanız gerekir. Pratikte, bir metin düzenleyici ile Python için daha karmaşık girdiler hazırlayacaksınız; tüm düzgün metin editörlerinin otomatik girinti özelliği vardır. Bir bileşik deyim etkileşimli olarak girildiğinde, tamamlandığını belirtmek için boş bir satırdan sonra gelmelidir (çünkü ayrıştırıcı son satırı ne zaman yazdığınızı tahmin edemez). Bir temel blok içindeki her satırın aynı miktarda girintili olması gerektiğini unutmayın.</p></li>
+<li><p><a class="reference internal" href="../library/functions.html#print" title="print"><code class="xref py py-func docutils literal notranslate"><span class="pre">print()</span></code></a> işlevi, kendisine verilen argüman(lar)ın değerini yazar. Yalnızca yazmak istediğiniz ifadeyi yazmaktan (daha önce hesap makinesi örneklerinde yaptığımız gibi) birden çok bağımsız değişkeni, kayan nokta miktarlarını ve dizeleri işleme biçiminden farklıdır. Dizeler tırnak işaretleri olmadan yazdırılır ve öğelerin arasına bir boşluk eklenir, böylece şunları güzel bir şekilde biçimlendirebilirsiniz:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">i</span> <span class="o">=</span> <span class="mi">256</span><span class="o">*</span><span class="mi">256</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The value of i is&#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+<span class="go">The value of i is 65536</span>
+</pre></div>
+</div>
+<p><em>end</em> anahtar sözcüğü argümanı, çıktıdan sonra yeni satırı önlemek veya çıktıyı farklı bir dizeyle bitirmek için kullanılabilir:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span>
+<span class="gp">...</span>
+<span class="go">0,1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p class="rubric">Dipnotlar</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id3" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p><code class="docutils literal notranslate"><span class="pre">**</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code> ‘den daha yüksek önceliğe sahip olduğundan, <code class="docutils literal notranslate"><span class="pre">-3**2</span></code>, <code class="docutils literal notranslate"><span class="pre">-(3**2)</span></code> olarak yorumlanacak ve dolayısıyla <code class="docutils literal notranslate"><span class="pre">-9</span></code> ile sonuçlanacaktır. Bundan kaçınmak ve <code class="docutils literal notranslate"><span class="pre">9</span></code> elde etmek için <code class="docutils literal notranslate"><span class="pre">(-3)**2</span></code> kullanabilirsiniz.</p>
+</aside>
+<aside class="footnote brackets" id="id4" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>Diğer dillerden farklı olarak, <code class="docutils literal notranslate"><span class="pre">\n</span></code> gibi özel karakterler hem tek (<code class="docutils literal notranslate"><span class="pre">'...'</span></code>) hem de çift (<code class="docutils literal notranslate"><span class="pre">&quot;...&quot;</span></code>) tırnak işaretleri ile aynı anlama sahiptir. İkisi arasındaki tek fark, tek tırnak içinde <code class="docutils literal notranslate"><span class="pre">&quot;</span></code> dan kaçmanıza gerek olmamasıdır (ancak <code class="docutils literal notranslate"><span class="pre">\'</span></code> dan kaçmanız gerekir) ve bunun tersi de geçerlidir.</p>
+</aside>
+</aside>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../contents.html">İçindekiler</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">3. Python’a Resmi Olmayan Bir Giriş</a><ul>
+<li><a class="reference internal" href="#using-python-as-a-calculator">3.1. Python’ı Hesap Makinesi Olarak Kullanmak</a><ul>
+<li><a class="reference internal" href="#numbers">3.1.1. Sayılar</a></li>
+<li><a class="reference internal" href="#text">3.1.2. Text</a></li>
+<li><a class="reference internal" href="#lists">3.1.3. Listeler</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#first-steps-towards-programming">3.2. Programlamaya Doğru İlk Adımlar</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Önceki konu</h4>
+    <p class="topless"><a href="interpreter.html"
+                          title="önceki bölüm"><span class="section-number">2. </span>Python Yorumlayıcısını Kullanma</a></p>
+  </div>
+  <div>
+    <h4>Sonraki konu</h4>
+    <p class="topless"><a href="controlflow.html"
+                          title="sonraki bölüm"><span class="section-number">4. </span>Daha Fazla Kontrol Akışı Aracı</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Bu Sayfa</h3>
+    <ul class="this-page-menu">
+      <li><a href="../bugs.html">Hata Bildir</a></li>
+      <li>
+        <a href="https://github.com/python/cpython/blob/3.11/Doc/tutorial/introduction.rst"
+            rel="nofollow">Kaynağı Göster
+        </a>
+      </li>
+    </ul>
+  </div>
+        </div>
+<div id="sidebarbutton" title="Yan çubuğu daralt">
+<span>«</span>
+</div>
+
+      </div>
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Gezinti</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Genel Endeks"
+             >dizin</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Modül Dizini"
+             >modülleri</a> |</li>
+        <li class="right" >
+          <a href="controlflow.html" title="4. Daha Fazla Kontrol Akışı Aracı"
+             >sonraki</a> |</li>
+        <li class="right" >
+          <a href="interpreter.html" title="2. Python Yorumlayıcısını Kullanma"
+             >önceki</a> |</li>
+
+          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+          </li>
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.11.5 Documentation</a> &#187;
+    </li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Python Öğreticisi</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Python’a Resmi Olmayan Bir Giriş</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Hızlı Arama" aria-label="Hızlı Arama" type="search" name="q" id="search-box" />
+          <input type="submit" value="Git" />
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; <a href="../copyright.html">Telif Hakkı</a> 2001-2023, Python Software Foundation.
+    <br />
+    This page is licensed under the Python Software Foundation License Version 2.
+    <br />
+    Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
+    <br />
+    See <a href="/license.html">History and License</a> for more information.<br />
+    <br />
+
+    The Python Software Foundation is a non-profit corporation.
+<a href="https://www.python.org/psf/donations/">Please donate.</a>
+<br />
+    <br />
+
+    Son güncelleme: Eki 23, 2023.
+    <a href="/bugs.html">Found a bug</a>?
+    <br />
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+    </div>
+
+  </body>
+</html>

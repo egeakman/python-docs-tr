@@ -1,0 +1,321 @@
+
+<!DOCTYPE html>
+
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>3.11.5 Documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?digest=b37c26da2f7529d09fe70b41c4b2133fe4931a90" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="_static/pygments_dark.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/translations.js"></script>
+    
+    <script src="_static/sidebar.js"></script>
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Python 3.11.5 belgelendirmesi içinde ara"
+          href="_static/opensearch.xml"/>
+    <link rel="author" title="Bu belgeler hakkında" href="about.html" />
+    <link rel="index" title="Dizin" href="genindex.html" />
+    <link rel="search" title="Ara" href="search.html" />
+    <link rel="copyright" title="Telif Hakkı" href="copyright.html" />
+    <link rel="canonical" href="https://docs.python.org/3/index.html" />
+    
+      
+    
+
+    
+    <style>
+      @media only screen {
+        table.full-width-table {
+            width: 100%;
+        }
+      }
+    </style>
+<link rel="stylesheet" href="_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="_static/py.svg" />
+            <script type="text/javascript" src="_static/copybutton.js"></script>
+            <script type="text/javascript" src="_static/menu.js"></script>
+            <script type="text/javascript" src="_static/search-focus.js"></script>
+            <script type="text/javascript" src="_static/themetoggle.js"></script> 
+
+  </head>
+<body>
+<div class="mobile-nav">
+    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
+    <nav class="nav-content" role="navigation">
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="_static/py.svg" alt="Logo"/>
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Hızlı Arama" aria-label="Hızlı Arama" type="search" name="q" />
+                <input type="submit" value="Git"/>
+            </form>
+        </span>
+    </nav>
+    <div class="menu-wrapper">
+        <nav class="menu" role="navigation" aria-label="main navigation">
+            <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label><h3>İndir</h3>
+<p><a href="download.html">Bu dokümanları indir</a></p>
+<h3>Sürüme göre dokümanlar</h3>
+<ul>
+  <li><a href="https://docs.python.org/">Kararlı</a></li>
+  <li><a href="https://docs.python.org/dev/">Geliştirme aşamasında</a></li>
+  <li><a href="https://www.python.org/doc/versions/">Tüm sürümler</a></li>
+</ul>
+
+<h3>Diğer kaynaklar</h3>
+<ul>
+  
+  <li><a href="https://peps.python.org/">PEP (Python Geliştirme Önerileri) Endeksi</a></li>
+  <li><a href="https://wiki.python.org/moin/BeginnersGuide">Başlangıç Kılavuzu</a></li>
+  <li><a href="https://wiki.python.org/moin/PythonBooks">Kitap Listesi</a></li>
+  <li><a href="https://www.python.org/doc/av/">İşitsel/Görsel Konuşmalar</a></li>
+  <li><a href="https://devguide.python.org/">Python Geliştirici Rehberi</a></li>
+</ul>
+        </nav>
+    </div>
+</div>
+
+  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Gezinti</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Genel Endeks"
+             accesskey="I">dizin</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Modül Dizini"
+             >modülleri</a> |</li>
+
+          <li><img src="_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+          </li>
+    <li id="cpython-language-and-version">
+      <a href="#">3.11.5 Documentation</a> &#187;
+    </li>
+
+        <li class="nav-item nav-item-this"><a href=""></a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="search.html" method="get">
+          <input placeholder="Hızlı Arama" aria-label="Hızlı Arama" type="search" name="q" id="search-box" />
+          <input type="submit" value="Git" />
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Python 3.11.5 belgelendirmesi</h1>
+  <p>
+  Hoş geldin! Bu sayfada, Python 3.11.5 için resmi dokümantasyonu bulabilirsin.
+  </p>
+  <p><strong>Belgelerin bölümleri:</strong></p>
+  <table class="contentstable" align="center"><tr>
+    <td width="50%">
+      <p class="biglink"><a class="biglink" href="whatsnew/3.11.html">Python 3.11 sürümündeki yenilikler nelerdir?</a><br/>
+        <span class="linkdescr"> veya 2.0 'dan bu yana <a href="whatsnew/index.html">tüm "Yenilikler" belgeleri</a></span></p>
+      <p class="biglink"><a class="biglink" href="tutorial/index.html">Öğretici</a><br/>
+         <span class="linkdescr">buradan başla</span></p>
+      <p class="biglink"><a class="biglink" href="library/index.html">Kütüphane Referansı</a><br/>
+         <span class="linkdescr">bunu yastığının altında tut</span></p>
+      <p class="biglink"><a class="biglink" href="reference/index.html">Dil Referansı</a><br/>
+         <span class="linkdescr">söz dizimi ve dil öğelerini açıklar</span></p>
+      <p class="biglink"><a class="biglink" href="using/index.html">Python Kurulumu ve Kullanımı</a><br/>
+         <span class="linkdescr">Python farklı platformlarda nasıl kullanılır</span></p>
+      <p class="biglink"><a class="biglink" href="howto/index.html">Python NASIL'ları</a><br/>
+         <span class="linkdescr">spesifik konularda ayrıntılı dokümanlar</span></p>
+    </td><td width="50%">
+      <p class="biglink"><a class="biglink" href="installing/index.html">Python Modüllerini Yükleme</a><br/>
+         <span class="linkdescr">Python Paket Dizini 'nden yükleme &amp; diğer kaynaklar</span></p>
+      <p class="biglink"><a class="biglink" href="distributing/index.html">Python Modüllerini Dağıtma</a><br/>
+         <span class="linkdescr">modülleri başkaları tarafından yüklenmek üzere yayımlama</span></p>
+      <p class="biglink"><a class="biglink" href="extending/index.html">Genişletme ve Gömme</a><br/>
+         <span class="linkdescr">C/C++ programcıları için öğretici</span></p>
+      <p class="biglink"><a class="biglink" href="c-api/index.html">Python/C API (Uygulama Programlama Arayüzü)</a><br/>
+         <span class="linkdescr">C/C++ programcıları için referans</span></p>
+      <p class="biglink"><a class="biglink" href="faq/index.html">SSS (Sıkça Sorulan Sorular)</a><br/>
+         <span class="linkdescr">sıkça sorulan sorular (cevaplarla!)</span></p>
+    </td></tr>
+  </table>
+
+  <p><strong>Endeksler ve tablolar:</strong></p>
+  <table class="contentstable" align="center"><tr>
+    <td width="50%">
+      <p class="biglink"><a class="biglink" href="py-modindex.html">Genel Modül Endeksi</a><br/>
+         <span class="linkdescr">tüm modüllere çabuk erişim</span></p>
+      <p class="biglink"><a class="biglink" href="genindex.html">Genel Endeks</a><br/>
+         <span class="linkdescr">tüm fonksiyonlar, sınıflar, terimler</span></p>
+      <p class="biglink"><a class="biglink" href="glossary.html">Sözlük</a><br/>
+         <span class="linkdescr">açıklanan en önemli terimler</span></p>
+    </td><td width="50%">
+      <p class="biglink"><a class="biglink" href="search.html">Arama sayfası</a><br/>
+         <span class="linkdescr">bu dokümantasyonu ara</span></p>
+      <p class="biglink"><a class="biglink" href="contents.html">Bütün İçeriklerin Tablosu</a><br/>
+         <span class="linkdescr">tüm bölümleri ve alt bölümleri listeler</span></p>
+    </td></tr>
+  </table>
+
+  <p><strong>Meta bilgiler:</strong></p>
+  <table class="contentstable" align="center"><tr>
+    <td width="50%">
+      <p class="biglink"><a class="biglink" href="bugs.html">Hataları bildirme</a></p>
+      <p class="biglink"><a class="biglink" href="https://devguide.python.org/docquality/#helping-with-documentation">Dokümanlara Katkıda Bulunma</a></p>
+      <p class="biglink"><a class="biglink" href="about.html">Dokümantasyon hakkında</a></p>
+    </td><td width="50%">
+      <p class="biglink"><a class="biglink" href="license.html">Python'un tarihçesi ve Lisansı</a></p>
+      <p class="biglink"><a class="biglink" href="copyright.html">Telif Hakkı</a></p>
+      <p class="biglink"><a class="biglink" href="download.html">Download the documentation</a></p>
+    </td></tr>
+  </table>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><h3>İndir</h3>
+<p><a href="download.html">Bu dokümanları indir</a></p>
+<h3>Sürüme göre dokümanlar</h3>
+<ul>
+  <li><a href="https://docs.python.org/">Kararlı</a></li>
+  <li><a href="https://docs.python.org/dev/">Geliştirme aşamasında</a></li>
+  <li><a href="https://www.python.org/doc/versions/">Tüm sürümler</a></li>
+</ul>
+
+<h3>Diğer kaynaklar</h3>
+<ul>
+  
+  <li><a href="https://peps.python.org/">PEP (Python Geliştirme Önerileri) Endeksi</a></li>
+  <li><a href="https://wiki.python.org/moin/BeginnersGuide">Başlangıç Kılavuzu</a></li>
+  <li><a href="https://wiki.python.org/moin/PythonBooks">Kitap Listesi</a></li>
+  <li><a href="https://www.python.org/doc/av/">İşitsel/Görsel Konuşmalar</a></li>
+  <li><a href="https://devguide.python.org/">Python Geliştirici Rehberi</a></li>
+</ul>
+        </div>
+<div id="sidebarbutton" title="Yan çubuğu daralt">
+<span>«</span>
+</div>
+
+      </div>
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Gezinti</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Genel Endeks"
+             >dizin</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Modül Dizini"
+             >modülleri</a> |</li>
+
+          <li><img src="_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+          </li>
+    <li id="cpython-language-and-version">
+      <a href="#">3.11.5 Documentation</a> &#187;
+    </li>
+
+        <li class="nav-item nav-item-this"><a href=""></a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="search.html" method="get">
+          <input placeholder="Hızlı Arama" aria-label="Hızlı Arama" type="search" name="q" id="search-box" />
+          <input type="submit" value="Git" />
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; <a href="copyright.html">Telif Hakkı</a> 2001-2023, Python Software Foundation.
+    <br />
+    This page is licensed under the Python Software Foundation License Version 2.
+    <br />
+    Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
+    <br />
+    See <a href="/license.html">History and License</a> for more information.<br />
+    <br />
+
+    The Python Software Foundation is a non-profit corporation.
+<a href="https://www.python.org/psf/donations/">Please donate.</a>
+<br />
+    <br />
+
+    Son güncelleme: Eki 23, 2023.
+    <a href="/bugs.html">Found a bug</a>?
+    <br />
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+    </div>
+
+  </body>
+</html>

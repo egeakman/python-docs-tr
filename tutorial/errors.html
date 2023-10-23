@@ -1,0 +1,792 @@
+
+<!DOCTYPE html>
+
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta property="og:title" content="8. Hatalar ve Özel Durumlar" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://docs.python.org/3/tutorial/errors.html" />
+<meta property="og:site_name" content="Python documentation" />
+<meta property="og:description" content="Şimdiye kadar hata mesajlarından fazla bahsedilmedi, ancak örnekleri denediyseniz muhtemelen bazılarını görmüşsünüzdür. (En azından) iki ayırt edilebilir hata türü vardır: söz dizimi hataları( synt..." />
+<meta property="og:image" content="https://docs.python.org/3/_static/og-image.png" />
+<meta property="og:image:alt" content="Python documentation" />
+<meta name="description" content="Şimdiye kadar hata mesajlarından fazla bahsedilmedi, ancak örnekleri denediyseniz muhtemelen bazılarını görmüşsünüzdür. (En azından) iki ayırt edilebilir hata türü vardır: söz dizimi hataları( synt..." />
+<meta property="og:image:width" content="200" />
+<meta property="og:image:height" content="200" />
+<meta name="theme-color" content="#3776ab" />
+
+    <title>8. Hatalar ve Özel Durumlar &#8212; Python 3.11.5 belgelendirmesi</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?digest=b37c26da2f7529d09fe70b41c4b2133fe4931a90" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="../_static/pygments_dark.css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    
+    <script src="../_static/sidebar.js"></script>
+    
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Python 3.11.5 belgelendirmesi içinde ara"
+          href="../_static/opensearch.xml"/>
+    <link rel="author" title="Bu belgeler hakkında" href="../about.html" />
+    <link rel="index" title="Dizin" href="../genindex.html" />
+    <link rel="search" title="Ara" href="../search.html" />
+    <link rel="copyright" title="Telif Hakkı" href="../copyright.html" />
+    <link rel="next" title="9. Sınıflar" href="classes.html" />
+    <link rel="prev" title="7. Girdi ve Çıktı" href="inputoutput.html" />
+    <link rel="canonical" href="https://docs.python.org/3/tutorial/errors.html" />
+    
+      
+    
+
+    
+    <style>
+      @media only screen {
+        table.full-width-table {
+            width: 100%;
+        }
+      }
+    </style>
+<link rel="stylesheet" href="../_static/pydoctheme_dark.css" media="(prefers-color-scheme: dark)" id="pydoctheme_dark_css">
+    <link rel="shortcut icon" type="image/png" href="../_static/py.svg" />
+            <script type="text/javascript" src="../_static/copybutton.js"></script>
+            <script type="text/javascript" src="../_static/menu.js"></script>
+            <script type="text/javascript" src="../_static/search-focus.js"></script>
+            <script type="text/javascript" src="../_static/themetoggle.js"></script> 
+
+  </head>
+<body>
+<div class="mobile-nav">
+    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
+    <nav class="nav-content" role="navigation">
+        <label for="menuToggler" class="toggler__label">
+            <span></span>
+        </label>
+        <span class="nav-items-wrapper">
+            <a href="https://www.python.org/" class="nav-logo">
+                <img src="../_static/py.svg" alt="Logo"/>
+            </a>
+            <span class="version_switcher_placeholder"></span>
+            <form role="search" class="search" action="../search.html" method="get">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                    <path fill-rule="nonzero" fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input placeholder="Hızlı Arama" aria-label="Hızlı Arama" type="search" name="q" />
+                <input type="submit" value="Git"/>
+            </form>
+        </span>
+    </nav>
+    <div class="menu-wrapper">
+        <nav class="menu" role="navigation" aria-label="main navigation">
+            <div class="language_switcher_placeholder"></div>
+            
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label>
+  <div>
+    <h3><a href="../contents.html">İçindekiler</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">8. Hatalar ve Özel Durumlar</a><ul>
+<li><a class="reference internal" href="#syntax-errors">8.1. Söz Dizimi Hataları</a></li>
+<li><a class="reference internal" href="#exceptions">8.2. Özel Durumlar</a></li>
+<li><a class="reference internal" href="#handling-exceptions">8.3. Özel Durumları İşleme</a></li>
+<li><a class="reference internal" href="#raising-exceptions">8.4. Hata Yükseltme</a></li>
+<li><a class="reference internal" href="#exception-chaining">8.5. İstisna Zincirleme</a></li>
+<li><a class="reference internal" href="#user-defined-exceptions">8.6. Kullanıcı Tanımlı İstisnalar</a></li>
+<li><a class="reference internal" href="#defining-clean-up-actions">8.7. Temizleme Eylemlerini Tanımlama</a></li>
+<li><a class="reference internal" href="#predefined-clean-up-actions">8.8. Önceden Tanımlanmış Temizleme Eylemleri</a></li>
+<li><a class="reference internal" href="#raising-and-handling-multiple-unrelated-exceptions">8.9. Birden Fazla Alakasız İstisna Oluşturma ve İşleme</a></li>
+<li><a class="reference internal" href="#enriching-exceptions-with-notes">8.10. İstisnaları Notlarla Zenginleştirme</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Önceki konu</h4>
+    <p class="topless"><a href="inputoutput.html"
+                          title="önceki bölüm"><span class="section-number">7. </span>Girdi ve Çıktı</a></p>
+  </div>
+  <div>
+    <h4>Sonraki konu</h4>
+    <p class="topless"><a href="classes.html"
+                          title="sonraki bölüm"><span class="section-number">9. </span>Sınıflar</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Bu Sayfa</h3>
+    <ul class="this-page-menu">
+      <li><a href="../bugs.html">Hata Bildir</a></li>
+      <li>
+        <a href="https://github.com/python/cpython/blob/3.11/Doc/tutorial/errors.rst"
+            rel="nofollow">Kaynağı Göster
+        </a>
+      </li>
+    </ul>
+  </div>
+        </nav>
+    </div>
+</div>
+
+  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Gezinti</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Genel Endeks"
+             accesskey="I">dizin</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Modül Dizini"
+             >modülleri</a> |</li>
+        <li class="right" >
+          <a href="classes.html" title="9. Sınıflar"
+             accesskey="N">sonraki</a> |</li>
+        <li class="right" >
+          <a href="inputoutput.html" title="7. Girdi ve Çıktı"
+             accesskey="P">önceki</a> |</li>
+
+          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+          </li>
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.11.5 Documentation</a> &#187;
+    </li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Python Öğreticisi</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">8. </span>Hatalar ve Özel Durumlar</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Hızlı Arama" aria-label="Hızlı Arama" type="search" name="q" id="search-box" />
+          <input type="submit" value="Git" />
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="errors-and-exceptions">
+<span id="tut-errors"></span><h1><span class="section-number">8. </span>Hatalar ve Özel Durumlar<a class="headerlink" href="#errors-and-exceptions" title="Permalink to this heading">¶</a></h1>
+<p>Şimdiye kadar hata mesajlarından fazla bahsedilmedi, ancak örnekleri denediyseniz muhtemelen bazılarını görmüşsünüzdür.  (En azından) iki ayırt edilebilir hata türü vardır: <em>söz dizimi hataları</em> (<em>syntax errors</em>) ve <em>özel durumlar</em> (<em>exceptions</em>).</p>
+<section id="syntax-errors">
+<span id="tut-syntaxerrors"></span><h2><span class="section-number">8.1. </span>Söz Dizimi Hataları<a class="headerlink" href="#syntax-errors" title="Permalink to this heading">¶</a></h2>
+<p>Ayrıştırma hataları olarak da bilinen söz dizimi hataları, Python öğrenirken belki de en sık karşılaşılan hatalardan biridir:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="kc">True</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello world&#39;</span><span class="p">)</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>
+<span class="w">    </span><span class="k">while</span> <span class="kc">True</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello world&#39;</span><span class="p">)</span>
+<span class="w">                   </span><span class="pm">^</span>
+<span class="gr">SyntaxError</span>: <span class="n">invalid syntax</span>
+</pre></div>
+</div>
+<p>Ayrıştırıcı, hatalı satırı yineler ve hatanın algılandığı en erken noktayı gösteren küçük bir ‘ok’ görüntüler. Hata oktan <em>önceki</em> dizgede meydana  gelmiştir: örnekte, hata <a class="reference internal" href="../library/functions.html#print" title="print"><code class="xref py py-func docutils literal notranslate"><span class="pre">print()</span></code></a> fonksiyonunda algılanır, çünkü öncesinde iki nokta üst üste (<code class="docutils literal notranslate"><span class="pre">':'</span></code>) eksiktir.  Dosya adı ve satır numarası yazdırılır, böylece girişin bir komut dosyasından gelmesi durumunda nereye bakacağınızı bilirsiniz.</p>
+</section>
+<section id="exceptions">
+<span id="tut-exceptions"></span><h2><span class="section-number">8.2. </span>Özel Durumlar<a class="headerlink" href="#exceptions" title="Permalink to this heading">¶</a></h2>
+<p>Bir komut veya ifade söz dizimsel olarak doğru olsa bile, yürütülmeye çalışıldığında hataya neden olabilir. Yürütme sırasında algılanan hatalara <em>exceptions (özel durumlar)</em> denir ve bazıları programlar için kritik değildir: yakında Python programlarında bunların üstesinden gelmeyi öğreneceksiniz.  Ancak, çoğu özel durum programlar tarafından önlenemez ve burada gösterildiği gibi hata iletileriyle sonuçlanır:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">10</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">0</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">ZeroDivisionError</span>: <span class="n">division by zero</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">4</span> <span class="o">+</span> <span class="n">spam</span><span class="o">*</span><span class="mi">3</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">name &#39;spam&#39; is not defined</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;2&#39;</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">TypeError</span>: <span class="n">can only concatenate str (not &quot;int&quot;) to str</span>
+</pre></div>
+</div>
+<p>Hata iletisinin son satırı hataya neyin sebep olduğu gösterir. Özel durumlar farklı türlerde gelir ve tür iletinin bir parçası olarak yazdırılır: örnekteki türler şunlardır <a class="reference internal" href="../library/exceptions.html#ZeroDivisionError" title="ZeroDivisionError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ZeroDivisionError</span></code></a>, <a class="reference internal" href="../library/exceptions.html#NameError" title="NameError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NameError</span></code></a> ve <a class="reference internal" href="../library/exceptions.html#TypeError" title="TypeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a>. Özel durum türü olarak yazdırılan dize, oluşan gömülü özel durumun adıdır. Bu, tüm gömülü özel durumlar için geçerlidir, ancak kullanıcı tanımlı özel durumlar için doğru olması gerekmez (yararlı bir kural olmasına rağmen). Standart özel durum adları gömülü tanımlayıcılardır (ayrılmış anahtar sözcükler değildir).</p>
+<p>Satırın geri kalanı, özel durum türüne ve buna neyin neden olduğuna bağlı olarak ayrıntı gösterir.</p>
+<p>Hata iletisinin önceki bölümü, özel durumun oluştuğu bağlamı yığın izleme geri dönüşü biçiminde gösterir. Genel olarak, kaynak satırları listeleyen bir yığın izleme listesi içerir; ancak, standart girişten okunan satırları görüntülemez.</p>
+<p><a class="reference internal" href="../library/exceptions.html#bltin-exceptions"><span class="std std-ref">Built-in Exceptions</span></a> yerleşik özel durumları ve anlamlarını listeler.</p>
+</section>
+<section id="handling-exceptions">
+<span id="tut-handling"></span><h2><span class="section-number">8.3. </span>Özel Durumları İşleme<a class="headerlink" href="#handling-exceptions" title="Permalink to this heading">¶</a></h2>
+<p>Seçili özel durumları işleyen programlar yazmak mümkündür. Geçerli bir tam sayı girilene kadar kullanıcıdan giriş isteyen, ancak kullanıcının programı kesmesine izin veren aşağıdaki örneğe bakın (<kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Control</kbd>-<kbd class="kbd docutils literal notranslate">C</kbd></kbd> veya işletim sistemi ne destekliyorsa onu kullanarak); kullanıcı kaynaklı kesintilerin <a class="reference internal" href="../library/exceptions.html#KeyboardInterrupt" title="KeyboardInterrupt"><code class="xref py py-exc docutils literal notranslate"><span class="pre">KeyboardInterrupt</span></code></a> özel durumu ile gösterildiğini unutmayın.</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Please enter a number: &quot;</span><span class="p">))</span>
+<span class="gp">... </span>        <span class="k">break</span>
+<span class="gp">... </span>    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Oops!  That was no valid number.  Try again...&quot;</span><span class="p">)</span>
+<span class="gp">...</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="../reference/compound_stmts.html#try"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">try</span></code></a> ifadesi aşağıdaki gibi çalışır.</p>
+<ul class="simple">
+<li><p>İlk olarak, <em>try yan tümcesi</em> (<a class="reference internal" href="../reference/compound_stmts.html#try"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">try</span></code></a> ve <a class="reference internal" href="../reference/compound_stmts.html#except"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">except</span></code></a> anahtar kelimeleri arasındaki ifadeler) yürütülür.</p></li>
+<li><p>Özel durum oluşmazsa, <em>except yan tümcesi</em> atlanır ve <a class="reference internal" href="../reference/compound_stmts.html#try"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">try</span></code></a> ifadesinin yürütülmesi tamamlanır.</p></li>
+<li><p><a class="reference internal" href="../reference/compound_stmts.html#try"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">try</span></code></a> yan tümcesinin yürütülmesi sırasında bir özel durum oluşursa, yan tümcenin geri kalanı atlanır.  Daha sonra belirtilen <a class="reference internal" href="../reference/compound_stmts.html#except"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">except</span></code></a> türü ile karşılaşılırsa, <em>except yan tümcesi</em> yürütülür ve try/except bloğundan sonra yürütme devam eder.</p></li>
+<li><p><em>except yan tümcesinde</em> adı geçen özel durumla eşleşmeyen bir özel durum oluşursa, daha dışarıda olan <a class="reference internal" href="../reference/compound_stmts.html#try"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">try</span></code></a> ifadelerine geçirilir; işleyici bulunamazsa, bu bir <em>işlenmeyen özel durum</em> olur ve yürütme yukarıda gösterildiği gibi bir iletiyle durur.</p></li>
+</ul>
+<p><a class="reference internal" href="../reference/compound_stmts.html#try"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">try</span></code></a> ifadesi, farklı özel durumlar için işleyiciler belirtmek üzere birden fazla <em>except yan tümcesi</em> alabilir.  Maksimum bir tane işleyici yürütülür. İşleyiciler yalnızca karşılık gelen <em>try yan tümcesinde</em> oluşan özel durumları işler, aynı <code class="xref std std-keyword docutils literal notranslate"><span class="pre">try</span></code> ifadesinin diğer işleyicilerinde işlemez.  <em>except yan tümcesi</em> birden çok özel durumu parantezli demet olarak adlandırabilir, örneğin:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">...</span> <span class="k">except</span> <span class="p">(</span><span class="ne">RuntimeError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">,</span> <span class="ne">NameError</span><span class="p">):</span>
+<span class="o">...</span>     <span class="k">pass</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="../reference/compound_stmts.html#except"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">except</span></code></a> yan tümcesi, aynı sınıf veya temel sınıf ise özel durum ile uyumludur (ancak türetilmiş bir sınıfı listeleyen <em>except yan tümcesi</em> temel sınıfla uyumlu olmadığından  tersi olamaz). Örneğin, aşağıdaki kod B, C, D’yi bu sırada yazdırır:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">C</span><span class="p">(</span><span class="n">B</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">D</span><span class="p">(</span><span class="n">C</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="k">for</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="p">[</span><span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">D</span><span class="p">]:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="bp">cls</span><span class="p">()</span>
+    <span class="k">except</span> <span class="n">D</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;D&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">C</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">B</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><em>except yan tümceleri</em> tersine çevrilmişse (ilk olarak <code class="docutils literal notranslate"><span class="pre">except</span> <span class="pre">B</span></code> ile) B, B, B şeklinde yazdırılacaktır — ilk eşleşen <em>except yan tümcesi</em> tetiklenir.</p>
+<p>Bir istisna oluştuğunda, istisnanın <em>argümanı</em> olarak da bilinen ilişkili bir değeri olabilir. Argümanın varlığı ve türü, istisna türüne bağlıdır.</p>
+<p>The <em>except clause</em> may specify a variable after the exception name.  The
+variable is bound to the exception instance which typically has an <code class="docutils literal notranslate"><span class="pre">args</span></code>
+attribute that stores the arguments. For convenience, builtin exception
+types define <a class="reference internal" href="../reference/datamodel.html#object.__str__" title="object.__str__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__str__()</span></code></a> to print all the arguments without explicitly
+accessing <code class="docutils literal notranslate"><span class="pre">.args</span></code>.</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;spam&#39;</span><span class="p">,</span> <span class="s1">&#39;eggs&#39;</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">inst</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">inst</span><span class="p">))</span>    <span class="c1"># the exception type</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">args</span><span class="p">)</span>     <span class="c1"># arguments stored in .args</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">inst</span><span class="p">)</span>          <span class="c1"># __str__ allows args to be printed directly,</span>
+<span class="gp">... </span>                         <span class="c1"># but may be overridden in exception subclasses</span>
+<span class="gp">... </span>    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">inst</span><span class="o">.</span><span class="n">args</span>     <span class="c1"># unpack args</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x =&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;y =&#39;</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">&lt;class &#39;Exception&#39;&gt;</span>
+<span class="go">(&#39;spam&#39;, &#39;eggs&#39;)</span>
+<span class="go">(&#39;spam&#39;, &#39;eggs&#39;)</span>
+<span class="go">x = spam</span>
+<span class="go">y = eggs</span>
+</pre></div>
+</div>
+<p>The exception’s <a class="reference internal" href="../reference/datamodel.html#object.__str__" title="object.__str__"><code class="xref py py-meth docutils literal notranslate"><span class="pre">__str__()</span></code></a> output is printed as the last part (‘detail’)
+of the message for unhandled exceptions.</p>
+<p><a class="reference internal" href="../library/exceptions.html#BaseException" title="BaseException"><code class="xref py py-exc docutils literal notranslate"><span class="pre">BaseException</span></code></a>, tüm istisnaların ortak temel sınıfıdır. Alt sınıflarından biri olan <a class="reference internal" href="../library/exceptions.html#Exception" title="Exception"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Exception</span></code></a>, tüm önemli olmayan istisnaların temel sınıfıdır. <a class="reference internal" href="../library/exceptions.html#Exception" title="Exception"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Exception</span></code></a> öğesinin alt sınıfları olmayan istisnalar genellikle işlenmez, çünkü bunlar programın sona ermesi gerektiğini belirtmek için kullanılır. Bunlar <a class="reference internal" href="../library/sys.html#sys.exit" title="sys.exit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sys.exit()</span></code></a> tarafından oluşturulan <a class="reference internal" href="../library/exceptions.html#SystemExit" title="SystemExit"><code class="xref py py-exc docutils literal notranslate"><span class="pre">SystemExit</span></code></a> ve bir kullanıcı programı kesmek istediğinde ortaya çıkan <a class="reference internal" href="../library/exceptions.html#KeyboardInterrupt" title="KeyboardInterrupt"><code class="xref py py-exc docutils literal notranslate"><span class="pre">KeyboardInterrupt</span></code></a> içerir.</p>
+<p><a class="reference internal" href="../library/exceptions.html#Exception" title="Exception"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Exception</span></code></a> (neredeyse) her şeyi yakalayan bir joker karakter (wildcard) olarak kullanılabilir. Ancak, işlemeyi amaçladığımız istisna türleri konusunda mümkün olduğunca spesifik olmak ve beklenmeyen istisnaların yayılmasına izin vermek iyi bir uygulamadır.</p>
+<p><a class="reference internal" href="../library/exceptions.html#Exception" title="Exception"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Exception</span></code></a> işlemek için en yaygın model, istisnayı yazdırmak veya log’a kaydetmek ve ardından yeniden yükseltmektir (arayanın istisnayı da işlemesine izin verir):</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;myfile.txt&#39;</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+<span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;OS error:&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Could not convert data to an integer.&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unexpected </span><span class="si">{</span><span class="n">err</span><span class="si">=}</span><span class="s2">, </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="si">=}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">raise</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="../reference/compound_stmts.html#try"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">try</span></code></a> … <a class="reference internal" href="../reference/compound_stmts.html#except"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">except</span></code></a> ifadesinin isteğe bağlı bir <em>else yan tümcesi</em> vardır, bu da mevcut olduğunda tüm <em>except yan tümcelerini</em> izlemelidir.  <em>try yan tümcesi</em> bir özel durum oluşturmazsa yürütülmesi gereken kod için yararlıdır. Mesela:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;cannot open&#39;</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="s1">&#39;has&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()),</span> <span class="s1">&#39;lines&#39;</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><code class="xref std std-keyword docutils literal notranslate"><span class="pre">else</span></code> yan tümcesinin kullanılması, <a class="reference internal" href="../reference/compound_stmts.html#try"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">try</span></code></a> yan tümcesine ek kod eklemekten daha iyidir çünkü yanlışlıkla <code class="xref std std-keyword docutils literal notranslate"><span class="pre">try</span></code> tarafından korunan kod tarafından oluşturulmamış bir istisnayı yakalamayı önler. … <code class="xref std std-keyword docutils literal notranslate"><span class="pre">except</span></code> ifadesi.</p>
+<p>İstisna işleyicileri, yalnızca <em>try yan tümcesinde</em> anında ortaya çıkan istisnaları değil, aynı zamanda <em>try yan tümcesinde</em> çağrılan (dolaylı olarak da olsa) işlevlerin içinde oluşan istisnaları da işler. Örneğin:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">this_fails</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">0</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">this_fails</span><span class="p">()</span>
+<span class="gp">... </span><span class="k">except</span> <span class="ne">ZeroDivisionError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Handling run-time error:&#39;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">Handling run-time error: division by zero</span>
+</pre></div>
+</div>
+</section>
+<section id="raising-exceptions">
+<span id="tut-raising"></span><h2><span class="section-number">8.4. </span>Hata Yükseltme<a class="headerlink" href="#raising-exceptions" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference internal" href="../reference/simple_stmts.html#raise"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">raise</span></code></a> ifadesi, programcının belirli bir istisnanın gerçekleşmesini zorlamasını sağlar. Örneğin:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">raise</span> <span class="ne">NameError</span><span class="p">(</span><span class="s1">&#39;HiThere&#39;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">HiThere</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="../reference/simple_stmts.html#raise"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">raise</span></code></a> için tek argüman, ortaya çıkacak istisnayı belirtir. Bu, bir istisna örneği veya bir istisna sınıfı (<a class="reference internal" href="../library/exceptions.html#BaseException" title="BaseException"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseException</span></code></a> ‘dan türetilen bir sınıf, örneğin <a class="reference internal" href="../library/exceptions.html#Exception" title="Exception"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Exception</span></code></a> veya alt sınıflarından) olmalıdır.  Bir istisna sınıfı iletilirse, yapıcısını hiçbir argüman olmadan çağırarak dolaylı olarak başlatılır:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">raise</span> <span class="ne">ValueError</span>  <span class="c1"># shorthand for &#39;raise ValueError()&#39;</span>
+</pre></div>
+</div>
+<p>Bir istisnanın oluşturulup oluşturulmadığını belirlemeniz gerekiyorsa ancak onu işlemeyi düşünmüyorsanız, <a class="reference internal" href="../reference/simple_stmts.html#raise"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">raise</span></code></a> ifadesinin daha basit bir biçimi, istisnayı yeniden oluşturmanıza olanak tanır:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">raise</span> <span class="ne">NameError</span><span class="p">(</span><span class="s1">&#39;HiThere&#39;</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;An exception flew by!&#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">raise</span>
+<span class="gp">...</span>
+<span class="go">An exception flew by!</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">2</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">NameError</span>: <span class="n">HiThere</span>
+</pre></div>
+</div>
+</section>
+<section id="exception-chaining">
+<span id="tut-exception-chaining"></span><h2><span class="section-number">8.5. </span>İstisna Zincirleme<a class="headerlink" href="#exception-chaining" title="Permalink to this heading">¶</a></h2>
+<p>Bir <a class="reference internal" href="../reference/compound_stmts.html#except"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">except</span></code></a> bölümü içinde işlenmeyen bir istisna meydana gelirse, istisnanın kendisine eklenmiş olarak işlenmesi ve şu hata mesajına dahil edilmesi gerekir:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;database.sqlite&quot;</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;unable to handle error&quot;</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">2</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">FileNotFoundError</span>: <span class="n">[Errno 2] No such file or directory: &#39;database.sqlite&#39;</span>
+
+<span class="gt">During handling of the above exception, another exception occurred:</span>
+
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">4</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">RuntimeError</span>: <span class="n">unable to handle error</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="../reference/simple_stmts.html#raise"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">raise</span></code></a> ifadesi, bir istisnanın başka bir istisnanın doğrudan sonucu olduğunu belirtmek için isteğe bağlı <a class="reference internal" href="../reference/simple_stmts.html#raise"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">from</span></code></a> yan tümcesine izin verir:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># exc must be exception instance or None.</span>
+<span class="k">raise</span> <span class="ne">RuntimeError</span> <span class="kn">from</span> <span class="nn">exc</span>
+</pre></div>
+</div>
+<p>Bu, özel durumları dönüştürürken yararlı olabilir. Mesela:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">raise</span> <span class="ne">ConnectionError</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">func</span><span class="p">()</span>
+<span class="gp">... </span><span class="k">except</span> <span class="ne">ConnectionError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Failed to open database&#39;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">exc</span>
+<span class="gp">...</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">2</span>, in <span class="n">&lt;module&gt;</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">2</span>, in <span class="n">func</span>
+<span class="gr">ConnectionError</span>
+
+<span class="gt">The above exception was the direct cause of the following exception:</span>
+
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">4</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">RuntimeError</span>: <span class="n">Failed to open database</span>
+</pre></div>
+</div>
+<p>Ayrıca, <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">None</span></code> deyimi kullanılarak otomatik istisna zincirlemenin devre dışı bırakılmasına izin verir:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;database.sqlite&#39;</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">raise</span> <span class="ne">RuntimeError</span> <span class="kn">from</span> <span class="kc">None</span>
+<span class="gp">...</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">4</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">RuntimeError</span>
+</pre></div>
+</div>
+<p>Zincirleme mekaniği hakkında daha fazla bilgi için bkz. <a class="reference internal" href="../library/exceptions.html#bltin-exceptions"><span class="std std-ref">Built-in Exceptions</span></a>.</p>
+</section>
+<section id="user-defined-exceptions">
+<span id="tut-userexceptions"></span><h2><span class="section-number">8.6. </span>Kullanıcı Tanımlı İstisnalar<a class="headerlink" href="#user-defined-exceptions" title="Permalink to this heading">¶</a></h2>
+<p>Programlar yeni bir istisna sınıfı oluşturarak kendi özel durumlarını adlandırabilir (Python sınıfları hakkında daha fazla bilgi için bkz: <a class="reference internal" href="classes.html#tut-classes"><span class="std std-ref">Sınıflar</span></a> ).  Özel durumlar genellikle doğrudan veya dolaylı olarak <a class="reference internal" href="../library/exceptions.html#Exception" title="Exception"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Exception</span></code></a> sınıfından türetilmelidir.</p>
+<p>İstisna sınıfları, başka herhangi bir sınıfın yapabileceği her şeyi yapan tanımlanabilir, ancak genellikle basit tutulur ve çoğu zaman yalnızca istisna için işleyiciler tarafından hatayla ilgili bilgilerin çıkarılmasına izin veren bir dizi öznitelik sunar.</p>
+<p>Çoğu özel durum, standart özel durumların adlandırışına benzer şekilde “Hata” ile biten adlarla tanımlanır.</p>
+<p>Birçok standart modül, tanımladıkları işlevlerde oluşabilecek hataları raporlamak için kendi istisnalarını tanımlar.</p>
+</section>
+<section id="defining-clean-up-actions">
+<span id="tut-cleanup"></span><h2><span class="section-number">8.7. </span>Temizleme Eylemlerini Tanımlama<a class="headerlink" href="#defining-clean-up-actions" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference internal" href="../reference/compound_stmts.html#try"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">try</span></code></a> deyimi, her koşulda yürütülmesi gereken temizleme eylemlerini tanımlamayı amaçlayan başka bir opsiyonel yan tümceye sahiptir.  Mesela:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">raise</span> <span class="ne">KeyboardInterrupt</span>
+<span class="gp">... </span><span class="k">finally</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Goodbye, world!&#39;</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">Goodbye, world!</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">2</span>, in <span class="n">&lt;module&gt;</span>
+<span class="nc">KeyboardInterrupt</span>
+</pre></div>
+</div>
+<p>Bir <a class="reference internal" href="../reference/compound_stmts.html#finally"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">finally</span></code></a> yan tümcesi varsa, <code class="xref std std-keyword docutils literal notranslate"><span class="pre">finally</span></code> yan tümcesi <a class="reference internal" href="../reference/compound_stmts.html#try"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">try</span></code></a> deyimi tamamlanmadan önceki son görev olarak yürütülür. <code class="xref std std-keyword docutils literal notranslate"><span class="pre">finally</span></code> yan tümcesi <code class="xref std std-keyword docutils literal notranslate"><span class="pre">try</span></code> deyiminin bir istisna oluşturup oluşturmadığından bağımsız çalışır. Aşağıdaki noktalarda, bir istisna oluştuğunda daha karmaşık durumlar anlatılmaktadır:</p>
+<ul class="simple">
+<li><p><code class="xref std std-keyword docutils literal notranslate"><span class="pre">try</span></code> yan tümcesinin yürütülmesi sırasında bir istisna oluşursa, istisna bir <a class="reference internal" href="../reference/compound_stmts.html#except"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">except</span></code></a> yan tümcesi tarafından işlenebilir. İstisna bir <code class="xref std std-keyword docutils literal notranslate"><span class="pre">except</span></code> yan tümcesi tarafından ele alınmıyorsa, istisna <code class="xref std std-keyword docutils literal notranslate"><span class="pre">finally</span></code> yan tümcesi yürütüldükten sonra yeniden oluşturulur.</p></li>
+<li><p>Bir <code class="xref std std-keyword docutils literal notranslate"><span class="pre">except</span></code> veya <code class="xref std std-keyword docutils literal notranslate"><span class="pre">else</span></code> yan tümcesinin yürütülmesi sırasında bir istisna oluşabilir. Yine, istisna, <code class="xref std std-keyword docutils literal notranslate"><span class="pre">finally</span></code> yan tümcesi yürütüldükten sonra yeniden oluşturulur.</p></li>
+<li><p><code class="xref std std-keyword docutils literal notranslate"><span class="pre">finally</span></code> yan tümcesi bir <a class="reference internal" href="../reference/simple_stmts.html#break"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">break</span></code></a>, <a class="reference internal" href="../reference/simple_stmts.html#continue"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">continue</span></code></a> veya <a class="reference internal" href="../reference/simple_stmts.html#return"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">return</span></code></a> deyimini yürütürse, istisnalar yeniden oluşturulmaz.</p></li>
+<li><p><code class="xref std std-keyword docutils literal notranslate"><span class="pre">try</span></code> ifadesi bir <a class="reference internal" href="../reference/simple_stmts.html#break"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">break</span></code></a>, <a class="reference internal" href="../reference/simple_stmts.html#continue"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">continue</span></code></a> veya <a class="reference internal" href="../reference/simple_stmts.html#return"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">return</span></code></a> ifadesine ulaşırsa, <code class="xref std std-keyword docutils literal notranslate"><span class="pre">finally</span></code> yan tümcesi <code class="xref std std-keyword docutils literal notranslate"><span class="pre">break</span></code>, <code class="xref std std-keyword docutils literal notranslate"><span class="pre">continue</span></code> veya <code class="xref std std-keyword docutils literal notranslate"><span class="pre">return</span></code> ifadesinin yürütülmesinin hemen öncesinde yürütülür.</p></li>
+<li><p>Bir <code class="xref std std-keyword docutils literal notranslate"><span class="pre">finally</span></code> yan tümcesi bir <code class="xref std std-keyword docutils literal notranslate"><span class="pre">return</span></code> ifadesini içeriyorsa, döndürülen değer, <code class="xref std std-keyword docutils literal notranslate"><span class="pre">finally</span></code> yan tümcesinin <code class="xref std std-keyword docutils literal notranslate"><span class="pre">return</span></code> ifadesindeki değer olacaktır, <code class="xref std std-keyword docutils literal notranslate"><span class="pre">try</span></code> yan tümcesinin <code class="xref std std-keyword docutils literal notranslate"><span class="pre">return</span></code> ifadesindeki değer değil.</p></li>
+</ul>
+<p>Mesela:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">bool_return</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="kc">True</span>
+<span class="gp">... </span>    <span class="k">finally</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="kc">False</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bool_return</span><span class="p">()</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>Daha karmaşık bir örnek:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">divide</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">result</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="n">y</span>
+<span class="gp">... </span>    <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;division by zero!&quot;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;result is&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">finally</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;executing finally clause&quot;</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">divide</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="go">result is 2.0</span>
+<span class="go">executing finally clause</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">divide</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">division by zero!</span>
+<span class="go">executing finally clause</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">divide</span><span class="p">(</span><span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">)</span>
+<span class="go">executing finally clause</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">3</span>, in <span class="n">divide</span>
+<span class="gr">TypeError</span>: <span class="n">unsupported operand type(s) for /: &#39;str&#39; and &#39;str&#39;</span>
+</pre></div>
+</div>
+<p>Gördüğünüz gibi, <a class="reference internal" href="../reference/compound_stmts.html#finally"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">finally</span></code></a> yan tümcesi her durumda yürütülür.  İki dizeyi bölerek oluşturulan <a class="reference internal" href="../library/exceptions.html#TypeError" title="TypeError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">TypeError</span></code></a>, <a class="reference internal" href="../reference/compound_stmts.html#except"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">except</span></code></a> yan tümcesi tarafından işlenmez ve bu nedenle <code class="xref std std-keyword docutils literal notranslate"><span class="pre">finally</span></code> yan tümcesi yürütüldikten sonra yeniden yükseltilir.</p>
+<p>Gerçek dünyadaki uygulamalarda <a class="reference internal" href="../reference/compound_stmts.html#finally"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">finally</span></code></a> yan tümcesi, kaynağın kullanımının başarılı olup olmadığına bakılmaksızın dış kaynakları (dosyalar veya ağ bağlantıları gibi) serbest bırakmak için yararlıdır.</p>
+</section>
+<section id="predefined-clean-up-actions">
+<span id="tut-cleanup-with"></span><h2><span class="section-number">8.8. </span>Önceden Tanımlanmış Temizleme Eylemleri<a class="headerlink" href="#predefined-clean-up-actions" title="Permalink to this heading">¶</a></h2>
+<p>Bazı nesneler, nesneyi kullanan işlemin başarılı veya başarısız olup olmadığına bakılmaksızın, nesne artık gerekli olmadığında gerçekleştirilecek standart temizleme eylemlerini tanımlar. Bir dosyayı açmaya ve içeriğini ekrana yazdırmaya çalışan aşağıdaki örneğe bakın.</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myfile.txt&quot;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Bu kodla ilgili sorun, kodun bu bölümünün yürütülmesi tamamlandıktan sonra dosyayı belirsiz bir süre açık bırakmasıdır. Bu basit komut dosyalarında bir sorun değildir, ancak daha büyük uygulamalar için bir sorun olabilir. <a class="reference internal" href="../reference/compound_stmts.html#with"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">with</span></code></a> ifadesi, dosyalar gibi nesnelerin her zaman hızlı ve doğru temizlenmesini sağlayacak şekilde kullanılmasına izin verir.</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myfile.txt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>İfade çalıştırıldıktan sonra, satırlar işlenirken bir sorunla karşılaşılsa bile <em>f</em> dosyası her zaman kapatılır. Dosyalar gibi önceden tanımlanmış temizleme eylemleri sağlayan nesneler dokümantasyonlarında bunu gösterir.</p>
+</section>
+<section id="raising-and-handling-multiple-unrelated-exceptions">
+<span id="tut-exception-groups"></span><h2><span class="section-number">8.9. </span>Birden Fazla Alakasız İstisna Oluşturma ve İşleme<a class="headerlink" href="#raising-and-handling-multiple-unrelated-exceptions" title="Permalink to this heading">¶</a></h2>
+<p>Meydana gelen birkaç istisnanın rapor edilmesinin gerekli olduğu durumlar vardır. Bu, genellikle birkaç görevin paralel olarak başarısız olabileceği eşzamanlılık çerçevelerinde geçerlidir, ancak ilk istisnayı yükseltmek yerine yürütmeye devam etmenin ve birden çok hata toplamanın istendiği başka kullanım durumları da vardır.</p>
+<p>Yerleşik <a class="reference internal" href="../library/exceptions.html#ExceptionGroup" title="ExceptionGroup"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ExceptionGroup</span></code></a>, birlikte oluşturulabilmeleri için istisna örneklerinin bir listesini sarar. Kendisi bir istisnadır, bu nedenle herhangi bir istisna gibi yakalanabilir.</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="n">excs</span> <span class="o">=</span> <span class="p">[</span><span class="ne">OSError</span><span class="p">(</span><span class="s1">&#39;error 1&#39;</span><span class="p">),</span> <span class="ne">SystemError</span><span class="p">(</span><span class="s1">&#39;error 2&#39;</span><span class="p">)]</span>
+<span class="gp">... </span>    <span class="k">raise</span> <span class="n">ExceptionGroup</span><span class="p">(</span><span class="s1">&#39;there were problems&#39;</span><span class="p">,</span> <span class="n">excs</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="p">()</span>
+<span class="go">  + Exception Group Traceback (most recent call last):</span>
+<span class="go">  |   File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</span>
+<span class="go">  |   File &quot;&lt;stdin&gt;&quot;, line 3, in f</span>
+<span class="go">  | ExceptionGroup: there were problems</span>
+<span class="go">  +-+---------------- 1 ----------------</span>
+<span class="go">    | OSError: error 1</span>
+<span class="go">    +---------------- 2 ----------------</span>
+<span class="go">    | SystemError: error 2</span>
+<span class="go">    +------------------------------------</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">f</span><span class="p">()</span>
+<span class="gp">... </span><span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;caught </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s1">: e&#39;</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">caught &lt;class &#39;ExceptionGroup&#39;&gt;: e</span>
+<span class="gp">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">except</span></code> yerine <code class="docutils literal notranslate"><span class="pre">except*</span></code> kullanarak, yalnızca gruptaki belirli bir türle eşleşen istisnaları seçerek işleyebiliriz. İç içe geçmiş bir istisna grubunu gösteren aşağıdaki örnekte, her bir <code class="docutils literal notranslate"><span class="pre">except*</span></code> yan tümcesi, diğer tüm istisnaların diğer yan tümcelere yayılmasına ve sonunda yeniden ortaya çıkmasına izin verirken, belirli bir türdeki grup istisnalarını çıkarır.</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">raise</span> <span class="n">ExceptionGroup</span><span class="p">(</span>
+<span class="gp">... </span>        <span class="s2">&quot;group1&quot;</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="p">[</span>
+<span class="gp">... </span>            <span class="ne">OSError</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+<span class="gp">... </span>            <span class="ne">SystemError</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+<span class="gp">... </span>            <span class="n">ExceptionGroup</span><span class="p">(</span>
+<span class="gp">... </span>                <span class="s2">&quot;group2&quot;</span><span class="p">,</span>
+<span class="gp">... </span>                <span class="p">[</span>
+<span class="gp">... </span>                    <span class="ne">OSError</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>
+<span class="gp">... </span>                    <span class="ne">RecursionError</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">... </span>                <span class="p">]</span>
+<span class="gp">... </span>            <span class="p">)</span>
+<span class="gp">... </span>        <span class="p">]</span>
+<span class="gp">... </span>    <span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">f</span><span class="p">()</span>
+<span class="gp">... </span><span class="k">except</span><span class="o">*</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There were OSErrors&quot;</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">except</span><span class="o">*</span> <span class="ne">SystemError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There were SystemErrors&quot;</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">There were OSErrors</span>
+<span class="go">There were SystemErrors</span>
+<span class="go">  + Exception Group Traceback (most recent call last):</span>
+<span class="go">  |   File &quot;&lt;stdin&gt;&quot;, line 2, in &lt;module&gt;</span>
+<span class="go">  |   File &quot;&lt;stdin&gt;&quot;, line 2, in f</span>
+<span class="go">  | ExceptionGroup: group1</span>
+<span class="go">  +-+---------------- 1 ----------------</span>
+<span class="go">    | ExceptionGroup: group2</span>
+<span class="go">    +-+---------------- 1 ----------------</span>
+<span class="go">      | RecursionError: 4</span>
+<span class="go">      +------------------------------------</span>
+<span class="gp">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>Bir istisna grubunda iç içe geçmiş istisnaların türler değil, örnekler olması gerektiğini unutmayın. Bunun nedeni, pratikte istisnaların tipik olarak, aşağıdaki kalıp boyunca program tarafından önceden oluşturulmuş ve yakalanmış olanlar olmasıdır:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">excs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">... </span><span class="k">for</span> <span class="n">test</span> <span class="ow">in</span> <span class="n">tests</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">test</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="gp">... </span>    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">excs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">excs</span><span class="p">:</span>
+<span class="gp">... </span>   <span class="k">raise</span> <span class="n">ExceptionGroup</span><span class="p">(</span><span class="s2">&quot;Test Failures&quot;</span><span class="p">,</span> <span class="n">excs</span><span class="p">)</span>
+<span class="gp">...</span>
+</pre></div>
+</div>
+</section>
+<section id="enriching-exceptions-with-notes">
+<span id="tut-exception-notes"></span><h2><span class="section-number">8.10. </span>İstisnaları Notlarla Zenginleştirme<a class="headerlink" href="#enriching-exceptions-with-notes" title="Permalink to this heading">¶</a></h2>
+<p>Yükseltilmek üzere bir istisna oluşturulduğunda, genellikle meydana gelen hatayı açıklayan bilgilerle başlatılır. İstisna yakalandıktan sonra bilgi eklemenin yararlı olduğu durumlar vardır. Bu amaçla, istisnaların bir dizgiyi kabul eden ve onu istisnanın notlar listesine ekleyen <code class="docutils literal notranslate"><span class="pre">add_note(note)</span></code> metodu vardır. Standart geri işleme (traceback) oluşturma, tüm notları istisnadan sonra eklendikleri sırayla içerir.</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;bad type&#39;</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">e</span><span class="o">.</span><span class="n">add_note</span><span class="p">(</span><span class="s1">&#39;Add some information&#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">e</span><span class="o">.</span><span class="n">add_note</span><span class="p">(</span><span class="s1">&#39;Add some more information&#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">raise</span>
+<span class="gp">...</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">2</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">TypeError</span>: <span class="n">bad type</span>
+<span class="x">Add some information</span>
+<span class="x">Add some more information</span>
+<span class="gp">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>Örneğin, istisnaları bir istisna grubuna toplarken, bireysel hatalar için bağlam bilgisi eklemek isteyebiliriz. Aşağıda, gruptaki her özel durum, bu hatanın ne zaman oluştuğunu gösteren bir nota sahiptir.</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span><span class="s1">&#39;operation failed&#39;</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">excs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">f</span><span class="p">()</span>
+<span class="gp">... </span>    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">e</span><span class="o">.</span><span class="n">add_note</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Happened in Iteration </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="n">excs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">raise</span> <span class="n">ExceptionGroup</span><span class="p">(</span><span class="s1">&#39;We have some problems&#39;</span><span class="p">,</span> <span class="n">excs</span><span class="p">)</span>
+<span class="go">  + Exception Group Traceback (most recent call last):</span>
+<span class="go">  |   File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</span>
+<span class="go">  | ExceptionGroup: We have some problems (3 sub-exceptions)</span>
+<span class="go">  +-+---------------- 1 ----------------</span>
+<span class="go">    | Traceback (most recent call last):</span>
+<span class="go">    |   File &quot;&lt;stdin&gt;&quot;, line 3, in &lt;module&gt;</span>
+<span class="go">    |   File &quot;&lt;stdin&gt;&quot;, line 2, in f</span>
+<span class="go">    | OSError: operation failed</span>
+<span class="go">    | Happened in Iteration 1</span>
+<span class="go">    +---------------- 2 ----------------</span>
+<span class="go">    | Traceback (most recent call last):</span>
+<span class="go">    |   File &quot;&lt;stdin&gt;&quot;, line 3, in &lt;module&gt;</span>
+<span class="go">    |   File &quot;&lt;stdin&gt;&quot;, line 2, in f</span>
+<span class="go">    | OSError: operation failed</span>
+<span class="go">    | Happened in Iteration 2</span>
+<span class="go">    +---------------- 3 ----------------</span>
+<span class="go">    | Traceback (most recent call last):</span>
+<span class="go">    |   File &quot;&lt;stdin&gt;&quot;, line 3, in &lt;module&gt;</span>
+<span class="go">    |   File &quot;&lt;stdin&gt;&quot;, line 2, in f</span>
+<span class="go">    | OSError: operation failed</span>
+<span class="go">    | Happened in Iteration 3</span>
+<span class="go">    +------------------------------------</span>
+<span class="gp">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../contents.html">İçindekiler</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">8. Hatalar ve Özel Durumlar</a><ul>
+<li><a class="reference internal" href="#syntax-errors">8.1. Söz Dizimi Hataları</a></li>
+<li><a class="reference internal" href="#exceptions">8.2. Özel Durumlar</a></li>
+<li><a class="reference internal" href="#handling-exceptions">8.3. Özel Durumları İşleme</a></li>
+<li><a class="reference internal" href="#raising-exceptions">8.4. Hata Yükseltme</a></li>
+<li><a class="reference internal" href="#exception-chaining">8.5. İstisna Zincirleme</a></li>
+<li><a class="reference internal" href="#user-defined-exceptions">8.6. Kullanıcı Tanımlı İstisnalar</a></li>
+<li><a class="reference internal" href="#defining-clean-up-actions">8.7. Temizleme Eylemlerini Tanımlama</a></li>
+<li><a class="reference internal" href="#predefined-clean-up-actions">8.8. Önceden Tanımlanmış Temizleme Eylemleri</a></li>
+<li><a class="reference internal" href="#raising-and-handling-multiple-unrelated-exceptions">8.9. Birden Fazla Alakasız İstisna Oluşturma ve İşleme</a></li>
+<li><a class="reference internal" href="#enriching-exceptions-with-notes">8.10. İstisnaları Notlarla Zenginleştirme</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Önceki konu</h4>
+    <p class="topless"><a href="inputoutput.html"
+                          title="önceki bölüm"><span class="section-number">7. </span>Girdi ve Çıktı</a></p>
+  </div>
+  <div>
+    <h4>Sonraki konu</h4>
+    <p class="topless"><a href="classes.html"
+                          title="sonraki bölüm"><span class="section-number">9. </span>Sınıflar</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>Bu Sayfa</h3>
+    <ul class="this-page-menu">
+      <li><a href="../bugs.html">Hata Bildir</a></li>
+      <li>
+        <a href="https://github.com/python/cpython/blob/3.11/Doc/tutorial/errors.rst"
+            rel="nofollow">Kaynağı Göster
+        </a>
+      </li>
+    </ul>
+  </div>
+        </div>
+<div id="sidebarbutton" title="Yan çubuğu daralt">
+<span>«</span>
+</div>
+
+      </div>
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Gezinti</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Genel Endeks"
+             >dizin</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Modül Dizini"
+             >modülleri</a> |</li>
+        <li class="right" >
+          <a href="classes.html" title="9. Sınıflar"
+             >sonraki</a> |</li>
+        <li class="right" >
+          <a href="inputoutput.html" title="7. Girdi ve Çıktı"
+             >önceki</a> |</li>
+
+          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+          </li>
+    <li id="cpython-language-and-version">
+      <a href="../index.html">3.11.5 Documentation</a> &#187;
+    </li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Python Öğreticisi</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">8. </span>Hatalar ve Özel Durumlar</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Hızlı Arama" aria-label="Hızlı Arama" type="search" name="q" id="search-box" />
+          <input type="submit" value="Git" />
+        </form>
+    </div>
+                     |
+                </li>
+            <li class="right">
+<label class="theme-selector-label">
+    Theme
+    <select class="theme-selector" oninput="activateTheme(this.value)">
+        <option value="auto" selected>Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
+</label> |</li>
+            
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; <a href="../copyright.html">Telif Hakkı</a> 2001-2023, Python Software Foundation.
+    <br />
+    This page is licensed under the Python Software Foundation License Version 2.
+    <br />
+    Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
+    <br />
+    See <a href="/license.html">History and License</a> for more information.<br />
+    <br />
+
+    The Python Software Foundation is a non-profit corporation.
+<a href="https://www.python.org/psf/donations/">Please donate.</a>
+<br />
+    <br />
+
+    Son güncelleme: Eki 23, 2023.
+    <a href="/bugs.html">Found a bug</a>?
+    <br />
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.1.
+    </div>
+
+  </body>
+</html>
